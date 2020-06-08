@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Home</title>
+    <!-- VPS icon -->
+    <link rel="icon" href="img/icon_vps.png" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body class="scrollbar">
+    <!-- Start your project here-->
+    <section class="form-elegant scrollbar-light-blue">
+
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark primary-color fixed-top">
+
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="#">Virtual Police Station</a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link mx-xl-4 logged-in" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mx-xl-4">
+                        <!-- <a class="nav-link" href="index.html" data-target="target-signin" onclick="show_signin()">Sign in</a>
+                    </li>
+                    <li class="nav-item mx-xl-4">
+                        <a class="nav-link" href="#" data-target="target-signup" onclick="show_signup()">Sign Up</a>
+                    </li> -->
+
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown logged-in">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#" id="accDetail"></a>
+                        </div>
+                    </li>
+                    <li class="nav-item mx-xl-4 logged-in">
+                        <a class="nav-link" href="#" id="signout" onclick="signOut">Sign Out</a>
+                    </li>
+
+                </ul>
+                <!-- Links -->
+
+                <form class="form-inline">
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    </div>
+                </form>
+            </div>
+            <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+
+        <!-- grid start -->
+        <div class="container" id="target-main" style="margin-top:130px">
+
+            <div class="row justify-content-around">
+                <div class="col-lg-4 col-xs-12">
+
+                    <div class="card card-cascade narrower h-75">
+
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay zoom">
+                            <img class="card-img-top" src="img/undraw_add.png" alt="Card image cap">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade">
+
+                            <!-- Title -->
+                            <h4 class="font-weight-bold card-title">New FIR</h4>
+                            <!-- Text -->
+                            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+                                laboriosam, nisi ut aliquid ex ea commodi.</p>
+                            <!-- Button -->
+                            <a class="btn btn-primary" href="newfir.html">New FIR</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <div class="card card-cascade narrower h-75">
+
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay zoom">
+                            <img class="card-img-top" src="img/checklist.png" alt="Card image cap">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade">
+
+                            <!-- Title -->
+                            <h4 class="font-weight-bold card-title">FIR Status</h4>
+                            <!-- Text -->
+                            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+                                laboriosam, nisi ut aliquid ex ea commodi.</p>
+                            <!-- Button -->
+                            <a class="btn btn-primary">FIR Status</a>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <div class="card card-cascade narrower h-75">
+
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay zoom">
+                            <img class="card-img-top" src="img/personal_data.png" alt="Card image cap">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade">
+
+                            <!-- Title -->
+                            <h4 class="font-weight-bold card-title">Past incidents</h4>
+                            <!-- Text -->
+                            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+                                laboriosam, nisi ut aliquid ex ea commodi.</p>
+                            <!-- Button -->
+                            <a class="btn btn-primary">Past incidents</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- -------------second row------------------ -->
+
+            <div class="row justify-content-around">
+                <div class="col-lg-4 col-xs-12">
+
+                    <div class="card card-cascade narrower h-75">
+
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay  zoom">
+                            <img class="card-img-top" src="img/checklist.png" alt="Card image cap">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade">
+
+
+                            <!-- Title -->
+                            <h4 class="font-weight-bold card-title">Apply NOC</h4>
+                            <!-- Text -->
+                            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+                                laboriosam, nisi ut aliquid ex ea commodi.</p>
+                            <!-- Button -->
+                            <a class="btn btn-primary">Apply NOC</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <div class="card card-cascade narrower h-75">
+
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay zoom">
+                            <img class="card-img-top" src="img/chat.png" alt="Card image cap">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade">
+
+
+                            <!-- Title -->
+                            <h4 class="font-weight-bold card-title">Chat BOT</h4>
+                            <!-- Text -->
+                            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+                                laboriosam, nisi ut aliquid ex ea commodi.</p>
+                            <!-- Button -->
+                            <a class="btn btn-primary">Chat BOT</a>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <div class="card card-cascade narrower h-75">
+
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay zoom">
+                            <img class="card-img-top" src="img/calendar.png" alt="Card image cap">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade">
+
+                            <!-- Title -->
+                            <h4 class="font-weight-bold card-title">Appointment</h4>
+                            <!-- Text -->
+                            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+                                laboriosam, nisi ut aliquid ex ea commodi.</p>
+                            <!-- Button -->
+                            <a class="btn btn-primary">Appointment</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- grid end -->
+
+        <!-- footer start -->
+        <!-- Footer -->
+        <footer class="page-footer font-small stylish-color-dark pt-4 mt-5" id="footer">
+
+            <!-- Footer Links -->
+            <!-- Footer Links -->
+
+            <!-- Social buttons -->
+            <ul class="list-unstyled list-inline text-center">
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-fb mx-1">
+                        <i class="fab fa-facebook-f"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-tw mx-1">
+                        <i class="fab fa-twitter"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-gplus mx-1">
+                        <i class="fab fa-google-plus-g"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-li mx-1">
+                        <i class="fab fa-linkedin-in"> </i>
+                    </a>
+                </li>
+            </ul>
+            <!-- Social buttons -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="#">Ghost-Gang.com</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
+
+        <!-- footer end -->
+    </section>
+
+    <!-- End your project here-->
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- custom scripts (optional) -->
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script src="js/auth.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Sign up</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <!-- Your custom styles (optional) -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <style>
+        .form-elegant .font-small {
+            font-size: 0.8rem;
+        }
+
+        .form-elegant .z-depth-1a {
+            -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+            box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+        }
+
+        .form-elegant .z-depth-1-half,
+        .form-elegant .btn:hover {
+            -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+            box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+        }
+
+        .form-elegant,
+        .form-dark {
+            position: relative;
+            height: 604px;
+            overflow-y: scroll;
+        }
+
+        .form-dark .font-small {
+            font-size: 0.8rem;
+        }
+
+        .form-dark [type="radio"]+label,
+        .form-dark [type="checkbox"]+label {
+            font-size: 0.8rem;
+        }
+
+        .form-dark [type="checkbox"]+label:before {
+            top: 2px;
+            width: 15px;
+            height: 15px;
+        }
+
+        .form-dark .md-form label {
+            color: #fff;
+        }
+
+        .form-dark input[type=text]:focus:not([readonly]) {
+            border-bottom: 1px solid #00C851;
+            -webkit-box-shadow: 0 1px 0 0 #00C851;
+            box-shadow: 0 1px 0 0 #00C851;
+        }
+
+        .form-dark input[type=text]:focus:not([readonly])+label {
+            color: #fff;
+        }
+
+        .form-dark input[type=password]:focus:not([readonly]) {
+            border-bottom: 1px solid #00C851;
+            -webkit-box-shadow: 0 1px 0 0 #00C851;
+            box-shadow: 0 1px 0 0 #00C851;
+        }
+
+        .form-dark input[type=password]:focus:not([readonly])+label {
+            color: #fff;
+        }
+
+        .form-dark input[type="checkbox"]+label:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 17px;
+            height: 17px;
+            z-index: 0;
+            border: 1.5px solid #fff;
+            border-radius: 1px;
+            margin-top: 2px;
+            -webkit-transition: 0.2s;
+            transition: 0.2s;
+        }
+
+        .form-dark input[type="checkbox"]:checked+label:before {
+            top: -4px;
+            left: -3px;
+            width: 12px;
+            height: 22px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: transparent #00c851 #00c851 transparent;
+            -webkit-transform: rotate(40deg);
+            -ms-transform: rotate(40deg);
+            transform: rotate(40deg);
+            -webkit-backface-visibility: hidden;
+            -webkit-transform-origin: 100% 100%;
+            -ms-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+        }
+
+        .scrollbar-light-blue::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #F5F5F5;
+            border-radius: 10px;
+        }
+
+        .scrollbar-light-blue::-webkit-scrollbar {
+            width: 12px;
+            background-color: #F5F5F5;
+        }
+
+        .scrollbar-light-blue::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #82B1FF;
+        }
+
+        .scrollbar-light-blue {
+            scrollbar-color: #82B1FF #F5F5F5;
+        }
+
+        .scrollbar-dusty-grass::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #F5F5F5;
+            border-radius: 10px;
+        }
+
+        .scrollbar-dusty-grass::-webkit-scrollbar {
+            width: 12px;
+            background-color: #F5F5F5;
+        }
+
+        .scrollbar-dusty-grass::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-image: -webkit-linear-gradient(330deg, #d4fc79 0%, #96e6a1 100%);
+            background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+        }
+
+        .square::-webkit-scrollbar-track {
+            border-radius: 0 !important;
+        }
+
+        .square::-webkit-scrollbar-thumb {
+            border-radius: 0 !important;
+        }
+
+        .thin::-webkit-scrollbar {
+            width: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Start your project here-->
+    <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-10 col-lg-8 col-xl-5 mb-4">
+
+            <section class="form-elegant scrollbar-light-blue">
+
+                <!--Form without header-->
+                <div class="card">
+
+                    <div class="card-body mx-4">
+
+                        <!--Header-->
+                        <div class="text-center">
+                            <h3 class="dark-grey-text mb-5"><strong>Sign up</strong></h3>
+                        </div>
+
+                        <!--Body-->
+                        <div class="md-form">
+                            <input type="text" id="Form-name1" class="form-control">
+                            <label for="Form-name1">Your name</label>
+                        </div>
+
+                        <div class="md-form">
+                            <input type="text" id="Form-surname1" class="form-control">
+                            <label for="Form-surname1">Your surname</label>
+                        </div>
+
+                        <div class="md-form">
+                            <input type="text" id="Form-email1" class="form-control">
+                            <label for="Form-email1">Your email</label>
+                        </div>
+
+                        <div class="md-form pb-3">
+                            <input type="password" id="Form-pass1" class="form-control">
+                            <label for="Form-pass1">Your password</label>
+                            <p class="font-small blue-text d-flex justify-content-end">Forgot <a href="#" class="blue-text ml-1">
+                                    Password?</a></p>
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <button type="button" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in</button>
+                        </div>
+                        <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in
+                            with:</p>
+
+                        <div class="row my-3 d-flex justify-content-center">
+                            <!--Facebook-->
+                            <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i
+                                    class="fab fa-facebook-f blue-text text-center"></i></button>
+                            <!--Twitter-->
+                            <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i
+                                    class="fab fa-twitter blue-text"></i></button>
+                            <!--Google +-->
+                            <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i
+                                    class="fab fa-google-plus-g blue-text"></i></button>
+                        </div>
+
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer mx-5 pt-3 mb-1">
+                        <p class="font-small grey-text d-flex justify-content-end">Not a member? <a href="#" class="blue-text ml-1">
+                                Sign Up</a></p>
+                    </div>
+
+                </div>
+                <!--/Form without header-->
+
+            </section>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-10 col-lg-8 col-xl-5 mx-xl-auto">
+
+            <!--Section: Live preview-->
+            <section class="form-dark scrollbar-dusty-grass thin square">
+
+                <!--Form without header-->
+                <div class="card card-image"
+                    style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(7).jpg');">
+                    <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+
+                        <!--Header-->
+                        <div class="text-center">
+                            <h3 class="white-text mb-5 mt-4 font-weight-bold"><strong>SIGN</strong> <a
+                                    class="green-text font-weight-bold"><strong>
+                                        UP</strong></a></h3>
+                        </div>
+
+                        <!--Body-->
+                        <div class="md-form">
+                            <input type="text" id="Form-name5" class="form-control white-text">
+                            <label for="Form-name5">Name</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="Form-surname5" class="form-control white-text">
+                            <label for="Form-surname5">Surname</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="Form-email5" class="form-control white-text">
+                            <label for="Form-email5">Email</label>
+                        </div>
+
+                        <div class="md-form pb-3">
+                            <input type="password" id="Form-pass5" class="form-control white-text">
+                            <label for="Form-pass5">Password</label>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="checkbox6">
+                                <label for="checkbox6" class="form-check-label white-text">Accept the<a href="#"
+                                        class="green-text font-weight-bold">
+                                        Terms and Conditions</a></label>
+                            </div>
+                        </div>
+
+                        <!--Grid row-->
+                        <div class="row d-flex align-items-center mb-4">
+
+                            <!--Grid column-->
+                            <div class="text-center mb-3 col-md-12">
+                                <button type="button" class="btn btn-success btn-block btn-rounded z-depth-1">Sign in</button>
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid column-->
+                        <div class="col-md-12">
+                            <p class="font-small white-text d-flex justify-content-end">Have an account? <a href="#"
+                                    class="green-text ml-1 font-weight-bold">
+                                    Log in</a></p>
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                </div>
+                <!--/Form without header-->
+
+            </section>
+            <!--Section: Live preview-->
+
+        </div>
+        <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+    <!-- End your project here-->
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Your custom scripts (optional) -->
+    <script type="text/javascript"></script>
+
+</body>
+
+</html>
