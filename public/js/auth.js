@@ -16,25 +16,23 @@ window.onload = function () {
 
         //signup user
         auth.createUserWithEmailAndPassword(email, password).then(cred => {
-            return db.collection('users').doc(cred.user.email).set({
+            return db.collection('Users').doc(cred.user.email).set({
 
-                fName: signupForm['signUpFName'].value,
-                lName: signupForm['signUpLName'].value,
-                aadhaar: signupForm['signUpAadhaar'].value,
-                address: signupForm['signUpAddress'].value,
-                city: signupForm['signUpCity'].value,
-                district: signupForm['signUpDistrict'].value,
-                state: signupForm['signUpState'].value,
-                pincode: signupForm['signUpPincode'].value,
-                phone: signupForm['signUpPhone'].value
-
+                FName: fname,
+                LName: lname,
+                Aadhaar: aadhaar,
+                Address: address,
+                City: city,
+                District: district,
+                State: state,
+                Pincode: pincode,
+                Phone: phone,
+                Email: email
+                
             }).then(() => {
                 signupForm.reset();
-                window.location.href = "main_div.html";
+                console.log("Document successfully written!");
             });
-            //const contain = document.querySelector('#target-signup');
-            // container.getInstance(contain).close();
-
         }).catch(err => {
             alert(err.message);
         });

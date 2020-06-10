@@ -51,7 +51,8 @@
 
           <!-- Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"
+              onmouseover="displayAccDetails()">Account</a>
             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="#" id="accDetails"></a>
             </div>
@@ -78,13 +79,13 @@
     <div class="container" id="target-main" style="margin-top:130px">
 
       <div class="row justify-content-around">
-        <div class="col-lg-4 col-xs-12">
+        <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
 
           <div class="card card-cascade narrower h-75">
 
             <!-- Card image -->
             <div class="view view-cascade overlay zoom">
-              <img class="card-img-top" src="img/undraw_add.png" alt="Card image cap">
+              <img class="card-img-top h" src="img/undraw_add.png" alt="Card image cap">
               <a>
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -106,7 +107,7 @@
           </div>
 
         </div>
-        <div class="col-lg-4 col-xs-12">
+        <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
           <div class="card card-cascade narrower h-75">
 
             <!-- Card image -->
@@ -132,7 +133,7 @@
 
           </div>
         </div>
-        <div class="col-lg-4 col-xs-12">
+        <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
           <div class="card card-cascade narrower h-75">
 
             <!-- Card image -->
@@ -163,7 +164,7 @@
       <!-- -------------second row------------------ -->
 
       <div class="row justify-content-around">
-        <div class="col-lg-4 col-xs-12">
+        <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
 
           <div class="card card-cascade narrower h-75">
 
@@ -192,7 +193,7 @@
           </div>
 
         </div>
-        <div class="col-lg-4 col-xs-12">
+        <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
           <div class="card card-cascade narrower h-75">
 
             <!-- Card image -->
@@ -219,7 +220,7 @@
 
           </div>
         </div>
-        <div class="col-lg-4 col-xs-12">
+        <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
           <div class="card card-cascade narrower h-75">
 
             <!-- Card image -->
@@ -311,7 +312,9 @@
   <script defer type="text/javascript" src="js/index.js"></script>
   <script>
     window.onload = function () {
-      firebase.auth().onAuthStateChanged(user => {
+      console.log(firebase.auth())
+      auth.onAuthStateChanged(user => {
+        console.log(user);
         if (user) {
         }
         else {

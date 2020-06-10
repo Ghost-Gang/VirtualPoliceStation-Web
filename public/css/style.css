@@ -8,6 +8,10 @@ body{
     font-size: 30px;
 }
 
+.container .card .h{
+    max-height: 260px;
+}
+
 .input-border{
     border: 1px solid #d9d9d9;
     border-radius: 5px;
@@ -29,7 +33,7 @@ body{
 }
 
 .form-elegant{
-    height: 648px;
+    max-height: 1366px;
     overflow-y: scroll;
 }
 

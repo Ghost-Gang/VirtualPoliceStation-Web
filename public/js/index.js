@@ -1,6 +1,4 @@
 
-// Your web app's Firebase configuration
-
 var firebaseConfig = {
   apiKey: "AIzaSyDO1j6ZIs4C8rhIENE0JDJPXSz0QK5ffHY",
   authDomain: "info-virtualpolicestation.firebaseapp.com",
@@ -14,13 +12,11 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-// firebase.auth();
-// firebase.firestore();
+var auth = firebase.auth();
+var db = firebase.firestore();
 
 function signIn() {
-  // e.preventDefault();
   const signinForm = document.querySelector('#signInForm');
-
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
@@ -28,6 +24,7 @@ function signIn() {
     console.log(cred);
     console.log('signedin');
     signinForm.reset();
+    console.log(auth.currentUser);
   }).catch(err => {
     alert(err.message);
   })
@@ -35,20 +32,23 @@ function signIn() {
 
 function signOut() {
   firebase.auth().signOut();
+  window.location.href = 'index.html';
 }
 
 function signUp() {
 
-  fname = document.getElementById('sFName').value;
-  lname = document.getElementById('sLName').value;
-  password = document.getElementById('sPassword').value;
-  aadhaar = document.getElementById('sAadhaar').value;
-  address = document.getElementById('sAddress').value;
-  city = document.getElementById('sCity').value;
-  district = document.getElementById('sDistrict').value;
-  state = document.getElementById('sState').value;
-  pincode = document.getElementById('sPincode').value;
-  phone = document.getElementById('sPhone').value;
+  var fname = document.getElementById('sFName').value;
+  var lname = document.getElementById('sLName').value;
+  var email = document.getElementById('sEmail').value;
+  var password = document.getElementById('sPassword').value;
+  var aadhaar = document.getElementById('sAadhaar').value;
+  var address = document.getElementById('sAddress').value;
+  var city = document.getElementById('sCity').value;
+  var district = document.getElementById('sDistrict').value;
+  var state = document.getElementById('sState').value;
+  var pincode = document.getElementById('sPincode').value;
+  var phone = document.getElementById('sPhone').value;
+  var signupForm = document.getElementById('signUpForm');
 
   var fullName = fname + lname;
   var validName = !/[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._0-9]/.test(fullName);
@@ -57,9 +57,9 @@ function signUp() {
   var lowerCase = /[a-z]/.test(password);
   var specialChar = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/.test(password);
 
-  if (validName) {
-    if (password.length >= 8 && number && upperCase && lowerCase && specialChar) {
-      if (aadhaar.toString().length === 12) {
+  if (validName && fullName != '') {
+    if (aadhaar.toString().length === 12) {
+      if (password.length >= 8 && number && upperCase && lowerCase && specialChar) {
         if (address.length != '') {
           if (city.length != '') {
             if (district.length != '') {
@@ -67,33 +67,49 @@ function signUp() {
                 if (pincode.toString().length === 6) {
                   if (phone.toString().length === 10) {
 
-                    const signupForm = document.getElementById('signUpForm');
-                    const email = document.getElementById('sEmail').value;
-                    const password = document.getElementById('sPassword').value;
+                    auth.createUserWithEmailAndPassword(email, password).then(() => {
 
-                    //signup user
-                    firebase.auth().createUserWithEmailAndPassword(email, password).then(cred => {
-                      return firebase.firestore().collection('User-Data').doc(cred.user.email).set({
+                      auth.onAuthStateChanged((user) => {
+                        if (user) {
+                          user.updateProfile({
+                            displayName: fullName,
+                            phoneNumber: phone
+                          }).then(() => {
+                            console.log('updated');
+                            console.log(user.email);
+                          }).catch(error => {
+                            console.log(error.message);
+                          });
 
-                        FName: fname,
-                        LName: lname,
-                        Aadhaar: aadhaar,
-                        Address: address,
-                        City: city,
-                        District: district,
-                        State: state,
-                        Pincode: pincode,
-                        Phone: phone
-
-                      }).then(() => {
-                        signupForm.reset();
-                        // window.location.href = "home.html";
+                          user.sendEmailVerification().then(function () {
+                            alert('verification email sent')
+                            // Email sent.
+                          }).catch(function (error) {
+                            // An error happened.
+                            console.log(error.message);
+                          });
+                          currentUser = user;
+                          db.collection('Users').doc(user.email).set({
+                            FName: fname,
+                            LName: lname,
+                            Aadhaar: aadhaar,
+                            Address: address,
+                            City: city,
+                            District: district,
+                            State: state,
+                            Pincode: pincode,
+                            Phone: phone,
+                            Email: email
+                          }).then(() => {
+                            signupForm.reset();
+                            console.log("Document successfully written!");
+                            window.location.href = 'home.html';
+                          }).catch(err => {
+                            alert(err.message);
+                          });
+                        }
                       });
-
-                    }).catch(err => {
-                      alert(err.message);
-                      console.log(err.message)
-                    });
+                    }).catch((error) => { alert(error.message); });
 
                   }
                   else
@@ -103,38 +119,35 @@ function signUp() {
                   window.alert('Invalid Pincode');
               }
               else
-                window.alert("State can't be empty")
-
+                window.alert("State can't be empty");
             }
             else
               window.alert("District can't be null");
-
           }
           else
             window.alert("City can't be empty");
-
         }
         else
-          window.alert("Address can't be empty")
+          window.alert("Address can't be empty");
       }
       else
-        window.alert('invalid Aadhaar');
+        window.alert('Invalid Password.');
     }
     else
-      window.alert('Invalid ! Password must be 8 characters long and must contain an uppsercase, a lowercase, a special character and a number');
+      window.alert('Invalid Aadhaar! Should be a 12 digit number.');
   }
   else
     window.alert('Invalid Name');
-
 }
 
-const accDetail = document.getElementById('accDetails');
+function displayAccDetails() {
 
-const setupUI = (user) => {
-  if (user) {
-    //account details
-    firebase.firestore().collection('User-Data').doc(user.email).get().then(doc => {
-      const html = `<p>Signed in as : ${user.email}
+  var cUser = auth.currentUser;
+  // User is signed in.
+  const accDetail = document.getElementById('accDetails');
+  //account details
+  db.collection('Users').doc(cUser.email).get().then(doc => {
+    const html = `<p>Signed in as : ${doc.data().Email}</p>
             <p>Name: ${doc.data().FName} ${doc.data().LName}</p>
             <p>Aadhaar: ${doc.data().Aadhaar}</p>
             <p>Address: ${doc.data().Address}</p>
@@ -144,22 +157,10 @@ const setupUI = (user) => {
             <p>Pincode: ${doc.data().Pincode}</p>
             <p>Phone: ${doc.data().Phone}</p>`
 
-      accDetail.innerHTML = html;
-    })
-  }
-  else {
+    accDetail.innerHTML = html;
+  })
 
-  }
 }
-
-firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    setupUI(user);
-  }
-  else {
-    setupUI();
-  }
-});
 
 function resetPassword() {
   var auth = firebase.auth();
@@ -172,6 +173,3 @@ function resetPassword() {
     window.alert(error.message);
   });
 }
-
-
-
