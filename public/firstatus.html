@@ -5,27 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Home</title>
+    <title>FIR status</title>
     <!-- VPS icon -->
     <link rel="icon" href="img/icon_vps.png" type="image/x-icon">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-      <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Material Design Bootstrap -->
     <link rel="stylesheet" href="css/mdb.min.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 
-<body>
-    <div class="container justify-content-center" style="width: fit-content" ;>
-        <form id="resetPassForm">
-            <div class="row"><input class="form-control mt-5" id="resetEmail" type="email" placeholder="Enter email" style="width: 250px;"></div>
-            <div class="row"><button class="btn btn-primary btn-md" id="resetPassBtn" type="button" onclick="resetPassword()">Get reset link</button></div>
-        </form>
+<body onload="firStatus()">
+    <!-- Project starts here-->
+    <!-------- Nav bar -------->
+    <nav class="navbar navbar-dark primary-color navbar-expand-lg fixed-top">
+        <a href="#" class="navbar-brand">Virtual Police Station</a>
+    </nav>
+    <div class="container justify-content-center" id="firStatusContainer">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" id="loader" role="status">
+                <!-- <span class="sr-only">Loading...</span> -->
+            </div>
+        </div>
+        <div id="userDetails"></div>
+        <div id='firStatement'></div>
     </div>
+    <!-- Project ends here-->
 
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
@@ -40,8 +48,9 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
-    <!-- custom scripts (optional) -->
-    <script type="text/javascript" src="js/index.js" defer></script>
+    <!-- Your custom scripts (optional) -->
+    <script type="text/javascript" src="js/index.js"></script>
+
 </body>
 
 </html>

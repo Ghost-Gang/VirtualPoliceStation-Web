@@ -1,4 +1,3 @@
-
 var firebaseConfig = {
   apiKey: "AIzaSyDO1j6ZIs4C8rhIENE0JDJPXSz0QK5ffHY",
   authDomain: "info-virtualpolicestation.firebaseapp.com",
@@ -15,7 +14,9 @@ firebase.analytics();
 var auth = firebase.auth();
 var db = firebase.firestore();
 
-function signIn() {
+$('#signIn').click(function () {
+  $('#signIn').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+
   const signinForm = document.querySelector('#signInForm');
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -26,16 +27,23 @@ function signIn() {
     signinForm.reset();
     console.log(auth.currentUser);
   }).catch(err => {
-    alert(err.message);
-  })
-}
+    $('strong').html(err.message); $('.toast').toast('show');
+    $('#signIn').html('SIGN IN').removeClass('disabled');
+  });
+});
 
 function signOut() {
   firebase.auth().signOut();
   window.location.href = 'index.html';
 }
 
-function signUp() {
+$('#signUp').click(function () {
+  $('#signUp').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+
+  function caseException(string) {
+    $('strong').html(string); $('.toast').toast('show');
+    $('#signUp').html('SIGN UP').removeClass('disabled');
+  }
 
   var fname = document.getElementById('sFName').value;
   var lname = document.getElementById('sLName').value;
@@ -78,18 +86,18 @@ function signUp() {
                             console.log('updated');
                             console.log(user.email);
                           }).catch(error => {
-                            console.log(error.message);
+                            caseException(error.message);
                           });
 
                           user.sendEmailVerification().then(function () {
-                            alert('verification email sent')
                             // Email sent.
+                            alert('verification email sent')
                           }).catch(function (error) {
                             // An error happened.
-                            console.log(error.message);
+                            caseException(error.message);
                           });
                           currentUser = user;
-                          db.collection('Users').doc(user.email).set({
+                          db.collection(user.email).doc('User-Details').set({
                             FName: fname,
                             LName: lname,
                             Aadhaar: aadhaar,
@@ -105,48 +113,39 @@ function signUp() {
                             console.log("Document successfully written!");
                             window.location.href = 'home.html';
                           }).catch(err => {
-                            alert(err.message);
+                            caseException(err.message);
                           });
                         }
                       });
-                    }).catch((error) => { alert(error.message); });
-
+                    }).catch((error) => { caseException(error.message); });
                   }
-                  else
-                    window.alert('Invalid Phone Number');
+                  else { caseException("Invalid Phone number"); }
                 }
-                else
-                  window.alert('Invalid Pincode');
+                else { caseException("Invalid Pincode"); }
               }
-              else
-                window.alert("State can't be empty");
+              else { caseException("State can't be empty"); }
             }
-            else
-              window.alert("District can't be null");
+            else { caseException("District can't be empty"); }
           }
-          else
-            window.alert("City can't be empty");
+          else { caseException("City can't be empty"); }
         }
-        else
-          window.alert("Address can't be empty");
+        else { caseException("Address can't be empty"); }
       }
-      else
-        window.alert('Invalid Password.');
+      else { caseException("Invalid Password"); }
     }
-    else
-      window.alert('Invalid Aadhaar! Should be a 12 digit number.');
+    else { caseException('Aadhaar should be a 12 digit number'); }
   }
-  else
-    window.alert('Invalid Name');
-}
+  else { caseException('Invalid Name'); }
+});
 
 function displayAccDetails() {
 
   var cUser = auth.currentUser;
+  console.log(cUser);
   // User is signed in.
   const accDetail = document.getElementById('accDetails');
   //account details
-  db.collection('Users').doc(cUser.email).get().then(doc => {
+  db.collection(cUser.email).doc('User-Details').get().then(doc => {
     const html = `<p>Signed in as : ${doc.data().Email}</p>
             <p>Name: ${doc.data().FName} ${doc.data().LName}</p>
             <p>Aadhaar: ${doc.data().Aadhaar}</p>
@@ -159,11 +158,9 @@ function displayAccDetails() {
 
     accDetail.innerHTML = html;
   })
-
 }
 
 function resetPassword() {
-  var auth = firebase.auth();
   var emailAddress = document.getElementById('resetEmail').value;
 
   auth.sendPasswordResetEmail(emailAddress).then(function () {
@@ -173,3 +170,65 @@ function resetPassword() {
     window.alert(error.message);
   });
 }
+
+$('#newFir').click(function () {
+  $('#newFir').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+  var cUser = auth.currentUser;
+  var statement = document.getElementById('statement').value;
+  db.collection(cUser.email).doc('FIR').set({
+    Statement: statement
+  }).then(() => {
+    window.alert('success');
+    window.location.href = 'home.html';
+  }).catch(error => {
+    console.log(error.message);
+    $('#newFir').html('SUBMIT').removeClass('disabled');
+  });
+})
+
+function firStatus() {
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      const firStatement = document.getElementById('firStatement');
+      const userDetails = document.getElementById('userDetails');
+      //user datails
+      db.collection(user.email).doc('User-Details').get().then(doc => {
+        var html = `<p>Full Name : ${doc.data().FName} ${doc.data().LName}</p>
+        <p>Aadhaar : ${doc.data().Aadhaar}</p>
+        <p>Address: ${doc.data().Address}</p>
+        <p>City: ${doc.data().City}</p>
+        <p>District: ${doc.data().District}</p>
+        <p>State: ${doc.data().State}</p>
+        <p>Pincode: ${doc.data().Pincode}</p>
+        <p>Phone Number : ${doc.data().Phone}</p>`
+        userDetails.innerHTML = html;
+      }).catch(error => {
+        console.log(error.message)
+      })
+      //fir statement
+      db.collection(user.email).doc('FIR').get().then(doc => {
+        var html = `<p>Statement : ${doc.data().Statement}</p>`
+        firStatement.innerHTML = html;
+        $('#loader').addClass('d-none');
+      }).catch(error => {
+        console.log(error.message)
+      })
+    }
+  })
+}
+
+$('#newFirBtn').click(function () {
+  $('#newFirBtn').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+});
+$('#firStatus').click(function () {
+  $('#firStatus').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+});
+$('#pastIncidents').click(function () {
+  $('#pastIncidents').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+})
+$('#applyNoc').click(function () {
+  $('#applyNoc').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+})
+$('#appointment').click(function () {
+  $('#appointment').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+})
