@@ -20,26 +20,26 @@
 
 <body>
     <!-- Project starts here-->
-    <div class="container my-4" id="target-signin" style="width:fit-content;">
-        <form class="border border-light p-5" id="signin-form">
+    <div class="container my-4 z-depth-2" style="width:fit-content;background-color: white;">
+        <form class="py-5">
             <p class="h4 mb-4 text-center">Register FIR</p>
             <!-- 
             <input type="text" id="name" class="form-control mb-2" placeholder="Name">
             <input type="number" id="signInEmail" class="form-control mb-2" placeholder="Aadhaar Number">
             <input type="datetime-local" id="signInEmail" class="form-control mb-2">
             <input type="number" id="signInEmail" class="form-control mb-2" placeholder="Mobile Number"> -->
-            <textarea class="input-border" name="" id="statement" cols="50" rows="4" placeholder="Describe your concern"></textarea>
+            <textarea class="input-border" name="" id="statement" cols="40" rows="4" placeholder="Describe your concern"></textarea>
             <div class="my-2">
                 <label for="evidence" class="d-inline-block mr-2">Evidence:</label>
-                <input type="file" id="evidence" class="d-inline-block">
+                <input type="file" id="evidence" class="d-inline-block" multiple>
             </div>
             <input type="number" id="textInput" class="form-control mb-2" placeholder="Enter OTP">
             <a href="#" class="btn btn-primary mr-4 btn-md mb-2">Request OTP</a>
             <a href="#" class="btn btn-primary btn-md mb-2">Verify</a>
-            <button class="btn btn-primary btn-block my-4" id="newFir" type="button">Submit</button>
+            <a class="btn btn-primary btn-block my-4" id="newFir">Submit</a>
         </form>
     </div>
-    <footer class="page-footer font-small stylish-color-dark pt-4 mt-5" id="footer">
+    <footer class="page-footer font-small stylish-color-dark pt-4 mt-md-5" style="width: 100%;" id="footer">
         <!-- Social buttons -->
         <ul class="list-unstyled list-inline text-center">
             <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab blue-text fa-facebook-f fa-lg"></i></a></li>
@@ -57,6 +57,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
 
     <!-- jQuery -->
     <script type="text/javascript" src="js/jquery.min.js"></script>

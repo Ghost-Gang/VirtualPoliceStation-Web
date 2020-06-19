@@ -1,0 +1,8 @@
+{
+  "name": "Chatbot",
+  "short_name": "Chatbot",
+  "start_url": "/chatbot.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "gcm_sender_id": "103953800507"
+}

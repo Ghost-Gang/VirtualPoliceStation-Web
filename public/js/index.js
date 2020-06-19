@@ -171,15 +171,26 @@ function resetPassword() {
   });
 }
 
+//New FIr
 $('#newFir').click(function () {
   $('#newFir').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
   var cUser = auth.currentUser;
   var statement = document.getElementById('statement').value;
+  var evidenceFile = document.getElementById('evidence').files[0];
   db.collection(cUser.email).doc('FIR').set({
-    Statement: statement
+    Statement: statement,
+    EvidenceImageUrl: '',
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
   }).then(() => {
-    window.alert('success');
-    window.location.href = 'home.html';
+    var filePath = cUser.email + '/' + evidenceFile.name;
+    return firebase.storage().ref(filePath).put(evidenceFile).then((fileSnapshot) => {
+      return fileSnapshot.ref.getDownloadURL().then(url => {
+        return db.collection(cUser.email).doc('FIR').update({
+          EvidenceImageUrl: url,
+          StorageUrl: fileSnapshot.metadata.fullPath
+        });
+      });
+    });
   }).catch(error => {
     console.log(error.message);
     $('#newFir').html('SUBMIT').removeClass('disabled');
@@ -232,3 +243,4 @@ $('#applyNoc').click(function () {
 $('#appointment').click(function () {
   $('#appointment').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
 })
+
