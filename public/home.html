@@ -19,7 +19,6 @@
 </head>
 
 <body>
-  <!-- Start of project-->
   <!--Navbar-->
   <nav class="navbar navbar-expand-lg navbar-dark primary-color fixed-top">
     <a class="navbar-brand" href="#">Virtual Police Station</a>
@@ -32,7 +31,7 @@
     <div class="collapse navbar-collapse" id="basicExampleNav">
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link mx-xl-4" href="home.html">Home</a></li>
+        <li class="nav-item active disabled"><a class="nav-link mx-xl-4" href="#">Home</a></li>
         <!-- Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"
@@ -41,13 +40,12 @@
             <a class="dropdown-item" href="#" id="accDetails">Loading...</a>
           </div>
         </li>
-        <li class="nav-item mx-xl-4 logged-in"><a class="nav-link" href="#" id="signOut" onclick="signOut()">Sign Out</a></li>
+        <li class="nav-item mx-xl-4"><a class="nav-link" href="#" id="signOut" onclick="signOut()">Sign Out</a></li>
       </ul>
       <form class="form-inline">
         <div class="md-form my-0"><input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"></div>
       </form>
     </div>
-    <!-- Collapsible content -->
   </nav>
   <!-- grid start -->
   <div class="container margin-top" id="target-main">
@@ -126,7 +124,7 @@
             <!-- Text -->
             <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
             <!-- Button -->
-            <a href="chatbot.html" class="btn btn-primary">Chat BOT</a>
+            <a href="newapp.html" class="btn btn-primary">Chat BOT</a>
           </div>
         </div>
       </div>
@@ -165,7 +163,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
-  <!-- jQuery -->
+  <!-- Bootstrap jQuery -->
   <script defer type="text/javascript" src="js/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script defer type="text/javascript" src="js/popper.min.js"></script>
@@ -173,8 +171,9 @@
   <script defer type="text/javascript" src="js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script defer type="text/javascript" src="js/mdb.min.js"></script>
-  <!-- custom scripts (optional) -->
-  <script defer type="text/javascript" src="js/index.js"></script>
+  <!-- custom scripts -->
+  <script defer type="text/javascript" src="js/firebaseConfig.js"></script>
+  <script src="js/index.js"></script>
   <script>window.onload = function () { auth.onAuthStateChanged(user => { if (user) { } else { window.location.href = 'index.html'; } }); }</script>
 </body>
 

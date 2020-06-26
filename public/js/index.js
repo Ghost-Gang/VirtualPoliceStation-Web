@@ -1,19 +1,3 @@
-var firebaseConfig = {
-  apiKey: "AIzaSyDO1j6ZIs4C8rhIENE0JDJPXSz0QK5ffHY",
-  authDomain: "info-virtualpolicestation.firebaseapp.com",
-  databaseURL: "https://info-virtualpolicestation.firebaseio.com",
-  projectId: "info-virtualpolicestation",
-  storageBucket: "info-virtualpolicestation.appspot.com",
-  messagingSenderId: "926154003622",
-  appId: "1:926154003622:web:803c15bce06a3e4e6f5067",
-  measurementId: "G-MBDRKDQ6W7"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-var auth = firebase.auth();
-var db = firebase.firestore();
-
 $('#signIn').click(function () {
   $('#signIn').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
 
@@ -97,7 +81,7 @@ $('#signUp').click(function () {
                             caseException(error.message);
                           });
                           currentUser = user;
-                          db.collection(user.email).doc('User-Details').set({
+                          db.collection('User-Details').doc(user.email).set({
                             FName: fname,
                             LName: lname,
                             Aadhaar: aadhaar,
@@ -145,9 +129,9 @@ function displayAccDetails() {
   // User is signed in.
   const accDetail = document.getElementById('accDetails');
   //account details
-  db.collection(cUser.email).doc('User-Details').get().then(doc => {
+  db.collection('User-Details').doc(cUser.email).get().then(doc => {
     const html = `<p>Signed in as : ${doc.data().Email}</p>
-            <p>Name: ${doc.data().FName} ${doc.data().LName}</p>
+            <p>Name: ${doc.data().FName}&nbsp;${doc.data().LName}</p>
             <p>Aadhaar: ${doc.data().Aadhaar}</p>
             <p>Address: ${doc.data().Address}</p>
             <p>City: ${doc.data().City}</p>
@@ -177,7 +161,7 @@ $('#newFir').click(function () {
   var cUser = auth.currentUser;
   var statement = document.getElementById('statement').value;
   var evidenceFile = document.getElementById('evidence').files[0];
-  db.collection(cUser.email).doc('FIR').set({
+  db.collection('User-Details').doc(auth.currentUser.email).collection('FIR').doc().set({
     Statement: statement,
     EvidenceImageUrl: '',
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -203,7 +187,7 @@ function firStatus() {
       const firStatement = document.getElementById('firStatement');
       const userDetails = document.getElementById('userDetails');
       //user datails
-      db.collection(user.email).doc('User-Details').get().then(doc => {
+      db.collection('User-Details').doc(user.email).get().then(doc => {
         var html = `<p>Full Name : ${doc.data().FName} ${doc.data().LName}</p>
         <p>Aadhaar : ${doc.data().Aadhaar}</p>
         <p>Address: ${doc.data().Address}</p>
