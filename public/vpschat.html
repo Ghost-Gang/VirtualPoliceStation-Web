@@ -45,8 +45,8 @@
         }
 
         .chat-pic {
-            height: 30px;
-            width: 30px;
+            height: 38px;
+            width: 38px;
         }
 
         .chatbox {
@@ -56,16 +56,16 @@
         .receive {
             background-color: #a0c2fa;
             border-radius: 1rem;
-            padding: 5px 15px 10px 15px;
-            font-size: 15px;
-
         }
 
         .sent {
-            background-color: #ededed;
-            border-radius: 1rem;
-            padding: 5px 10px 5px 10px;
-            font-size: 15px;
+            background-color: #ededed;  
+            border-radius: 1rem;          
+        }
+
+        .message-content {
+            padding: 5px 15px 5px 15px;
+            font-size: 15px;            
         }
 
         .card {
@@ -87,11 +87,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
         <a href="#" class="navbar-brand">VPS Chat</a>
         <div class="list-inline ml-auto mr-5">
-            <div class="list-inline-item"><img src="images/profile_placeholder.png" class="profile-pic" alt="profile-pic"></div>
+            <div class="list-inline-item"><img src="img/profile_placeholder.png" class="profile-pic" alt="profile-pic"></div>
             <div class="list-inline-item text-light" id="userName"></div>
         </div>
     </nav>
-
     <div class="container-fluid chatbox">
         <div class="row">
             <!-- Available Chats Card -->
@@ -111,9 +110,9 @@
                     <div class="card-header">
                         <div class="form-row">
                             <div class="col-2 col-sm-1">
-                                <img src="images/profile_placeholder.png" class="chat-pic" alt="profile-pic">
+                                <img src="img/profile_placeholder.png" class="chat-pic" alt="profile-pic">
                             </div>
-                            <div class="col-9 col-sm-10">
+                            <div class="col-9 col-sm-10 pt-1">
                                 <div class="name" id="friendName"></div>
                             </div>
                             <!-- Modal -->
@@ -149,23 +148,22 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- Type messages -->
                     <div class="card-footer px-2 px-sm-3">
-                        <div class="form-row">
+                        <form class="form-row" id="sendMessageForm">
+                            <!-- File input -->
+                            <div class="px-2 pt-2">
+                                <a href="#" onclick="chooseImage()"><i class="fas fa-paperclip text-primary" style="font-size: 22px;"></i><input class="d-none" type="file" id="img" accept="image/*"></a>
+                            </div>
                             <!-- Message input -->
-                            <div class="col-9">
+                            <div class="col-9 col-sm-10">
                                 <input class="form-control mr-sm-2" type="text" id="txtMessage" placeholder="Message..." aria-label="Message">
                             </div>
-                            <div class="col" style="padding-top: 3px;">
-                                <!-- Send Button -->
-                                <!-- <button class="btn-outline-primary ml-sm-1 mr-2 mr-sm-3 mr-md-4 btn-sm" id="sendBtn" onclick="sendMessage();" type="button" style="width: 60px;">Send</button> -->
-                                <i class="far fa-paper-plane btn-outline-primary btn-sm m-0 px-2 py-1" id="sendBtn" onclick="sendMessage()" type="button"></i>
+                            <!-- Send Button -->
+                            <div class="col" style="padding-top: 3px">
+                                <i class="far fa-paper-plane btn-outline-primary btn-sm m-0 px-2 py-1" onclick="sendMessage()"></i>
                             </div>
-                            <div class="col" style="padding-top: 3px;">
-                                <!-- File input -->
-                                <i class="fas fa-paperclip text-primary px-2 py-1" style="font-size: 22px;"></i>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -188,7 +186,7 @@
     <!-- MDB core JavaScript -->
     <script defer type="text/javascript" src="js/mdb.min.js"></script>
     <script src="js/firebaseConfig.js"></script>
-    <script src="js/newapp.js"></script>
+    <script src="js/vpschat.js"></script>
 </body>
 
 </html>

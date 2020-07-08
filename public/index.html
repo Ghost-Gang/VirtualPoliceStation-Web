@@ -24,9 +24,8 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         body {
-            overflow-y: scroll;
+            overflow-y: hidden;
         }
-
         .padding {
             padding: 0 9px;
         }
@@ -65,7 +64,7 @@
     <!-- Sign in -->
     <div class="modal fade" id="modalSignIn" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="background-image: url(img/circle.png);">
                 <!-- Modal header -->
                 <div class="modal-header">
                     <h4 style="margin:0 0 0 38%">Sign In</h4>
@@ -73,7 +72,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div class="container" style="background-color: white;">
+                    <div class="container">
                         <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position" data-autohide="false">
                             <div class="toast-header"><i class="fas fa-exclamation-triangle red-text mr-3"></i><b>Notification</b><button type="button" class="close ml-auto" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
                             <div class="toast-body bg-danger"><strong class="text-white"></strong></div>
@@ -128,15 +127,15 @@
     <!-- Sign Up -->
     <div class="modal fade" id="modalSignUp" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="background-image: url(img/circle.png);">
                 <!-- Modal head -->
                 <div class="modal-header p-3">
                     <h4 style="margin:0 0 0 38%;">Sign Up</h4>
                     <span aria-hidden="true" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</span>
                 </div>
                 <!-- Modal body -->
-                <div class="modal-body">lo,
-                    <div class="container" style="background-color: white;">
+                <div class="modal-body">
+                    <div class="container">
                         <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position" data-autohide="false">
                             <div class="toast-header"><i class="fas fa-exclamation-triangle red-text mr-3"></i><b class="mr-4">Notification</b><button type="button" class="close ml-auto" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
                             <div class="toast-body bg-danger"><strong class="text-white"></strong></div>
@@ -167,7 +166,7 @@
                                 <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="number" id="sPincode" class="form-control mb-2" placeholder="Pincode"></div>
                                 <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="number" id="sPhone" class="form-control mb-2" placeholder="Phone number"></div>
                             </div>
-                            <button class="btn btn-primary my-4 btn-block" type="button" id="signUp">Sign Up</button>
+                            <button class="btn btn-primary mt-2 btn-block" type="button" id="signUp">Sign Up</button>
                         </form>
                     </div>
                 </div>

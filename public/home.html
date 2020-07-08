@@ -14,17 +14,23 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <!-- Material Design Bootstrap -->
   <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Image hover -->
+  <link href="css/imagehover.min.css" rel="stylesheet" media="all">
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* body {
+      background-image: url("img/circle.png");
+    } */
+  </style>
 </head>
 
 <body>
   <!--Navbar-->
-  <nav class="navbar navbar-expand-lg navbar-dark primary-color fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark primary-color fixed-top z-depth-1">
     <a class="navbar-brand" href="#">Virtual Police Station</a>
     <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false"
-      aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Collapsible content -->
@@ -34,8 +40,7 @@
         <li class="nav-item active disabled"><a class="nav-link mx-xl-4" href="#">Home</a></li>
         <!-- Dropdown -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"
-            onclick="displayAccDetails()">Account</a>
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button" onclick="displayAccDetails()">Account</a>
           <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="#" id="accDetails">Loading...</a>
           </div>
@@ -48,98 +53,104 @@
     </div>
   </nav>
   <!-- grid start -->
-  <div class="container margin-top" id="target-main">
+  <div class="container margin-top">
     <div class="row justify-content-around">
-      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
-        <div class="card card-cascade narrower h-75">
+      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
+        <div class="card card-h">
           <!-- Card image -->
-          <div class="view view-cascade overlay zoom"><img class="card-img-top" src="img/undraw_add.png" alt="Card image cap" style="max-height:260px"></div>
+          <figure class="imghvr-fold-up"><img src="img/note_taking.png" alt="example-image">
+            <figcaption>
+              <h3></h3>
+              <p>Register a FIR</p>
+            </figcaption><a href="javascript:;"></a>
+          </figure>
           <!-- Card content -->
-          <div class="card-body card-body-cascade">
-            <!-- Title -->
-            <h4 class="font-weight-bold card-title">New FIR</h4>
-            <!-- Text -->
-            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
+          <div class="card-body">
             <!-- Button -->
-            <a class="btn btn-primary" href="newfir.html" id="newFirBtn">New FIR</a>
+            <a href="newfir.html" class="btn btn-primary mt-5" id="newFirBtn">New FIR</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
-        <div class="card card-cascade narrower h-75">
+      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
+        <div class="card card-h">
           <!-- Card image -->
-          <div class="view view-cascade overlay zoom"><img class="card-img-top" src="img/checklist.png" alt="Card image cap"></div>
+          <figure class="imghvr-slide-up"><img src="img/notes.png" alt="example-image">
+            <figcaption>
+              <h3></h3>
+              <p>See FIR status</p>
+            </figcaption><a href="javascript:;"></a>
+          </figure>
           <!-- Card content -->
-          <div class="card-body card-body-cascade">
-            <!-- Title -->
-            <h4 class="font-weight-bold card-title">FIR Status</h4>
-            <!-- Text -->
-            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
+          <div class="card-body">
             <!-- Button -->
-            <a href="firstatus.html" class="btn btn-primary" id='firStatus'>FIR Status</a>
+            <a href="firstatus.html" class="btn btn-primary mt-5" id='firStatus'>FIR Status</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
-        <div class="card card-cascade narrower h-75">
+      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
+        <div class="card card-h">
           <!-- Card image -->
-          <div class="view view-cascade overlay zoom"><img class="card-img-top" src="img/personal_data.png" alt="Card image cap"></div>
+          <figure class="imghvr-slide-up"><img src="img/personal_data.png" alt="example-image">
+            <figcaption>
+              <h3></h3>
+              <p>Take a look at your area's criminal records</p>
+            </figcaption><a href="javascript:;"></a>
+          </figure>
           <!-- Card content -->
-          <div class="card-body card-body-cascade">
-            <!-- Title -->
-            <h4 class="font-weight-bold card-title">Past incidents</h4>
-            <!-- Text -->
-            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
+          <div class="card-body">
             <!-- Button -->
-            <a class="btn btn-primary" id="pastIncidents">Past incidents</a>
+            <a href="#" class="btn btn-primary mt-5" id="pastIncidents">Past incidents</a>
           </div>
         </div>
       </div>
     </div>
     <!-- second row -->
     <div class="row justify-content-around">
-      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
-        <div class="card card-cascade narrower h-75">
+      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
+        <div class="card card-h">
           <!-- Card image -->
-          <div class="view view-cascade overlay zoom"><img class="card-img-top" src="img/checklist.png" alt="Card image cap"></div>
+          <figure class="imghvr-slide-up"><img src="img/checklist.png" alt="example-image">
+            <figcaption>
+              <h3></h3>
+              <p>Hassle free NOC</p>
+            </figcaption><a href="javascript:;"></a>
+          </figure>
           <!-- Card content -->
-          <div class="card-body card-body-cascade">
-            <!-- Title -->
-            <h4 class="font-weight-bold card-title">Apply NOC</h4>
-            <!-- Text -->
-            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
+          <div class="card-body">
             <!-- Button -->
-            <a class="btn btn-primary" id="applyNoc">Apply NOC</a>
+            <a href="#" class="btn btn-primary mt-5" id="applyNoc">Apply NOC</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
-        <div class="card card-cascade narrower h-75">
+      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
+        <div class="card card-h">
           <!-- Card image -->
-          <div class="view view-cascade overlay zoom"><img class="card-img-top" src="img/chat.png" alt="Card image cap"></div>
+          <figure class="imghvr-slide-up"><img src="img/chat.png" alt="example-image">
+            <figcaption>
+              <h3></h3>
+              <p>Clear your doubts, get help.</p>
+            </figcaption><a href="javascript:;"></a>
+          </figure>
           <!-- Card content -->
-          <div class="card-body card-body-cascade">
-            <!-- Title -->
-            <h4 class="font-weight-bold card-title">Chat BOT</h4>
-            <!-- Text -->
-            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
+          <div class="card-body">
             <!-- Button -->
-            <a href="newapp.html" class="btn btn-primary">Chat BOT</a>
+            <a href="vpschat.html" class="btn btn-primary mt-5">VPS Chat</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6">
-        <div class="card card-cascade narrower h-75">
+      <div class="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
+        <div class="card card-h">
           <!-- Card image -->
-          <div class="view view-cascade overlay zoom"><img class="card-img-top" src="img/calendar.png" alt="Card image cap"></div>
+          <figure class="imghvr-slide-up"><img src="img/calendar.png" alt="example-image">
+            <figcaption>
+              <h3></h3>
+              <p>Book appointment with officers</p>
+            </figcaption><a href="javascript:;"></a>
+          </figure>
           <!-- Card content -->
           <div class="card-body card-body-cascade">
-            <!-- Title -->
-            <h4 class="font-weight-bold card-title">Appointment</h4>
-            <!-- Text -->
-            <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
             <!-- Button -->
-            <a class="btn btn-primary" id="appointment">Appointment</a>
+            <a href="#" class="btn btn-primary mt-5" id="appointment">Appointment</a>
           </div>
         </div>
       </div>
@@ -178,3 +189,4 @@
 </body>
 
 </html>
+<!-- #4285f4 -->

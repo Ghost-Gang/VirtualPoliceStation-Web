@@ -5,6 +5,7 @@ function getUser() {
         if (user) {
             setUserName(user);
         }
+        return user;
     });
 }
 
@@ -18,10 +19,10 @@ function populateFriendList() {
             if (emailId.Email !== auth.currentUser.email) {
                 lst += `<li class="list-group-item list-group-item-action" onclick="startChat('${emailId.Email}','${fullName}')">
                             <div class="row">
-                                <div class="col-2">
-                                    <img src="images/profile_placeholder.png" class="profile-pic" alt="">
+                                <div class="col-1">
+                                    <img src="img/profile_placeholder.png" class="profile-pic" alt="">
                                 </div>
-                                <div class="col-10" style="cursor: pointer;">
+                                <div class="col ml-2" style="cursor: pointer;">
                                     <div class="name">${fullName}</div>
                                 </div>
                             </div>
@@ -45,10 +46,10 @@ function friendList() {
             if (emailId.Email !== auth.currentUser.email) {
                 list += `<li class="list-group-item list-group-item-action" data-dismiss="modal" onclick="startChat('${emailId.Email}','${fullName}')">
                             <div class="row">
-                                <div class="col-2">
-                                    <img src="images/profile_placeholder.png" class="profile-pic" alt="">
+                                <div class="col-2 col-sm-1">
+                                    <img src="img/profile_placeholder.png" class="profile-pic" alt="">
                                 </div>
-                                <div class="col-10" style="cursor: pointer;">
+                                <div class="col ml-sm-1" style="cursor: pointer;">
                                     <div class="name">${fullName}</div>
                                 </div>
                             </div>
@@ -95,13 +96,18 @@ function setUserName(user) {
     document.getElementById('userName').innerHTML = user.displayName;
 }
 
-document.addEventListener('keydown', function (key) {
-    if (key.which === 13) {
-        if (document.getElementById('txtMessage').value) {
-            sendMessage();
-        }
+// document.addEventListener('keydown', function (key) {
+//     if (key.which === 13) {
+//         if (document.getElementById('txtMessage').value) {
+//             sendMessage();
+//         }
+//     }
+// });
 
-    }
+const sendMessageForm = document.getElementById('sendMessageForm');
+sendMessageForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    sendMessage();
 });
 
 function sendMessage() {
@@ -112,13 +118,57 @@ function sendMessage() {
             time: new Date().toLocaleString(),
             whichUser: auth.currentUser.email
         }
-        db.collection('User-Details').doc('messages').collection(chatKey).doc().set(chatMessage).catch(function (error) {
+        db.collection('User-Details').doc('messages').collection(chatKey).add(chatMessage).catch(function (error) {
             console.log(error);
         });
         document.getElementById('messages').scrollTo(0, 500000);
         document.getElementById('txtMessage').value = '';
         document.getElementById('txtMessage').focus();
     }
+}
+
+function chooseImage() {
+    document.getElementById('img').click();
+}
+
+document.getElementById('img').addEventListener('change', onImageSelected);
+
+function onImageSelected(event) {
+    event.preventDefault();
+    var file = event.target.files[0];
+    document.getElementById('sendMessageForm').reset();
+    if (!file.type.match("image.*")) {
+        alert("Please select image only!!")
+    }
+    else {
+        saveImage(file);
+    }
+}
+
+// var LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif?a';
+
+function saveImage(file) {
+    var chatMessage = {
+        imageUrl: '',
+        time: new Date().toLocaleString(),
+        whichUser: auth.currentUser.email
+    }
+    db.collection('User-Details').doc('messages').collection(chatKey).add(chatMessage).then(function (docRef) {
+        var filePath = chatKey + '/' + docRef.id + '/' + file.name;
+        return firebase.storage().ref(filePath).put(file).then(fileSnapshot => {
+            return fileSnapshot.ref.getDownloadURL().then(url => {
+                return docRef.update({
+                    imageUrl: url,
+                    storageUrl: fileSnapshot.metadata.fullPath
+                });
+            });
+        });
+    }).catch(function (error) {
+        console.log(error);
+    });
+    document.getElementById('messages').scrollTo(0, 500000);
+    document.getElementById('txtMessage').value = '';
+    document.getElementById('txtMessage').focus();
 }
 
 function loadMessages(chatK) {
@@ -130,35 +180,36 @@ function loadMessages(chatK) {
                 deleteMessage(change.doc.id);
             } else {
                 var chatM = change.doc.data();
-                displayMessage(chatM.time, chatM.whichUser, chatM.message);
+                displayMessage(chatM.time, chatM.whichUser, chatM.message, chatM.imageUrl);
             }
         });
     });
 }
 
-function displayMessage(time, user, text) {
+function displayMessage(time, user, text, imageUrl) {
     var chatTime = time.split(',');
-    if (user === auth.currentUser.email) {
+    if (imageUrl) msg = `<img src="${imageUrl}" class="img-fluid"></img>`;
+    else msg = text;
+    if (user === auth.currentUser.email && msg !== undefined) {
         var messageTemplate = `<div class="row no-gutters justify-content-end">
-                                    <div class="col-11 col-md-6 mr-2">
-                                    <p class="sent"><span class="time float-right"><small>${chatTime[1]}</small></span><br> ${text}</p>
+                                    <div class="col-10 col-sm-8 col-md-6 mr-2 my-2 sent">                                        
+                                        <div class="message-content">${msg}<small class="float-right">${chatTime[1]}</small></div>
                                     </div>
                                 </div>`;
         document.getElementById('messages').innerHTML += messageTemplate;
-        document.getElementById('messages').scrollTo(0, 500000);
     }
-    else {
+    else if (msg !== undefined) {
         var messageTemplate = `<div class="row no-gutters">
-                                    <div class="col-11 col-md-6 mr-2">
-                                        <p class="receive"><span class="time float-right"><small>${chatTime[1]}</small></span><br> ${text}</p>
+                                    <div class="col-10 col-sm-8 col-md-6 mr-2 my-2 receive">                                                                            
+                                        <div class="message-content">${msg}<small class="float-right">${chatTime[1]}</small></div>
                                     </div>
                                 </div>`;
         document.getElementById('messages').innerHTML += messageTemplate;
-        document.getElementById('messages').scrollTo(0, 500000);
     }
+    document.getElementById('messages').scrollTo(0, 500000);
 }
 
-// function deleteMessage() {
+// function deleteMessage(id) {
 //     db.collection("messages").delete().then(function () {
 //         console.log("Document successfully deleted!");
 //         document.getElementById('sent').innerHTML = 'This message is deleted';
@@ -171,3 +222,10 @@ getUser();
 populateFriendList();
 
 
+function deleteMessage(id) {
+    var div = document.getElementById(id);
+    // If an element for that message exists we delete it.
+    if (div) {
+        div.parentNode.removeChild(div);
+    }
+}
