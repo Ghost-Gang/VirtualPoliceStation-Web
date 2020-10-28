@@ -1,209 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <!-- atmanad0001 -->
-    <meta name="google-site-verification" content="p_HPVuZ2XopP_fW7A_-Sv3Gw9mMuKiQl_ZaJL_xNcYY" />
-    <!-- info-virual -->
-    <meta name="google-site-verification" content="jErw__jrUi2gO1nXiCVlGnF9V56G0hCrmilr1aCHSfA" />
-    <meta name="description" content="Home Page of Virtual Police Station. Login to continue use our services">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Home</title>
-    <!-- VPS icon -->
-    <link rel="icon" href="img/icon_vps.png" type="image/x-icon">
-    <!-- Font Awesome -->
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"> -->
-    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Material Design Bootstrap -->
-    <link rel="stylesheet" href="css/mdb.min.css">
-    <!-- Your custom styles (optional) -->
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        body {
-            overflow-y: hidden;
-        }
+    <head>
+        <title>Virtual Police Station</title>
+        <meta charset="UTF-8">
+        <!-- atmanad0001 -->
+        <meta name="google-site-verification" content="p_HPVuZ2XopP_fW7A_-Sv3Gw9mMuKiQl_ZaJL_xNcYY" />
+        <!-- info-virual -->
+        <meta name="google-site-verification" content="jErw__jrUi2gO1nXiCVlGnF9V56G0hCrmilr1aCHSfA" />
+        <meta name="description" content="Welcome to Virtual Police Station. Here you can Register FIR, Apply for NOC and many more.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <!-- VPS icon -->
+        <link rel="icon" href="img/icon_vps.png" type="image/x-icon">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Material Design Bootstrap -->
+        <link rel="stylesheet" href="css/mdb.min.css">
+        <!-- Custom styles -->
+        <link rel="stylesheet" href="css/style.css">
+        <style>
+            .padding {
+                padding: 0 9px;
+            }
 
-        .padding {
-            padding: 0 9px;
-        }
-    </style>
-</head>
+            .nav-link:hover {
+                background-color: #3b78dc;
+            }
 
-<body>
-    <!-------------Navbar---------------->
-    <nav class="navbar navbar-expand-lg navbar-dark primary-color fixed-top">
-        <a class="navbar-brand" href="#">Virtual Police Station</a>
-        <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            .navbar {
+                padding: 0 1rem;
+            }
+
+            a.nav-link {
+                letter-spacing: -1px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- style="background-image: url('img/Police-Station.jpg');" -->
+        <!-------------Navbar---------------->
+        <header class="navbar navbar-expand-md primary-color navbar-dark" style="height: 80px;">
+            <p class="navbar-brand mx-auto">Virtual Police Station</p>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </header>
+
+        <nav class="navbar navbar-expand-md navbar-dark primary-color-dark z-depth-0">
+            <!-- Collapse button -->
+            <!-- <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="basicExampleNav">
-            <!-- Links -->
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active disabled"><a class="nav-link mx-xl-4" href="index.html">Home</a></li>
-                <li class="nav-item mx-xl-4"><a class="nav-link" href="#" aria-hidden="true" data-toggle="modal" data-target="#modalSignIn">Sign in</a></li>
-                <!-- <li class="nav-item mx-xl-4"><a class="nav-link" href="signup.html">Sign Up</a></li> -->
-                <li class="nav-item mx-xl-4"><a class="nav-link" href="#" aria-hidden="true" data-toggle="modal" data-target="#modalSignUp">Sign Up</a></li>
-            </ul>
-            <!-- Links -->
-            <form class="form-inline">
-                <div class="md-form my-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                </div>
-            </form>
-        </div>
-    </nav>
-    <!------------ Navbar---------------->
-    <div class="container margin-top">
-        <h3>Dear, please Login to access VPS services</h3>
-    </div>
-    <!-- Sign in -->
-    <div class="modal fade" id="modalSignIn" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="background-image: url(img/circle.png);">
-                <!-- Modal header -->
-                <div class="modal-header">
-                    <h4 style="margin:0 0 0 38%">Sign In</h4>
-                    <span aria-hidden="true" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</span>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="container">
-                        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position" data-autohide="false">
-                            <div class="toast-header"><i class="fas fa-exclamation-triangle red-text mr-3"></i><b>Notification</b><button type="button" class="close ml-auto" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-                            <div class="toast-body bg-danger"><strong class="text-white"></strong></div>
-                        </div>
-                        <form class="pb-2" id="signInForm">
-                            <div class="md-form input-with-pre-icon">
-                                <i class="fas fa-envelope  input-prefix"></i>
-                                <input type="email" id="email" class="form-control">
-                                <label for="email" class="ml-2">E-mail address</label>
+        </button> -->
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+                <!-- Links -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active disabled"><a class="nav-link px-4" href="index.html">Home</a></li>
+                    <li class="nav-item mx-xl-4"><a class="nav-link px-4" href="#" aria-hidden="true" data-toggle="modal" data-target="#modalSignIn">Sign in</a></li>
+                    <li class="nav-item mx-xl-4"><a class="nav-link px-4" href="#" aria-hidden="true" data-toggle="modal" data-target="#modalSignUp">Sign Up</a></li>
+                    <li class="nav-item mx-xl-4"><a class="nav-link px-4" href="#" aria-hidden="true" data-toggle="modal" data-target="">Contact Us</a></li>
+                    <li class="nav-item mx-xl-4"><a class="nav-link px-4" href="#" aria-hidden="true" data-toggle="modal" data-target="">FAQ's</a></li>
+                    <li class="nav-item mx-xl-4"><a class="nav-link px-4" href="#" aria-hidden="true" data-toggle="modal" data-target="">Emergency help</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!------------ Navbar---------------->
+
+        <!-- Sign in -->
+        <div class="modal fade" id="modalSignIn" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!-- Modal header -->
+                    <div class="modal-header">
+                        <h4 style="margin:0 0 0 38%">Sign In</h4>
+                        <span aria-hidden="true" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</span>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container">
+                            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position" data-autohide="false">
+                                <div class="toast-header"><i class="fas fa-exclamation-triangle red-text mr-3"></i><b>Notification</b><button type="button" class="close ml-auto" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+                                <div class="toast-body bg-danger"><strong class="text-white"></strong></div>
                             </div>
-                            <div class="md-form  input-with-pre-icon">
-                                <i class="fas fa-lock  input-prefix"></i>
-                                <input type="password" id="password" class="form-control">
-                                <label for="password" class="ml-2">Password</label>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                            <form class="pb-2" id="signInForm">
+                                <div class="md-form input-with-pre-icon">
+                                    <i class="fas fa-envelope  input-prefix"></i>
+                                    <input type="email" id="email" class="form-control">
+                                    <label for="email" class="ml-2">E-mail address</label>
                                 </div>
-                                <div><a href="#" data-toggle="modal" data-target="#modalForgotPassword" data-dismiss="modal" aria-hidden="true">Forgot password?</a></div>
-                            </div>
-                            <button class="btn btn-primary btn-block my-4 btn-rounded" id="signIn" type="button">Sign In</button>
-                            <div class="text-center">
-                                Not a member?<a href="#" data-toggle="modal" data-target="#modalSignUp" data-dismiss="modal"> Register</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Forgot Password -->
-    <div class="modal fade" id="modalForgotPassword" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <span aria-hidden="true" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</span>
-                </div>
-                <div class="modal-body">
-                    <div class="container justify-content-center fit-content">
-                        <form id="resetPassForm">
-                            <div class="row"><input class="form-control" id="resetEmail" type="email" placeholder="Enter email" style="width: 250px;"></div>
-                            <div class="row"><button class="btn btn-primary btn-md" id="resetPassBtn" type="button" onclick="resetPassword()">Get reset link</button></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Sign Up -->
-    <div class="modal fade" id="modalSignUp" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content" style="background-image: url(img/circle.png);">
-                <!-- Modal head -->
-                <div class="modal-header p-3">
-                    <h4 style="margin:0 0 0 38%;">Sign Up</h4>
-                    <span aria-hidden="true" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</span>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="container">
-                        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position" data-autohide="false">
-                            <div class="toast-header"><i class="fas fa-exclamation-triangle red-text mr-3"></i><b class="mr-4">Notification</b><button type="button" class="close ml-auto" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-                            <div class="toast-body bg-danger"><strong class="text-white"></strong></div>
+                                <div class="md-form  input-with-pre-icon">
+                                    <i class="fas fa-lock  input-prefix"></i>
+                                    <input type="password" id="password" class="form-control">
+                                    <label for="password" class="ml-2">Password</label>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                                        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                                    </div>
+                                    <div><a href="#" data-toggle="modal" data-target="#modalForgotPassword" data-dismiss="modal" aria-hidden="true">Forgot password?</a></div>
+                                </div>
+                                <button class="btn btn-primary btn-block my-4 btn-rounded" type="button" id="signIn">Sign In</button>
+                                <div class="text-center">
+                                    Not a member?<a href="#" data-toggle="modal" data-target="#modalSignUp" data-dismiss="modal"> Register</a>
+                                </div>
+                            </form>
                         </div>
-                        <form class="pb-3 px-3" id="signUpForm">
-                            <div class="row">
-                                <div class="d-inline-block col-md-6 col-12 padding"><input type="text" id="sFName" class="form-control mb-2" placeholder="First name"></div>
-                                <div class="d-inline-block col-md-6 col-12 padding"><input type="text" id="sLName" class="form-control mb-2" placeholder="Last name"></div>
-                            </div>
-                            <div class="row">
-                                <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="email" id="sEmail" class="form-control mb-2" placeholder="E-mail"></div>
-                                <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="number" id="sAadhaar" class="form-control mb-2" placeholder="Aadhaar Number"></div>
-                            </div>
-                            <input type="password" class="form-control" id="sPassword" placeholder="Password">
-                            <small class="form-text text-muted mb-2">Minimum 8 characters long, an uppercase, a lowercase, a number, a special character.</small>
-                            <input type="number" class="form-control mb-2" id="sOtp" placeholder="Enter OTP">
-                            <a href="#" class="btn btn-primary mr-1 btn-md mb-3">Request OTP</a>
-                            <a href="#" class="btn btn-primary btn-md mb-3">Verify</a>
-                            <div class="row">
-                                <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="text" id="sAddress" class="form-control mb-2 mr-auto" placeholder="Address"></div>
-                                <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="text" id="sCity" class="form-control mb-2 mr-auto" placeholder="City"></div>
-                            </div>
-                            <div class="row">
-                                <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="text" id="sDistrict" class="form-control mb-2 mr-auto" placeholder="District"></div>
-                                <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="text" id="sState" class="form-control mb-2 mr-auto" placeholder="State"></div>
-                            </div>
-                            <div class="row">
-                                <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="number" id="sPincode" class="form-control mb-2" placeholder="Pincode"></div>
-                                <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="number" id="sPhone" class="form-control mb-2" placeholder="Phone number"></div>
-                            </div>
-                            <button class="btn btn-primary mt-2 btn-block" type="button" id="signUp">Sign Up</button>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Footer -->
-    <footer class="page-footer font-small stylish-color-dark pt-3 fixed-bottom" id="footer">
-        <!-- Social buttons -->
-        <ul class="list-unstyled list-inline text-center">
-            <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-facebook-f fa-lg"></i></a></li>
-            <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-google-plus-g fa-lg"></i></a></li>
-            <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-twitter fa-lg"></i></a></li>
-            <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-instagram fa-lg"></i></a></li>
-            <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-linkedin-in fa-lg"> </i></a></li>
-            <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-github fa-lg"></i></a></li>
-        </ul>
-        <div class="footer-copyright text-center py-3 mt-3">© 2020 Copyright:<a href="#">Ghost-Gang.com</a></div>
-    </footer>
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
-    <!-- jQuery -->
-    <script defer type="text/javascript" src="js/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script defer type="text/javascript" src="js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script defer type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script defer type="text/javascript" src="js/mdb.min.js"></script>
-    <!-- My scripts -->
-    <script src="js/firebaseConfig.js"></script>
-    <script defer type="text/javascript" src="js/index.js"></script>
-    <script>firebase.auth().onAuthStateChanged(user => { if (user) { window.location.href = 'home.html'; } });</script>
-</body>
+        <!-- Forgot Password -->
+        <div class="modal fade" id="modalForgotPassword" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <span aria-hidden="true" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container justify-content-center fit-content">
+                            <form id="resetPassForm">
+                                <div class="row"><input class="form-control" id="resetEmail" type="email" placeholder="Enter email" style="width: 250px;"></div>
+                                <div class="row"><button class="btn btn-primary btn-md" id="resetPassBtn" type="button" onclick="resetPassword()">Get reset link</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sign Up -->
+        <div class="modal fade" id="modalSignUp" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <!-- Modal head -->
+                    <div class="modal-header p-3">
+                        <h4 style="margin:0 0 0 38%;">Sign Up</h4>
+                        <span aria-hidden="true" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</span>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container">
+                            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position" data-autohide="false">
+                                <div class="toast-header"><i class="fas fa-exclamation-triangle red-text mr-3"></i><b class="mr-4">Notification</b><button type="button" class="close ml-auto" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+                                <div class="toast-body bg-danger"><strong class="text-white"></strong></div>
+                            </div>
+                            <form class="pb-3 px-3" id="signUpForm">
+                                <div class="row">
+                                    <div class="d-inline-block col-md-6 col-12 padding"><input type="text" id="sFName" class="form-control mb-2" placeholder="First name"></div>
+                                    <div class="d-inline-block col-md-6 col-12 padding"><input type="text" id="sLName" class="form-control mb-2" placeholder="Last name"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="email" id="sEmail" class="form-control mb-2" placeholder="E-mail"></div>
+                                    <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="number" id="sAadhaar" class="form-control mb-2" placeholder="Aadhaar Number"></div>
+                                </div>
+                                <input type="password" class="form-control" id="sPassword" placeholder="Password">
+                                <small class="form-text text-muted mb-2">Minimum 8 characters long, an uppercase, a lowercase, a number, a special character.</small>
+                                <input type="number" class="form-control mb-2" id="sOtp" placeholder="Enter OTP">
+                                <a href="#" class="btn btn-primary mr-1 btn-md mb-3">Request OTP</a>
+                                <a href="#" class="btn btn-primary btn-md mb-3">Verify</a>
+                                <div class="row">
+                                    <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="text" id="sAddress" class="form-control mb-2 mr-auto" placeholder="Address"></div>
+                                    <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="text" id="sCity" class="form-control mb-2 mr-auto" placeholder="City"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="text" id="sDistrict" class="form-control mb-2 mr-auto" placeholder="District"></div>
+                                    <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="text" id="sState" class="form-control mb-2 mr-auto" placeholder="State"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="number" id="sPincode" class="form-control mb-2" placeholder="Pincode"></div>
+                                    <div class="d-inline-block col-md-6 col-xs-12 padding"><input type="number" id="sPhone" class="form-control mb-2" placeholder="Phone number"></div>
+                                </div>
+                                <button class="btn btn-primary mt-2 btn-block" type="button" id="signUp">Sign Up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <img src="img/police-sm.jpg" class="img-fluid d-sm-none" alt="">
+            <img src="img/police-md.jpg" class="img-fluid d-none d-sm-block" alt="" style="width: 100%;">
+        </div>
+        <!-- Footer -->
+        <footer class="page-footer font-small stylish-color-dark pt-3" id="footer">
+            <!-- Social buttons -->
+            <ul class="list-unstyled list-inline text-center">
+                <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+                <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-google-plus-g fa-lg"></i></a></li>
+                <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-twitter fa-lg"></i></a></li>
+                <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-instagram fa-lg"></i></a></li>
+                <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-linkedin-in fa-lg"> </i></a></li>
+                <li class="list-inline-item"><a class="mx-1 mx-md-2"><i class="fab fa-github fa-lg"></i></a></li>
+            </ul>
+            <ul class="list-unstyled list-inline text-center">
+                <li class="list-inline-item"><a class="mx-1 mx-md-2">About us</a></li>
+                <li class="list-inline-item mx-1 mx-md-2">|</li>
+                <li class="list-inline-item"><a class="mx-1 mx-md-2">Privacy Policy</a></li>
+                <li class="list-inline-item mx-1 mx-md-2">|</li>
+                <li class="list-inline-item"><a class="mx-1 mx-md-2">Disclaimer</a></li>
+            </ul>
+            <div class="footer-copyright text-center py-3 mt-3">© 2020 Copyright:<a href="#">Ghost-Gang.com</a></div>
+        </footer>
+
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+        <!-- jQuery -->
+        <script defer type="text/javascript" src="js/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script defer type="text/javascript" src="js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script defer type="text/javascript" src="js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script defer type="text/javascript" src="js/mdb.min.js"></script>
+        <!-- My scripts -->
+        <script src="js/firebase-config.js"></script>
+        <script defer type="text/javascript" src="js/index.js"></script>
+        <!-- <script>firebase.auth().onAuthStateChanged(user => { if (user) { window.location.href = 'home.html'; } });</script> -->
+    </body>
 
 </html>

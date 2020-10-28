@@ -1,27 +1,42 @@
 $('#signIn').click(function () {
-  $('#signIn').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+  $('#signIn').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>SIGNING IN...').addClass('disabled');
 
   const signinForm = document.querySelector('#signInForm');
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
-  firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
-    console.log(cred);
-    console.log('signedin');
-    signinForm.reset();
-    console.log(auth.currentUser);
-  }).catch(err => {
-    $('strong').html(err.message); $('.toast').toast('show');
-    $('#signIn').html('SIGN IN').removeClass('disabled');
-  });
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(function () {
+      // New sign-in will be persisted with session persistence.
+      firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+        signinForm.reset();
+        window.location.href = "home.html";
+      }).catch(err => {
+        $('strong').html(err.message); $('.toast').toast('show');
+        $('#signIn').html('SIGN IN').removeClass('disabled');
+      })
+    })
+    .catch(function (error) {
+      // Handle Errors here.
+      $('strong').html(error.message); $('.toast').toast('show');
+      $('#signIn').html('SIGN IN').removeClass('disabled');
+    });
+
+  //   firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
+  //     console.log('signedin');
+  //   }).then(() => window.location.href = "home.html")
+  //     .catch(err => {
+  //       $('strong').html(err.message); $('.toast').toast('show');
+  //       $('#signIn').html('SIGN IN').removeClass('disabled');
+  //     });
 });
 
 function signOut() {
   firebase.auth().signOut();
-  window.location.href = 'index.html';
 }
 
 $('#signUp').click(function () {
+
   $('#signUp').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
 
   function caseException(string) {
@@ -66,13 +81,13 @@ $('#signUp').click(function () {
                           user.updateProfile({
                             displayName: fullName,
                             phoneNumber: phone
-                          }).then(() => {
-                            console.log('updated');
-                            console.log(user.email);
-                          }).catch(error => {
-                            caseException(error.message);
-                          });
-
+                          })
+                            // .then(() => {
+                            //   console.log(user.email);
+                            // })
+                            .catch(error => {
+                              caseException(error.message);
+                            });
                           user.sendEmailVerification().then(function () {
                             // Email sent.
                             alert('verification email sent')
@@ -123,13 +138,14 @@ $('#signUp').click(function () {
 });
 
 function displayAccDetails() {
-
   var cUser = auth.currentUser;
-  console.log(cUser);
+  // console.log(cUser);
+  // console.log(cUser.email);
   // User is signed in.
   const accDetail = document.getElementById('accDetails');
   //account details
   db.collection('User-Details').doc(cUser.email).get().then(doc => {
+    console.log(doc);
     const html = `<p>Signed in as : ${doc.data().Email}</p>
             <p>Name: ${doc.data().FName}&nbsp;${doc.data().LName}</p>
             <p>Aadhaar: ${doc.data().Aadhaar}</p>
@@ -157,19 +173,30 @@ function resetPassword() {
 
 //New FIr
 $('#newFir').click(function () {
-  $('#newFir').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+  $('#newFir').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Submitting...').addClass('disabled');
   var cUser = auth.currentUser;
   var statement = document.getElementById('statement').value;
   var evidenceFile = document.getElementById('evidence').files[0];
-  db.collection('User-Details').doc(auth.currentUser.email).collection('FIR').doc().set({
+  var crimePlace = document.getElementById('crimePlace').value;
+  var criminalName = document.getElementById('criminalName').value;
+  var criminalAddress = document.getElementById('criminalAddress').value;
+  var dateTime = document.getElementById('dateTime').value;
+
+  db.collection('FIR').doc(auth.currentUser.email).set({
     Statement: statement,
+    CrimePlace: crimePlace,
+    CriminalName: criminalName,
+    CriminalAddress: criminalAddress,
     EvidenceImageUrl: '',
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    DateTime: dateTime,
+    LocalTime: new Date().toLocaleString()
   }).then(() => {
-    var filePath = cUser.email + '/' + evidenceFile.name;
+    var filePath = "FIR" + '/' + cUser.email + '/' + evidenceFile.name;
     return firebase.storage().ref(filePath).put(evidenceFile).then((fileSnapshot) => {
       return fileSnapshot.ref.getDownloadURL().then(url => {
-        return db.collection(cUser.email).doc('FIR').update({
+        window.alert('FIR submitted successfully.');
+        window.location.href = 'home.html';
+        return db.collection('FIR').doc(auth.currentUser.email).update({
           EvidenceImageUrl: url,
           StorageUrl: fileSnapshot.metadata.fullPath
         });
@@ -179,7 +206,7 @@ $('#newFir').click(function () {
     console.log(error.message);
     $('#newFir').html('SUBMIT').removeClass('disabled');
   });
-})
+});
 
 function firStatus() {
   auth.onAuthStateChanged(user => {
@@ -201,8 +228,13 @@ function firStatus() {
         console.log(error.message)
       })
       //fir statement
-      db.collection(user.email).doc('FIR').get().then(doc => {
-        var html = `<p>Statement : ${doc.data().Statement}</p>`
+      db.collection('FIR').doc(user.email).get().then(doc => {
+        var html = `<p>Crime Place : ${doc.data().CrimePlace}</p>
+                    <p>Criminal Address : ${doc.data().CriminalAddress}</p>
+                    <p>FIR register time : ${doc.data().LocalTime}</p>
+                    <p>Crime Time : ${doc.data().DateTime}</p>
+                    <p class="text-break"><span>Statement : </span>${doc.data().Statement}</p>
+                    <span>Evidence : </span><img src="${doc.data().EvidenceImageUrl}" class="img-fluid">`
         firStatement.innerHTML = html;
         $('#loader').addClass('d-none');
       }).catch(error => {

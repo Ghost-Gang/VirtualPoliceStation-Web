@@ -1,8 +1,7 @@
 {
-  "name": "Chatbot",
-  "short_name": "Chatbot",
-  "start_url": "/chatbot.html",
+  "name": "Virtual Police Station",
+  "short_name": "VPS",
+  "start_url": "/index.html",
   "display": "standalone",
-  "orientation": "portrait",
-  "gcm_sender_id": "103953800507"
+  "orientation": "portrait"
 }

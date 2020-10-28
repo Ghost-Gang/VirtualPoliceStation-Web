@@ -96,14 +96,6 @@ function setUserName(user) {
     document.getElementById('userName').innerHTML = user.displayName;
 }
 
-// document.addEventListener('keydown', function (key) {
-//     if (key.which === 13) {
-//         if (document.getElementById('txtMessage').value) {
-//             sendMessage();
-//         }
-//     }
-// });
-
 const sendMessageForm = document.getElementById('sendMessageForm');
 sendMessageForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -115,15 +107,16 @@ function sendMessage() {
     if (messageContent) {
         var chatMessage = {
             message: messageContent,
-            time: new Date().toLocaleString(),
+            time: new Date().toLocaleString('en-IN', { hourCycle: 'h24' }),
             whichUser: auth.currentUser.email
         }
         db.collection('User-Details').doc('messages').collection(chatKey).add(chatMessage).catch(function (error) {
             console.log(error);
         });
-        document.getElementById('messages').scrollTo(0, 500000);
+        document.getElementById('messages').scrollTo(0, 1000000);
         document.getElementById('txtMessage').value = '';
         document.getElementById('txtMessage').focus();
+        console.log(chatMessage.time);
     }
 }
 
@@ -166,7 +159,7 @@ function saveImage(file) {
     }).catch(function (error) {
         console.log(error);
     });
-    document.getElementById('messages').scrollTo(0, 500000);
+    document.getElementById('messages').scrollTo(0, 1000000);
     document.getElementById('txtMessage').value = '';
     document.getElementById('txtMessage').focus();
 }
@@ -176,19 +169,15 @@ function loadMessages(chatK) {
     var query = db.collection('User-Details').doc('messages').collection(chatK).orderBy('time', 'asc');
     query.onSnapshot(function (snapshot) {
         snapshot.docChanges().forEach(function (change) {
-            if (change.type === 'removed') {
-                deleteMessage(change.doc.id);
-            } else {
-                var chatM = change.doc.data();
-                displayMessage(chatM.time, chatM.whichUser, chatM.message, chatM.imageUrl);
-            }
+            var chatM = change.doc.data();
+            displayMessage(chatM.time, chatM.whichUser, chatM.message, chatM.imageUrl);
         });
     });
 }
 
 function displayMessage(time, user, text, imageUrl) {
     var chatTime = time.split(',');
-    if (imageUrl) msg = `<img src="${imageUrl}" class="img-fluid"></img>`;
+    if (imageUrl) msg = `<img src="${imageUrl}" class="img-fluid">`;
     else msg = text;
     if (user === auth.currentUser.email && msg !== undefined) {
         var messageTemplate = `<div class="row no-gutters justify-content-end">
@@ -206,26 +195,9 @@ function displayMessage(time, user, text, imageUrl) {
                                 </div>`;
         document.getElementById('messages').innerHTML += messageTemplate;
     }
-    document.getElementById('messages').scrollTo(0, 500000);
+    document.getElementById('messages').scrollTo(0, 1000000);
 }
-
-// function deleteMessage(id) {
-//     db.collection("messages").delete().then(function () {
-//         console.log("Document successfully deleted!");
-//         document.getElementById('sent').innerHTML = 'This message is deleted';
-//     }).catch(function (error) {
-//         console.error("Error removing document: ", error);
-//     });
-// }
 
 getUser();
 populateFriendList();
 
-
-function deleteMessage(id) {
-    var div = document.getElementById(id);
-    // If an element for that message exists we delete it.
-    if (div) {
-        div.parentNode.removeChild(div);
-    }
-}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>new app</title>
+    <title>VPS Chat</title>
     <!-- VPS icon -->
     <link rel="icon" href="img/icon_vps.png" type="image/x-icon">
     <!-- Font Awesome -->
@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Material Design Bootstrap -->
     <link rel="stylesheet" href="css/mdb.min.css">
-    <!-- Your custom styles (optional) -->
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
     <style>
         body,
         html {
@@ -48,24 +46,24 @@
             height: 38px;
             width: 38px;
         }
-
+/* 
         .chatbox {
-            height: 80%;
-        }
+            height: 50%;
+        } */
 
         .receive {
             background-color: #a0c2fa;
-            border-radius: 1rem;
+            border-radius: 0.5rem;
         }
 
         .sent {
             background-color: #ededed;  
-            border-radius: 1rem;          
+            border-radius: 0.5rem;          
         }
 
         .message-content {
             padding: 5px 15px 5px 15px;
-            font-size: 15px;            
+            font-size: 15px;        
         }
 
         .card {
@@ -135,6 +133,8 @@
                         </div>
                     </div>
                     <div class="card-body" id="messages">
+                        <!-- welcome message -->
+                        <h3 class="text-center">Select a person to chat</h3>
                         <!-- Received message -->
                         <div class="row no-gutters d-none">
                             <div class="col-11">
