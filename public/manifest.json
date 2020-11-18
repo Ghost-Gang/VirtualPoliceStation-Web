@@ -1,7 +1,0 @@
-{
-  "name": "Virtual Police Station",
-  "short_name": "VPS",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "orientation": "portrait"
-}

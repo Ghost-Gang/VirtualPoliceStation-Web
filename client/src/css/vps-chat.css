@@ -1,0 +1,64 @@
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.profile-pic {
+    height: 35px;
+    width: 35px;
+}
+
+.name {
+    font-weight: 400;
+}
+
+.under-name {
+    font-size: 12px;
+    line-height: 15px;
+    max-height: 15px;
+}
+
+.chat-pic {
+    height: 38px;
+    width: 38px;
+}
+/* 
+.chatbox {
+    height: 50%;
+} */
+
+.received {
+    background-color: #a0c2fa;
+    border-radius: 0.5rem;
+}
+
+.sent {
+    background-color: #ededed;  
+    border-radius: 0.5rem;          
+}
+
+.message-content {
+    padding: 5px 15px 5px 15px;
+    font-size: 15px;        
+}
+
+.chat-card {
+    height: 86vh;
+}
+
+#messages {
+    /* overflow-y: scroll; */
+    overflow-x: hidden;
+}
+
+#userName {
+    font-size: 20px;
+}
