@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "info-virtualpolicestation"
+  },
+  "targets": {
+    "info-virtualpolicestation": {
+      "hosting": {
+        "vps": [
+          "virtualpolicestation"
+        ]
+      }
+    }
   }
 }

@@ -1,5 +1,0 @@
-User-agent:*
-Disallow:/firstatus.html
-Disallow:/newfir.html
-Disallow:/home.html
-Sitemap: http://info-virtualpolicestation.web.app/sitemap.xml
