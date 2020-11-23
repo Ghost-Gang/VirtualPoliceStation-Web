@@ -4,7 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "target":"vps",
+    "target": "vps",
     "public": "build",
     "ignore": [
       "firebase.json",
@@ -12,7 +12,6 @@
       "**/node_modules/**",
       "**/src/**",
       "**/public/**"
-
     ],
     "rewrites": [
       {

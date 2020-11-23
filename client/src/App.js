@@ -20,6 +20,9 @@ import SignIn from './components/Login'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar';
 import Admin from './components/Admin';
+import CharCert from './components/CharCert';
+import ApplyNoc from './components/ApplyNoc';
+
 
 // initialize firebase
 const config = {
@@ -50,8 +53,10 @@ const App = (props) => {
           <Route exact path="/u/:uid/home" component={Home} />
           <Route exact path="/u/:uid/new-fir" component={NewFir} />
           <Route exact path="/u/:uid/fir-status" component={FirStatus} />
+          <Route exact path="/u/:uid/apply-noc" component={ApplyNoc} />
           <Route exact path="/u/:uid/vps-chat" component={VpsChat} />
           <Route exact path="/u/:uid/admin" component={Admin} />
+          <Route exact path="/u/:uid/character-certificate" component={CharCert} />
         </ToastProvider>
         <Route
           render={function () {

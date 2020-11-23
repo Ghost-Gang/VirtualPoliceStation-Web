@@ -13,7 +13,7 @@ function Footer() {
     return (
         <footer className="page-footer font-small" id="footer">
             {/* <!-- Social buttons --> */}
-            <ul className="list-unstyled list-inline text-center footer-lite my-0 pt-3">
+            <ul className="list-unstyled list-inline text-center footer-lite my-0 py-3">
                 <li className="list-inline-item"><a href="/will-be-added" className="mx-1 mx-md-2"><FontAwesomeIcon icon={faFacebook} className="social-icon" /></a></li>
                 <li className="list-inline-item"><a href="/will-be-added" className="mx-1 mx-md-2"><FontAwesomeIcon icon={faInstagram} className="social-icon" /></a></li>
                 <li className="list-inline-item"><a href="/will-be-added" className="mx-1 mx-md-2"><FontAwesomeIcon icon={faTwitter} className="social-icon" /></a></li>

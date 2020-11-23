@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
 import $ from 'jquery'
+import { Form } from 'react-bootstrap'
 
 function NewFir(props) {
     // console.log(window.location.pathname.split('/')[2]);
@@ -125,24 +126,69 @@ function NewFir(props) {
     // ===================
     return (
         <div className="py-md-4 my-4">
-            <form ref={formRef} className="container px-5 bg-f4f4f4 card card-body" id="new-fir-form" style={{ maxWidth: "540px" }} onSubmit={handleSubmit} onChange={handleChange}>
-                <h4 className="text-center">Register FIR</h4>
-                <input type="text" className="form-control mt-3" name="crimePlace" placeholder="Crime Place" required />
-                <input type="text" className="form-control mt-3" name="criminalName" placeholder="Criminal Name" required />
-                <input type="text" className="form-control mt-3" name="criminalAddress" placeholder="Address of criminal" required />
-                <textarea className="form-control md-textarea mt-3" name="statement" rows="4" placeholder="Statement" required></textarea>
-                <code><label htmlFor="evidence" className="mt-3">Evidence image</label></code>
-                <input type="file" accept="image/*" name="evidence" onChange={(e) => setFile(e.target.files[0])} required /><span id="progress"></span>
-                <input type="text" className="form-control mt-3" name="evidenceName" placeholder="Evidence Name" required onChange={(e) => setEvidenceName(e.target.value.replace(/\s+/g, ''))} />
-                <input type="datetime-local" className="mt-3 form-control" name="dateTime" required />
-                <input type="number" className="form-control mt-3" name="otp" placeholder="Enter OTP" />
+            <form ref={formRef} className="container px-5 card card-body" id="new-fir-form" style={{ maxWidth: "540px" }} onSubmit={handleSubmit} onChange={handleChange}>
+                <h4 className="text-center mb-3">Register FIR</h4>
+
+                <u><h6>Complaint Detail</h6></u>
+                <div className="row">
+                    <div className="d-inline-block col-md-6 col-12 padding">
+                        <code>Nature of Complaint</code>
+                        <Form.Control as='select' defaultValue="Choose">
+                            <option value="">Select</option>
+                            <option value="">Againt Public</option>
+                            <option value="">Againts Organization</option>
+                            <option value="">Against Police Officer</option>
+                            <option value="">Against Public Servant(Civil)</option>
+                            <option value="">Wild life case</option>
+                            <option value="">Against Army and Paramilitary Force</option>
+                            <option value="">Against Foreigners</option>
+                            <option value="">Against Department</option>
+                            <option value="">Cyber crime</option>
+                        </Form.Control>
+                    </div>
+                    <div className="d-inline-block col-md-6 col-12 padding">
+                        <code>Subject of Complaint</code>
+                        <Form.Control as='select' defaultValue="Choose">
+                            <option value="">Select</option>
+                            <option value="">Document missing</option>
+                            <option value="">Land dispute</option>
+                            <option value="">Civil dispute</option>
+                            <option value="">Family dispute</option>
+                            <option value="">Domestic violence</option>
+                            <option value="">Others</option>
+                        </Form.Control>
+                    </div>
+                </div>
+                <textarea className="form-control md-textarea mt-2" name="statement" rows="4" placeholder="Complaint statement" required></textarea>
+
+                <u><h6 className="mt-3">Accused Detail</h6></u>
+                <div className="row">
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="criminalName" placeholder="Name" required /></div>
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="criminalNumber" placeholder="Phone number" required /></div>
+                </div>
+                <input type="text" className="form-control mt-2" name="criminalAddress" placeholder="Address" required />
+
+                <u><h6 className="mt-3">Incident Detail</h6></u>
+                <div className="row">
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="crimePlace" placeholder="Crime Place" required /></div>
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="date" className="form-control mt-1" name="crimeDate" placeholder="Date" required /></div>
+                </div>
+                <div className="row mt-3">
+                    <div className="d-inline-block col-md-6 col-12 padding">
+                        <code>Evidence image</code>
+                        <input type="file" accept="image/*" name="evidence" onChange={(e) => setFile(e.target.files[0])} required /><span id="progress"></span>
+                    </div>
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1 mt-md-2" name="evidenceName" placeholder="Evidence Name" required onChange={(e) => setEvidenceName(e.target.value.replace(/\s+/g, ''))} /></div>
+                </div>
+
+                {/* <input type="number" className="form-control mt-3" name="otp" placeholder="Enter OTP" />
                 <div className="row">
                     <div className="col-md-6"><button className="btn btn-primary mr-4 btn-md mt-3 px-3">Request OTP</button></div>
                     <div className="col-md-6"><button className="btn btn-primary btn-md mt-3 px-3">Verify</button></div>
-                </div>
+                </div> */}
                 <button className="btn btn-primary btn-block mt-3" id="submit" disabled={disabled} name="newFir">Submit</button>
             </form>
-        </div>
+        </div >
     )
 }
 

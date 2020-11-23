@@ -178,7 +178,7 @@ function VpsChat() {
     return (
         <div className="container-fluid chatbox">
             <div className="row">
-                <div className="col-12 col-md-8 pl-md-0 mx-auto py-3">
+                <div className="col-12 col-md-7 pl-md-0 mx-auto py-3">
                     <div className="card chat-card">
                         <div className="card-header">
                             <div className="form-row">
