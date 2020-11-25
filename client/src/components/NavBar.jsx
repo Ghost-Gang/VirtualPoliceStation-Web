@@ -32,7 +32,7 @@ function NavBar() {
                     {!isSignedIn && <Nav.Link href='/sign-up'>SIGN UP</Nav.Link>}
                     {!isSignedIn && <Nav.Link href='/sign-in'>SIGN IN</Nav.Link>}
                     {isSignedIn && <NavDropdown title="Profile" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">My Account</NavDropdown.Item>
+                        <NavDropdown.Item href={`/u/${user.uid}/my-profile`}>My Account</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={signOut}>SIGN OUT</NavDropdown.Item>
                     </NavDropdown>}

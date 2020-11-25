@@ -22,6 +22,7 @@ import NavBar from './components/NavBar';
 import Admin from './components/Admin';
 import CharCert from './components/CharCert';
 import ApplyNoc from './components/ApplyNoc';
+import Profile from './components/Profile';
 
 
 // initialize firebase
@@ -51,6 +52,7 @@ const App = (props) => {
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/sign-in" component={SignIn} />
           <Route exact path="/u/:uid/home" component={Home} />
+          <Route exact path="/u/:uid/my-profile" component={Profile} />
           <Route exact path="/u/:uid/new-complaint" component={NewComplaint} />
           <Route exact path="/u/:uid/complaint-status" component={ComplaintStatus} />
           <Route exact path="/u/:uid/apply-noc" component={ApplyNoc} />

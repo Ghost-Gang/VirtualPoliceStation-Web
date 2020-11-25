@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import '../css/vps-chat.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperclip, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faPaperclip, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/storage'
 import $ from 'jquery'
-import { Button } from 'react-bootstrap'
 
 function VpsChat() {
     const [uid, setUid] = useState('');
@@ -199,19 +198,14 @@ function VpsChat() {
                         {/* <!-- Type messages --> */}
                         <div className="card-footer px-2 px-sm-3">
                             <form ref={formRef} className="form-row" id="sendMessageForm" onSubmit={saveMsg}>
-                                {/* <!-- File input --> */}
-                                <div className="px-2 pt-2">
-                                    <p><FontAwesomeIcon icon={faPaperclip} style={{ cursor: 'pointer' }} onClick={() => $('#img').trigger('click')} /><input className="d-none" type="file" id="img" accept="image/*" onChange={saveImg} /></p>
+                                <div className="col pt-2 ml-md-1 pr-0">
+                                    <FontAwesomeIcon icon={faPaperclip} onClick={() => $('#img').trigger('click')} id='paper-clip' /><input className="d-none" type="file" id="img" accept="image/*" onChange={saveImg} />
                                 </div>
-                                {/* <!-- Message input --> */}
-                                <div className="col-9 col-sm-10">
+                                <div className="col-9 col-sm-10 pl-0">
                                     <input className="form-control mr-sm-2" type="text" value={msg} id="txtMessage" placeholder="Message..." aria-label="Message" onChange={(e) => setMsg(e.target.value)} />
                                 </div>
-                                {/* <!-- Send Button --> */}
-                                <div className="col" style={{ paddingTop: "3px" }}>
-                                    <button className="btn-outline-primary btn-sm m-0 px-2 py-1">
-                                        <FontAwesomeIcon icon={faPaperPlane} onClick={saveMsg} />
-                                    </button>
+                                <div className="col pt-1">
+                                    <FontAwesomeIcon icon={faArrowAltCircleRight} onClick={saveMsg} id='send-arrow' />
                                 </div>
                             </form>
                         </div>
