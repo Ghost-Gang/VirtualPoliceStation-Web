@@ -12,9 +12,9 @@ import { ToastProvider } from 'react-toast-notifications'
 
 import Index from './components/Index'
 import Home from './components/Home'
-import NewFir from './components/NewFir'
+import NewComplaint from './components/NewComplaint'
 import VpsChat from './components/VpsChat'
-import FirStatus from './components/FirStatus'
+import ComplaintStatus from './components/ComplaintStatus'
 import SignUp from './components/Signup'
 import SignIn from './components/Login'
 import Footer from './components/Footer'
@@ -51,8 +51,8 @@ const App = (props) => {
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/sign-in" component={SignIn} />
           <Route exact path="/u/:uid/home" component={Home} />
-          <Route exact path="/u/:uid/new-fir" component={NewFir} />
-          <Route exact path="/u/:uid/fir-status" component={FirStatus} />
+          <Route exact path="/u/:uid/new-complaint" component={NewComplaint} />
+          <Route exact path="/u/:uid/complaint-status" component={ComplaintStatus} />
           <Route exact path="/u/:uid/apply-noc" component={ApplyNoc} />
           <Route exact path="/u/:uid/vps-chat" component={VpsChat} />
           <Route exact path="/u/:uid/admin" component={Admin} />

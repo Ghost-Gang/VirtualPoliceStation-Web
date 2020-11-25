@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
-function FirStatus() {
+function ComplaintStatus() {
     let uid = window.location.pathname.split('/')[2];
     const [fir, setFir] = useState({});
     useEffect(() => {
-        firebase.firestore().collection('FIR').doc(uid).get().then(doc => {
+        firebase.firestore().collection('Complaints').doc(uid).get().then(doc => {
             if (doc.exists) {
                 let temp = {
                     statement: doc.data().Statement,
@@ -39,4 +39,4 @@ function FirStatus() {
     )
 }
 
-export default FirStatus
+export default ComplaintStatus

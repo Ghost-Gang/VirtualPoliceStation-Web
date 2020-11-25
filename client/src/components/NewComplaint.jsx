@@ -5,7 +5,7 @@ import 'firebase/firestore'
 import $ from 'jquery'
 import { Form } from 'react-bootstrap'
 
-function NewFir(props) {
+function NewComplaint(props) {
     // console.log(window.location.pathname.split('/')[2]);
     let uid = window.location.pathname.split('/')[2];
 
@@ -31,7 +31,7 @@ function NewFir(props) {
             setDisabled(false);
             return console.log('only upload images you fool');
         } else {
-            let path = 'FIR' + '/' + uid + '/' + evidenceName;
+            let path = 'Complaints' + '/' + uid + '/' + evidenceName;
             let uploadTask = firebase.storage().ref(path).put(file);
             uploadTask.on('state_changed', function (snapshot) {
                 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -52,7 +52,7 @@ function NewFir(props) {
                     // console.log(path);
                     // console.log(formData);
                     try {
-                        await firebase.firestore().collection('FIR').doc(uid).set({
+                        await firebase.firestore().collection('Complaints').doc(uid).set({
                             Statement: statement,
                             CrimePlace: crimePlace,
                             CriminalName: criminalName,
@@ -88,8 +88,8 @@ function NewFir(props) {
     }
     // ===================
     //New FIr
-    // $('#newFir').click(function () {
-    // $('#newFir').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Submitting...').addClass('disabled');
+    // $('#NewComplaint').click(function () {
+    // $('#NewComplaint').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Submitting...').addClass('disabled');
     // var cUser = auth.currentUser;
     // var statement = document.getElementById('statement').value;
     // var evidenceFile = document.getElementById('evidence').files[0];
@@ -120,14 +120,14 @@ function NewFir(props) {
     //     });
     // }).catch(error => {
     //     console.log(error.message);
-    //     $('#newFir').html('SUBMIT').removeClass('disabled');
+    //     $('#NewComplaint').html('SUBMIT').removeClass('disabled');
     // });
     // // });
     // ===================
     return (
         <div className="py-md-4 my-4">
-            <form ref={formRef} className="container px-5 card card-body" id="new-fir-form" style={{ maxWidth: "540px" }} onSubmit={handleSubmit} onChange={handleChange}>
-                <h4 className="text-center mb-3">Register FIR</h4>
+            <form ref={formRef} className="container px-5 card card-body" id="new-complaint-form" style={{ maxWidth: "540px" }} onSubmit={handleSubmit} onChange={handleChange}>
+                <h4 className="text-center mb-3">Register Complaint</h4>
 
                 <u><h6>Complaint Detail</h6></u>
                 <div className="row">
@@ -186,10 +186,10 @@ function NewFir(props) {
                     <div className="col-md-6"><button className="btn btn-primary mr-4 btn-md mt-3 px-3">Request OTP</button></div>
                     <div className="col-md-6"><button className="btn btn-primary btn-md mt-3 px-3">Verify</button></div>
                 </div> */}
-                <button className="btn btn-primary btn-block mt-3" id="submit" disabled={disabled} name="newFir">Submit</button>
+                <button className="btn btn-primary btn-block mt-3" id="submit" disabled={disabled}>Submit</button>
             </form>
         </div >
     )
 }
 
-export default NewFir
+export default NewComplaint

@@ -28,13 +28,13 @@ function Home(props) {
                                 {/* <!-- Card image --> */}
                                 <figure className="imghvr-fold-up"><img src={note} alt="alt" />
                                     <figcaption>
-                                        <p>Register a Complaint</p>
+                                        <p>Register a Compplaint</p>
                                     </figcaption>
                                 </figure>
                                 {/* <!-- Card content --> */}
                                 <div className="card-body">
                                     {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/new-fir`} className="btn btn-primary mt-3" id="newFirBtn">New Comlaint</a>
+                                    <a href={`/u/${user}/new-fir`} className="btn btn-primary mt-3" id="newFirBtn">New Complaint</a>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ function Home(props) {
                                 {/* <!-- Card content --> */}
                                 <div className="card-body">
                                     {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/fir-status`} className="btn btn-primary mt-3" id='firStatus'>Complaint Status</a>
+                                    <a href={`/u/${user}/fir-status`} className="btn btn-primary mt-3" id='firStatus'>Complaint status</a>
                                 </div>
                             </div>
                         </div>
