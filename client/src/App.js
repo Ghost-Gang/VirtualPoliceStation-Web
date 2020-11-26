@@ -23,6 +23,7 @@ import Admin from './components/Admin';
 import CharCert from './components/CharCert';
 import ApplyNoc from './components/ApplyNoc';
 import Profile from './components/Profile';
+import PastIncidents from './components/PastIncidents';
 
 
 // initialize firebase
@@ -55,6 +56,7 @@ const App = (props) => {
           <Route exact path="/u/:uid/my-profile" component={Profile} />
           <Route exact path="/u/:uid/new-complaint" component={NewComplaint} />
           <Route exact path="/u/:uid/complaint-status" component={ComplaintStatus} />
+          <Route exact path="/u/:uid/past-incidents" component={PastIncidents} />
           <Route exact path="/u/:uid/apply-noc" component={ApplyNoc} />
           <Route exact path="/u/:uid/vps-chat" component={VpsChat} />
           <Route exact path="/u/:uid/admin" component={Admin} />

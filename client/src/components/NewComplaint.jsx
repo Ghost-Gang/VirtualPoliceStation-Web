@@ -129,12 +129,12 @@ function NewComplaint(props) {
             <form ref={formRef} className="container px-5 card card-body" id="new-complaint-form" style={{ maxWidth: "540px" }} onSubmit={handleSubmit} onChange={handleChange}>
                 <h4 className="text-center mb-3">Register Complaint</h4>
 
-                <u><h6>Complaint Detail</h6></u>
+                <hr /><h6 className='text-center'>Complaint Detail</h6><hr />
                 <div className="row">
                     <div className="d-inline-block col-md-6 col-12 padding">
-                        <code>Nature of Complaint</code>
+                        <label>Nature of Complaint</label>
                         <Form.Control as='select' defaultValue="Choose">
-                            <option value="">Select</option>
+                            <option value="">Choose..</option>
                             <option value="">Againt Public</option>
                             <option value="">Againts Organization</option>
                             <option value="">Against Police Officer</option>
@@ -147,9 +147,9 @@ function NewComplaint(props) {
                         </Form.Control>
                     </div>
                     <div className="d-inline-block col-md-6 col-12 padding">
-                        <code>Subject of Complaint</code>
+                        <label>Subject of Complaint</label>
                         <Form.Control as='select' defaultValue="Choose">
-                            <option value="">Select</option>
+                            <option value="">Choose..</option>
                             <option value="">Document missing</option>
                             <option value="">Land dispute</option>
                             <option value="">Civil dispute</option>
@@ -161,21 +161,21 @@ function NewComplaint(props) {
                 </div>
                 <textarea className="form-control md-textarea mt-2" name="statement" rows="4" placeholder="Complaint statement" required></textarea>
 
-                <u><h6 className="mt-3">Accused Detail</h6></u>
+                <hr /><h6 className="text-center">Accused Detail</h6><hr />
                 <div className="row">
                     <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="criminalName" placeholder="Name" required /></div>
                     <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="criminalNumber" placeholder="Phone number" required /></div>
                 </div>
                 <input type="text" className="form-control mt-2" name="criminalAddress" placeholder="Address" required />
 
-                <u><h6 className="mt-3">Incident Detail</h6></u>
+                <hr /><h6 className="text-center">Incident Detail</h6><hr />
                 <div className="row">
                     <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="crimePlace" placeholder="Crime Place" required /></div>
                     <div className="d-inline-block col-md-6 col-12 padding"><input type="date" className="form-control mt-1" name="crimeDate" placeholder="Date" required /></div>
                 </div>
                 <div className="row mt-3">
                     <div className="d-inline-block col-md-6 col-12 padding">
-                        <code>Evidence image</code>
+                        <label>Evidence image:</label>
                         <input type="file" accept="image/*" name="evidence" onChange={(e) => setFile(e.target.files[0])} required /><span id="progress"></span>
                     </div>
                     <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1 mt-md-2" name="evidenceName" placeholder="Evidence Name" required onChange={(e) => setEvidenceName(e.target.value.replace(/\s+/g, ''))} /></div>

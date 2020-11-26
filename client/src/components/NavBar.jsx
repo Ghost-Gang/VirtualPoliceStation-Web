@@ -24,7 +24,7 @@ function NavBar() {
     }
     return (
         <Navbar bg="dark" variant="dark" expand="md">
-            <Navbar.Brand href="#home">Virtual Police Station</Navbar.Brand>
+            <Navbar.Brand>Virtual Police Station</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"><FontAwesomeIcon icon={faBars} /></Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto mr-5">

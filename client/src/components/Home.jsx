@@ -34,7 +34,7 @@ function Home(props) {
                                 {/* <!-- Card content --> */}
                                 <div className="card-body">
                                     {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/new-fir`} className="btn btn-primary mt-3" id="newFirBtn">New Complaint</a>
+                                    <a href={`/u/${user}/new-complaint`} className="btn btn-primary mt-3" id="newFirBtn">New Complaint</a>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ function Home(props) {
                                 {/* <!-- Card content --> */}
                                 <div className="card-body">
                                     {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/fir-status`} className="btn btn-primary mt-3" id='firStatus'>Complaint status</a>
+                                    <a href={`/u/${user}/complaint-status`} className="btn btn-primary mt-3" id='firStatus'>Complaint status</a>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@ function Home(props) {
                                 {/* <!-- Card content --> */}
                                 <div className="card-body">
                                     {/* <!-- Button --> */}
-                                    <a href="/home/past-incidents" className="btn btn-primary mt-3" id="pastIncidents">Past incidents</a>
+                                    <a href={`/u/${user}/past-incidents`} className="btn btn-primary mt-3" id="pastIncidents">Past incidents</a>
                                 </div>
                             </div>
                         </div>

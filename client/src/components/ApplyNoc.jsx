@@ -41,16 +41,17 @@ function ApplyNoc() {
                         <div className="row">
                             <div className="col-md-6 col-12"><input type="text" name="pin" className="form-control mb-2" placeholder="Location Name" /></div>
                             <div className="col-md-6 col-12">
-                                <tr>
-                                    <td><input type="number" name="state" className="form-control" placeholder="Area" /></td>
-                                    <td>
+                                <div className="row">
+                                    <div className="col"><input type="number" name="state" className="form-control" placeholder="Area" /></div>
+                                    <div className="col">
                                         <select name="" id="" className="form-control ml-auto">
                                             <option value="">Sq. Mts.</option>
                                             <option value="">Sq. Feet</option>
                                         </select>
-                                    </td>
-                                </tr>
-                            </div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div className="row">
                             <div className="col-md-6 col-12 mt-2">
                                 <select name="structure" id="" className='form-control' value='how'>
@@ -119,7 +120,16 @@ function ApplyNoc() {
                         <hr /><h6 className='text-center'>Traffic security details</h6><hr />
                         <div className="row mt-1">
                             <div className="col-md-6 col-12"><label>Space made available for parking:</label></div>
-                            <div className="col-md-6 col-12"><tr><td><Form.Check type="radio" label="Yes" id="yes" name="radio" className="ml-3" /></td><td><Form.Check type="radio" label="No" id="no" name="radio" className="ml-3" /></td></tr></div>
+                            <div className="col-md-6 col-12">
+                                <div className="row">
+                                    <div className="col">
+                                        <Form.Check type="radio" label="Yes" id="yes" name="radio" className="ml-3" />
+                                    </div>
+                                    <div className="col">
+                                        <Form.Check type="radio" label="No" id="no" name="radio" className="ml-3" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="row mt-1">
                             <div className="col-md-6 col-12"><label>Proposed number of security cameras:</label></div>
@@ -302,7 +312,12 @@ function ApplyNoc() {
                         </div>
                         <div className="row">
                             <div className="col-md-6 col-12"><input type="text" name="fname" className="form-control mb-2" placeholder="Driver license number" /></div>
-                            <div className="col-md-6 col-12"><tr><td><input type="text" className="form-control mb-2" placeholder="District" /></td><td><input type="text" className="form-control mb-2" placeholder="State" /></td></tr></div>
+                            <div className="col-md-6 col-12">
+                                <div className="row">
+                                    <div className="col"><input type="text" className="form-control mb-2" placeholder="District" /></div>
+                                    <div className="col"><input type="text" className="form-control mb-2" placeholder="State" /></div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* ============================== */}
