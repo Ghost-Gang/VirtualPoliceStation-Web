@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 function NavBar() {
     const [isSignedIn, setIsSignedIn] = useState(false);
@@ -22,15 +24,15 @@ function NavBar() {
     }
     return (
         <Navbar bg="dark" variant="dark" expand="md">
-            <Navbar.Brand href="#home">Virtual Police Station</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Brand>Virtual Police Station</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav"><FontAwesomeIcon icon={faBars} /></Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto mr-5">
                     {isSignedIn && <Nav.Link href={`/u/${user.uid}/home`}>HOME</Nav.Link>}
                     {!isSignedIn && <Nav.Link href='/sign-up'>SIGN UP</Nav.Link>}
                     {!isSignedIn && <Nav.Link href='/sign-in'>SIGN IN</Nav.Link>}
                     {isSignedIn && <NavDropdown title="Profile" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">My Account</NavDropdown.Item>
+                        <NavDropdown.Item href={`/u/${user.uid}/my-profile`}>My Account</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={signOut}>SIGN OUT</NavDropdown.Item>
                     </NavDropdown>}

@@ -1,8 +1,9 @@
 # VirtualPoliceStation-Web
-This is a web-based Police Station. This has some basic features of Police Station, that we can avail online.<br>
+
+This is a Web based Police Station. This has some basic features of Police Station, that we can avail online.<br>
 Features include:<br>
-1.Register FIR<br>
+1.Register Complaint<br>
 2.Apply for NOC<br>
-3.Criminal records based on location<br>
+3.Previous criminal records<br>
 4.Virtual assistance<br>
-5.Appointment<br>
+5.Character certificate<br>

@@ -3,8 +3,9 @@ import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
 import $ from 'jquery'
+import { Form } from 'react-bootstrap'
 
-function NewFir(props) {
+function NewComplaint(props) {
     // console.log(window.location.pathname.split('/')[2]);
     let uid = window.location.pathname.split('/')[2];
 
@@ -30,7 +31,7 @@ function NewFir(props) {
             setDisabled(false);
             return console.log('only upload images you fool');
         } else {
-            let path = 'FIR' + '/' + uid + '/' + evidenceName;
+            let path = 'Complaints' + '/' + uid + '/' + evidenceName;
             let uploadTask = firebase.storage().ref(path).put(file);
             uploadTask.on('state_changed', function (snapshot) {
                 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -51,7 +52,7 @@ function NewFir(props) {
                     // console.log(path);
                     // console.log(formData);
                     try {
-                        await firebase.firestore().collection('FIR').doc(uid).set({
+                        await firebase.firestore().collection('Complaints').doc(uid).set({
                             Statement: statement,
                             CrimePlace: crimePlace,
                             CriminalName: criminalName,
@@ -87,8 +88,8 @@ function NewFir(props) {
     }
     // ===================
     //New FIr
-    // $('#newFir').click(function () {
-    // $('#newFir').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Submitting...').addClass('disabled');
+    // $('#NewComplaint').click(function () {
+    // $('#NewComplaint').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Submitting...').addClass('disabled');
     // var cUser = auth.currentUser;
     // var statement = document.getElementById('statement').value;
     // var evidenceFile = document.getElementById('evidence').files[0];
@@ -119,31 +120,76 @@ function NewFir(props) {
     //     });
     // }).catch(error => {
     //     console.log(error.message);
-    //     $('#newFir').html('SUBMIT').removeClass('disabled');
+    //     $('#NewComplaint').html('SUBMIT').removeClass('disabled');
     // });
     // // });
     // ===================
     return (
         <div className="py-md-4 my-4">
-            <form ref={formRef} className="container px-5 bg-f4f4f4 card card-body" id="new-fir-form" style={{ maxWidth: "540px" }} onSubmit={handleSubmit} onChange={handleChange}>
-                <h4 className="text-center">Register FIR</h4>
-                <input type="text" className="form-control mt-3" name="crimePlace" placeholder="Crime Place" required />
-                <input type="text" className="form-control mt-3" name="criminalName" placeholder="Criminal Name" required />
-                <input type="text" className="form-control mt-3" name="criminalAddress" placeholder="Address of criminal" required />
-                <textarea className="form-control md-textarea mt-3" name="statement" rows="4" placeholder="Statement" required></textarea>
-                <code><label htmlFor="evidence" className="mt-3">Evidence image</label></code>
-                <input type="file" accept="image/*" name="evidence" onChange={(e) => setFile(e.target.files[0])} required /><span id="progress"></span>
-                <input type="text" className="form-control mt-3" name="evidenceName" placeholder="Evidence Name" required onChange={(e) => setEvidenceName(e.target.value.replace(/\s+/g, ''))} />
-                <input type="datetime-local" className="mt-3 form-control" name="dateTime" required />
-                <input type="number" className="form-control mt-3" name="otp" placeholder="Enter OTP" />
+            <form ref={formRef} className="container px-5 card card-body" id="new-complaint-form" style={{ maxWidth: "540px" }} onSubmit={handleSubmit} onChange={handleChange}>
+                <h4 className="text-center mb-3">Register Complaint</h4>
+
+                <hr /><h6 className='text-center'>Complaint Detail</h6><hr />
+                <div className="row">
+                    <div className="d-inline-block col-md-6 col-12 padding">
+                        <label>Nature of Complaint</label>
+                        <Form.Control as='select' defaultValue="Choose">
+                            <option value="">Choose..</option>
+                            <option value="">Againt Public</option>
+                            <option value="">Againts Organization</option>
+                            <option value="">Against Police Officer</option>
+                            <option value="">Against Public Servant(Civil)</option>
+                            <option value="">Wild life case</option>
+                            <option value="">Against Army and Paramilitary Force</option>
+                            <option value="">Against Foreigners</option>
+                            <option value="">Against Department</option>
+                            <option value="">Cyber crime</option>
+                        </Form.Control>
+                    </div>
+                    <div className="d-inline-block col-md-6 col-12 padding">
+                        <label>Subject of Complaint</label>
+                        <Form.Control as='select' defaultValue="Choose">
+                            <option value="">Choose..</option>
+                            <option value="">Document missing</option>
+                            <option value="">Land dispute</option>
+                            <option value="">Civil dispute</option>
+                            <option value="">Family dispute</option>
+                            <option value="">Domestic violence</option>
+                            <option value="">Others</option>
+                        </Form.Control>
+                    </div>
+                </div>
+                <textarea className="form-control md-textarea mt-2" name="statement" rows="4" placeholder="Complaint statement" required></textarea>
+
+                <hr /><h6 className="text-center">Accused Detail</h6><hr />
+                <div className="row">
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="criminalName" placeholder="Name" required /></div>
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="criminalNumber" placeholder="Phone number" required /></div>
+                </div>
+                <input type="text" className="form-control mt-2" name="criminalAddress" placeholder="Address" required />
+
+                <hr /><h6 className="text-center">Incident Detail</h6><hr />
+                <div className="row">
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="crimePlace" placeholder="Crime Place" required /></div>
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="date" className="form-control mt-1" name="crimeDate" placeholder="Date" required /></div>
+                </div>
+                <div className="row mt-3">
+                    <div className="d-inline-block col-md-6 col-12 padding">
+                        <label>Evidence image:</label>
+                        <input type="file" accept="image/*" name="evidence" onChange={(e) => setFile(e.target.files[0])} required /><span id="progress"></span>
+                    </div>
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1 mt-md-2" name="evidenceName" placeholder="Evidence Name" required onChange={(e) => setEvidenceName(e.target.value.replace(/\s+/g, ''))} /></div>
+                </div>
+
+                {/* <input type="number" className="form-control mt-3" name="otp" placeholder="Enter OTP" />
                 <div className="row">
                     <div className="col-md-6"><button className="btn btn-primary mr-4 btn-md mt-3 px-3">Request OTP</button></div>
                     <div className="col-md-6"><button className="btn btn-primary btn-md mt-3 px-3">Verify</button></div>
-                </div>
-                <button className="btn btn-primary btn-block mt-3" id="submit" disabled={disabled} name="newFir">Submit</button>
+                </div> */}
+                <button className="btn btn-primary btn-block mt-3" id="submit" disabled={disabled}>Submit</button>
             </form>
-        </div>
+        </div >
     )
 }
 
-export default NewFir
+export default NewComplaint
