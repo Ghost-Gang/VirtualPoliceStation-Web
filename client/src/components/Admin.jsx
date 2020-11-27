@@ -176,7 +176,7 @@ function Admin(props) {
                         </div>
                         <div className="card-body" id="messages">
                             {/* <!-- Sent messages --> */}
-                            {oldMsgs && oldMsgs.map(message => message.uid == 'admin' ?
+                            {oldMsgs && oldMsgs.map(message => message.uid === 'admin' ?
                                 <AdminMessage key={Math.random()} message={message} /> :
                                 <UserMessage key={Math.random()} message={message} />)}
                         </div>

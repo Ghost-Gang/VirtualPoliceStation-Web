@@ -23,18 +23,18 @@ function NavBar() {
         window.location.href = '/';
     }
     return (
-        <Navbar bg="dark" variant="dark" expand="md">
+        <Navbar bg="light" variant="light" expand="md">
             <Navbar.Brand>Virtual Police Station</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"><FontAwesomeIcon icon={faBars} /></Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto mr-5">
-                    {isSignedIn && <Nav.Link href={`/u/${user.uid}/home`}>HOME</Nav.Link>}
-                    {!isSignedIn && <Nav.Link href='/sign-up'>SIGN UP</Nav.Link>}
-                    {!isSignedIn && <Nav.Link href='/sign-in'>SIGN IN</Nav.Link>}
+                    {isSignedIn && <Nav.Link href={`/u/${user.uid}/home`}>Home</Nav.Link>}
+                    {!isSignedIn && <Nav.Link href='/sign-up'>Sign up</Nav.Link>}
+                    {!isSignedIn && <Nav.Link href='/sign-in'>Sign in</Nav.Link>}
                     {isSignedIn && <NavDropdown title="Profile" id="basic-nav-dropdown">
                         <NavDropdown.Item href={`/u/${user.uid}/my-profile`}>My Account</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={signOut}>SIGN OUT</NavDropdown.Item>
+                        <NavDropdown.Item onClick={signOut}>Sign out</NavDropdown.Item>
                     </NavDropdown>}
                     <Nav.Link>Contact us</Nav.Link>
                     <Nav.Link>FAQS</Nav.Link>

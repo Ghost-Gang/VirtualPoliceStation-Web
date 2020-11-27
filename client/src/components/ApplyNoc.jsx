@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tab, Tabs, Form, Nav } from 'react-bootstrap'
+import { Tab, Tabs, Form } from 'react-bootstrap'
 
 function ApplyNoc() {
     return (
@@ -135,7 +135,7 @@ function ApplyNoc() {
                             <div className="col-md-6 col-12"><label>Proposed number of security cameras:</label></div>
                             <div className="col-md-6 col-12"><input type="number" name="" id="" className="form-control" /></div>
                         </div>
-                        <button type="submit" className='btn btn-block btn-primary my-3'>Submit</button>
+                        <button type="submit" className='btn btn-block btn-theme my-3'>Submit</button>
                     </form>
                 </Tab>
 
@@ -205,7 +205,7 @@ function ApplyNoc() {
                                 <input type="text" name="state" className="form-control mb-2 mr-auto" placeholder="Police Station" />
                             </div>
                         </div>
-                        <button type="submit" className='btn btn-block btn-primary mt-3'>Submit</button>
+                        <button type="submit" className='btn btn-block btn-theme mt-3'>Submit</button>
                     </form>
                 </Tab>
 
@@ -297,7 +297,7 @@ function ApplyNoc() {
                             </div>
                         </div>
                         <textarea name="" id="" cols="30" rows="3" className='form-control mt-2 mb-3' placeholder='Bried description'></textarea>
-                        <button type="submit" className='btn btn-primary btn-block'>Submit</button>
+                        <button type="submit" className='btn btn-theme btn-block'>Submit</button>
                     </form>
                 </Tab>
 
@@ -371,7 +371,7 @@ function ApplyNoc() {
                             <div className="col-md-6 col-12"><input type="number" name="pin" className="form-control mb-2" placeholder="Pinlabel" /></div>
                             <div className="col-md-6 col-12"><input type="text" name="state" className="form-control mb-2 mr-auto" placeholder="Police Station" /></div>
                         </div>
-                        <button type="submit" className='btn btn-primary btn-block mt-3'>Submit</button>
+                        <button type="submit" className='btn btn-theme btn-block mt-3'>Submit</button>
                     </form>
                 </Tab>
             </Tabs >
