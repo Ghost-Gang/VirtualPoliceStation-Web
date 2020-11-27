@@ -1,129 +1,77 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
-import $ from 'jquery'
-import { Form } from 'react-bootstrap'
+import { Form, Button, Spinner } from 'react-bootstrap'
+import { useToasts } from 'react-toast-notifications'
+import axios from 'axios'
 
 function NewComplaint(props) {
     // console.log(window.location.pathname.split('/')[2]);
-    let uid = window.location.pathname.split('/')[2];
+    let [user, setUser] = useState('');
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(User => {
+            if (User) {
+                setUser(User);
+            }
+        })
+    }, [])
 
     const [formData, setFormData] = useState('');
-    const { crimePlace, criminalName, criminalAddress, statement, dateTime } = formData;
-    const [disabled, setDisabled] = useState(false);
+    let [loading, setLoading] = useState(false);
+    const { addToast } = useToasts();
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-    // const [filePath, setFilePath] = useState('');
-    // const [url, setUrl] = useState('');
-    const [evidenceName, setEvidenceName] = useState('');
+
     const [file, setFile] = useState('');
     const formRef = useRef(null);
     const handleSubmit = (e) => {
         e.preventDefault();
-        $('#submit').html('Submitting...');
-        setDisabled(true);
+        setLoading(true);
+        console.log(formData);
+        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
 
         // =======================
         if (!file.type.match('image.*')) {
-            $('#submit').html('Submit').removeClass('disabled');
-            setDisabled(false);
-            return console.log('only upload images you fool');
+            return addToast('Select only images', { appearance: 'warning', autoDismiss: true });
         } else {
-            let path = 'Complaints' + '/' + uid + '/' + evidenceName;
+            let path = 'Complaints' + '/' + user.uid + '/' + formData.evidenceName;
             let uploadTask = firebase.storage().ref(path).put(file);
             uploadTask.on('state_changed', function (snapshot) {
                 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 // console.log(progress);
                 document.getElementById('progress').innerHTML = Math.ceil(progress) + "%";
             }, function (err) {
-                $('#submit').html('Submit');
-                setDisabled(false);
-                return console.log(err.message);
+                setLoading(false);
+                document.getElementById('progress').innerHTML = "";
+                return addToast(err.message, { appearance: 'error', autoDismiss: true });
             }, function () {
                 uploadTask.snapshot.ref.getDownloadURL().then(async function (URL) {
+                    formData.evidenceImage = URL;
+                    formData.localTime = new Date().toLocaleString();
+                    formData.imagePath = path;
                     console.log(URL);
-                    // setUrl(URL);
-                    // setFilePath(uploadTask.snapshot.metadata.fullPath)
-                    // setFilePath(uploadTask.snapshot.metadata.fullPath);
-                    // console.log(filePath);
-                    // console.log(url);
-                    // console.log(path);
-                    // console.log(formData);
                     try {
-                        await firebase.firestore().collection('Complaints').doc(uid).set({
-                            Statement: statement,
-                            CrimePlace: crimePlace,
-                            CriminalName: criminalName,
-                            CriminalAddress: criminalAddress,
-                            EvidenceImageUrl: URL,
-                            DateTime: dateTime,
-                            LocalTime: new Date().toLocaleString(),
-                            Path: path
-                        })
-                        // console.log(filePath, url)
-                        $('#submit').html('Submit');
-                        setDisabled(false);
-                        formRef.current.reset();
-                        console.log('submitted successfully')
-                    } catch (err) {
-                        $('#submit').html('Submit');
-                        setDisabled(false);
-                        console.log(err.message)
-                    }
+                        await firebase.firestore().collection('Complaints').doc(user.uid).set(formData);
+                        axios.post('http://localhost:5000/api/new-complaint', { email: user.email, name: user.displayName }).then(res => {
+                            setLoading(false);
+                            formRef.current.reset();
+                            document.getElementById('progress').innerHTML = "";
+                            addToast('Submitted successfully', { appearance: 'success', autoDismiss: true });
+                        });
 
+                    } catch (err) {
+                        setLoading(false);
+                        document.getElementById('progress').innerHTML = "";
+                        addToast(err.message, { appearance: 'error', autoDismiss: true });
+                    }
                 });
             });
         }
         // =======================
-
-
-
-
-
-
-
-
     }
-    // ===================
-    //New FIr
-    // $('#NewComplaint').click(function () {
-    // $('#NewComplaint').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Submitting...').addClass('disabled');
-    // var cUser = auth.currentUser;
-    // var statement = document.getElementById('statement').value;
-    // var evidenceFile = document.getElementById('evidence').files[0];
-    // var crimePlace = document.getElementById('crimePlace').value;
-    // var criminalName = document.getElementById('criminalName').value;
-    // var criminalAddress = document.getElementById('criminalAddress').value;
-    // var dateTime = document.getElementById('dateTime').value;
 
-    // db.collection('FIR').doc(auth.currentUser.email).set({
-    //     Statement: statement,
-    //     CrimePlace: crimePlace,
-    //     CriminalName: criminalName,
-    //     CriminalAddress: criminalAddress,
-    //     EvidenceImageUrl: '',
-    //     DateTime: dateTime,
-    //     LocalTime: new Date().toLocaleString()
-    // }).then(() => {
-    //     var filePath = "FIR" + '/' + cUser.email + '/' + evidenceFile.name;
-    //     return firebase.storage().ref(filePath).put(evidenceFile).then((fileSnapshot) => {
-    //         return fileSnapshot.ref.getDownloadURL().then(url => {
-    //             window.alert('FIR submitted successfully.');
-    //             window.location.href = 'home.html';
-    //             return db.collection('FIR').doc(auth.currentUser.email).update({
-    //                 EvidenceImageUrl: url,
-    //                 StorageUrl: fileSnapshot.metadata.fullPath
-    //             });
-    //         });
-    //     });
-    // }).catch(error => {
-    //     console.log(error.message);
-    //     $('#NewComplaint').html('SUBMIT').removeClass('disabled');
-    // });
-    // // });
-    // ===================
     return (
         <div className="py-md-4 my-4">
             <form ref={formRef} className="container px-5 card card-body" id="new-complaint-form" style={{ maxWidth: "540px" }} onSubmit={handleSubmit} onChange={handleChange}>
@@ -131,54 +79,66 @@ function NewComplaint(props) {
 
                 <hr /><h6 className='text-center'>Complaint Detail</h6><hr />
                 <div className="row">
-                    <div className="d-inline-block col-md-6 col-12 padding">
-                        <label>Nature of Complaint</label>
-                        <Form.Control as='select' defaultValue="Choose">
+                    <div className="col-md-6 col-12">
+                        <label>Nature of Complaint:</label>
+                        <Form.Control as='select' name='natureOfComplaint' required>
                             <option value="">Choose..</option>
-                            <option value="">Againt Public</option>
-                            <option value="">Againts Organization</option>
-                            <option value="">Against Police Officer</option>
-                            <option value="">Against Public Servant(Civil)</option>
-                            <option value="">Wild life case</option>
-                            <option value="">Against Army and Paramilitary Force</option>
-                            <option value="">Against Foreigners</option>
-                            <option value="">Against Department</option>
-                            <option value="">Cyber crime</option>
+                            <option value="against-public">Againt Public</option>
+                            <option value="against-org">Againts Organization</option>
+                            <option value="against-police">Against Police Officer</option>
+                            <option value="against-public-servant">Against Public Servant(Civil)</option>
+                            <option value="wild-life">Wild life case</option>
+                            <option value="against-army-and-paramilitary">Against Army and Paramilitary Force</option>
+                            <option value="against-foreigners">Against Foreigners</option>
+                            <option value="against-department">Against Department</option>
+                            <option value="cyber-crime">Cyber crime</option>
                         </Form.Control>
                     </div>
-                    <div className="d-inline-block col-md-6 col-12 padding">
-                        <label>Subject of Complaint</label>
-                        <Form.Control as='select' defaultValue="Choose">
+                    <div className="col-md-6 col-12 mt-2 mt-md-0">
+                        <label>Subject of Complaint:</label>
+                        <Form.Control as='select' name='subjectOfComplaint' required>
                             <option value="">Choose..</option>
-                            <option value="">Document missing</option>
-                            <option value="">Land dispute</option>
-                            <option value="">Civil dispute</option>
-                            <option value="">Family dispute</option>
-                            <option value="">Domestic violence</option>
-                            <option value="">Others</option>
+                            <option value="document-missing">Document missing</option>
+                            <option value="land-dispute">Land dispute</option>
+                            <option value="civil-dispute">Civil dispute</option>
+                            <option value="family-dispute">Family dispute</option>
+                            <option value="domestic-violence">Domestic violence</option>
+                            <option value="others">Others</option>
                         </Form.Control>
                     </div>
                 </div>
-                <textarea className="form-control md-textarea mt-2" name="statement" rows="4" placeholder="Complaint statement" required></textarea>
+                <textarea className="form-control md-textarea mt-2" name="complaintStatement" rows="3" placeholder="Complaint statement" required></textarea>
 
+                {/* ============================== */}
                 <hr /><h6 className="text-center">Accused Detail</h6><hr />
                 <div className="row">
-                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="criminalName" placeholder="Name" required /></div>
-                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="criminalNumber" placeholder="Phone number" required /></div>
+                    <div className="col-12"><input type="text" className="form-control mt-2" name="accusedName" placeholder="Name" required /></div>
                 </div>
-                <input type="text" className="form-control mt-2" name="criminalAddress" placeholder="Address" required />
+                <div className="row">
+                    <div className="col-md-6 col-xs-12"><input type="text" name="accusedLocality" className="form-control mt-2" placeholder="Locality" required /></div>
+                    <div className="col-md-6 col-xs-12"><input type="text" name="accusedCity" className="form-control mt-2" placeholder="City" required /></div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6 col-xs-12"><input type="text" name="accusedDistrict" className="form-control mt-2" placeholder="District" required /></div>
+                    <div className="col-md-6 col-xs-12"><input type="text" name="accusedState" className="form-control mt-2" placeholder="State" required /></div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6 col-xs-12"><input type="number" name="accusedPincode" className="form-control mt-2" placeholder="Pincode" required /></div>
+                    <div className="col-md-6 col-xs-12"><input type="number" name="accusedPhone" className="form-control mt-2" placeholder="Phone number" required /></div>
+                </div>
 
+                {/* ===================================== */}
                 <hr /><h6 className="text-center">Incident Detail</h6><hr />
                 <div className="row">
-                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1" name="crimePlace" placeholder="Crime Place" required /></div>
-                    <div className="d-inline-block col-md-6 col-12 padding"><input type="date" className="form-control mt-1" name="crimeDate" placeholder="Date" required /></div>
+                    <div className="col-md-6 col-12"><input type="text" className="form-control mt-2" name="incidentPlace" placeholder="Incident Place" required /></div>
+                    <div className="col-md-6 col-12"><input type="date" className="form-control mt-2" name="incidentDate" placeholder="Date" required /></div>
                 </div>
                 <div className="row mt-3">
-                    <div className="d-inline-block col-md-6 col-12 padding">
+                    <div className="col-md-6 col-12">
                         <label>Evidence image:</label>
-                        <input type="file" accept="image/*" name="evidence" onChange={(e) => setFile(e.target.files[0])} required /><span id="progress"></span>
+                        <input type="file" accept="image/*" name='evidenceImage' onChange={(e) => setFile(e.target.files[0])} required /><span id="progress"></span>
                     </div>
-                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" className="form-control mt-1 mt-md-2" name="evidenceName" placeholder="Evidence Name" required onChange={(e) => setEvidenceName(e.target.value.replace(/\s+/g, ''))} /></div>
+                    <div className="col-md-6 col-12"><input type="text" className="form-control mt-2" name="evidenceName" placeholder="Evidence Name" onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })} required /></div>
                 </div>
 
                 {/* <input type="number" className="form-control mt-3" name="otp" placeholder="Enter OTP" />
@@ -186,9 +146,14 @@ function NewComplaint(props) {
                     <div className="col-md-6"><button className="btn btn-primary mr-4 btn-md mt-3 px-3">Request OTP</button></div>
                     <div className="col-md-6"><button className="btn btn-primary btn-md mt-3 px-3">Verify</button></div>
                 </div> */}
-                <button className="btn btn-primary btn-block mt-3" id="submit" disabled={disabled}>Submit</button>
+                {
+                    loading ?
+                        <Button variant="primary" disabled><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /><span className='ml-2'>Submitting...</span></Button> :
+                        <button className="btn btn-primary btn-block mt-3" id="submit">Submit</button>
+                }
+
             </form>
-        </div >
+        </div>
     )
 }
 

@@ -12,8 +12,8 @@ function VpsChat() {
     let [oldMsgs, setOldMsgs] = useState([]);
     const formRef = useRef(null);
     let [msg, setMsg] = useState('');
-    let [newMsgs, setNewMsgs] = useState([]);
-    let [finalMsgs, setFinalMsgs] = useState([]);
+    // let [newMsgs, setNewMsgs] = useState([]);
+    // let [finalMsgs, setFinalMsgs] = useState([]);
 
 
     useEffect(() => {
@@ -25,6 +25,7 @@ function VpsChat() {
         console.log('useeffect');
         loadMessages();
         // loadNewMessages();
+        // eslint-disable-next-line
     }, [uid]);
 
 
@@ -39,9 +40,6 @@ function VpsChat() {
                     setOldMsgs(values);
                     document.getElementById('messages').scrollTo(0, 1000000);
                     // document.getElementById('view').scrollIntoView();
-
-
-
                 }
             })
         }
@@ -86,24 +84,9 @@ function VpsChat() {
     // console.log(newMsgs.filter(n => !oldMsgs.includes(n)));
     // setFinalMsgs(newMsgs.filter(a => !oldMsgs.map(b => b.time).includes(a.time)))
 
-
-
-
-
-
-
-
-    console.log(oldMsgs, 'old');
-    console.log(finalMsgs, 'final');
-
-
-
-
-
     const saveMsg = async (e) => {
         e.preventDefault();
-        // formRef.current.reset();
-        // $('#txtMessage').val('');
+
         setMsg('');
         try {
             await firebase.database().ref('messages').child(uid).push({
@@ -116,7 +99,6 @@ function VpsChat() {
             else {
                 document.getElementById('messages').scrollTo(0, 1000000);
                 // document.getElementById('view').scrollIntoView();
-
             }
         }
     }
@@ -151,27 +133,21 @@ function VpsChat() {
             })
         }
     };
-    // const saveImg = e => {
-    //     e.preventDefault();
-    //     let file = e.target.files[0]
-    //     console.log(file);
-    // }
+
     // function saveImg(e) {
     //     console.log(e.target.files[0]);
     //     if (e.target.files[0]) {
     //         var reader = new FileReader();
-
     //         reader.onload = function (e) {
     //             $('#blah').attr('src', e.target.result);
     //         }
-
     //         reader.readAsDataURL(e.target.files[0]); // convert to base64 string
     //     }
     // }
 
 
-    console.log(newMsgs);
-    console.log(newMsgs.filter(n => !oldMsgs.map(k => k.time).includes(n.time)));
+    // console.log(newMsgs);
+    // console.log(newMsgs.filter(n => !oldMsgs.map(k => k.time).includes(n.time)));
 
 
     return (
@@ -187,7 +163,7 @@ function VpsChat() {
                             </div>
                         </div>
                         <div className="card-body" id="messages">
-                            {oldMsgs && oldMsgs.map(message => message.uid == 'admin' ?
+                            {oldMsgs && oldMsgs.map(message => message.uid === 'admin' ?
                                 <AdminMessage key={Math.random()} message={message} /> :
                                 <UserMessage key={Math.random()} message={message} />)}
                             <span id='view'></span>
