@@ -9,13 +9,19 @@ import axios from 'axios'
 function NewComplaint(props) {
     // console.log(window.location.pathname.split('/')[2]);
     let [user, setUser] = useState('');
+    let [origin, setOrigin] = useState('');
     useEffect(() => {
         firebase.auth().onAuthStateChanged(User => {
             if (User) {
                 setUser(User);
             }
-        })
-    }, [])
+        });
+        if (window.location.port === "3000") {
+            setOrigin('http://localhost:5000');
+        } else {
+            setOrigin(window.location.origin);
+        }
+    }, []);
 
     const [formData, setFormData] = useState('');
     let [loading, setLoading] = useState(false);
@@ -54,13 +60,19 @@ function NewComplaint(props) {
                     console.log(URL);
                     try {
                         await firebase.firestore().collection('Complaints').doc(user.uid).set(formData);
-                        axios.post('http://localhost:5000/api/new-complaint', { email: user.email, name: user.displayName }).then(res => {
+                        axios.post(`${origin}/api/new-complaint`, { email: user.email, name: user.displayName }).then(res => {
+                            if (res.data.message) {
+                                addToast(res.data.message, { appearance: 'info', autoDismiss: true });
+                            } else {
+                                addToast('Submitted successfully', { appearance: 'success', autoDismiss: true });
+                                formRef.current.reset();
+                            }
                             setLoading(false);
-                            formRef.current.reset();
                             document.getElementById('progress').innerHTML = "";
-                            addToast('Submitted successfully', { appearance: 'success', autoDismiss: true });
+                        }).catch(err => {
+                            setLoading(false);
+                            addToast(err.message, { appearance: 'error', autoDismiss: true });
                         });
-
                     } catch (err) {
                         setLoading(false);
                         document.getElementById('progress').innerHTML = "";
@@ -148,7 +160,7 @@ function NewComplaint(props) {
                 </div> */}
                 {
                     loading ?
-                        <Button variant="primary" disabled><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /><span className='ml-2'>Submitting...</span></Button> :
+                        <Button className="btn btn-theme btn-block" disabled><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /><span className='ml-2'>Submitting...</span></Button> :
                         <button className="btn btn-theme btn-block mt-3" id="submit">Submit</button>
                 }
 

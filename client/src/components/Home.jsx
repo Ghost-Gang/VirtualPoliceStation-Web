@@ -4,7 +4,6 @@ import notes from '../img/notes.png';
 import note from '../img/note.png';
 import profile from '../img/profile.png';
 import checklist from '../img/checklist.png';
-import '../css/imagehover.min.css'
 import calendar from '../img/calendar.png'
 import police from '../img/police.png'
 

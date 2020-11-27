@@ -26,7 +26,6 @@ function Profile() {
         firebase.firestore().collection('User-Details').doc(uid).get().then(doc => {
             setUserData(doc.data());
         }).catch(err => console.log(err));
-
     }, [])
 
     const handleChange = (e) => {
@@ -36,6 +35,11 @@ function Profile() {
         e.preventDefault();
         console.log(userData);
         firebase.firestore().collection('User-Details').doc(uid).update(userData).then(() => {
+            firebase.auth().onAuthStateChanged(cUser => {
+                cUser.updateProfile({
+                    displayName: userData.FName + " " + userData.LName
+                })
+            })
             handleClose();
         }).catch(err => console.error(err));
     }
