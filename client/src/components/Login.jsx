@@ -61,7 +61,7 @@ function Login(props) {
                 <div className="d-flex justify-content-end">
                     <div><p className="link" onClick={showFp}>Forgot password?</p></div>
                 </div>
-                <button className="btn btn-primary btn-block my-4 btn-rounded" type="button" id="signIn" disabled={disabled} onClick={handleSubmit}>SIGN IN</button>
+                <button className="btn btn-theme btn-block my-4 btn-rounded" type="button" id="signIn" disabled={disabled} onClick={handleSubmit}>SIGN IN</button>
                 <div className="text-center">
                     Not a member?<a href="sign-up" className="link" > Register</a>
                 </div>
@@ -74,7 +74,7 @@ function Login(props) {
                 <Modal.Body>
                     <form id="resetPassForm" className="px-2">
                         <div className="row"><input className="form-control" id="resetEmail" type="email" placeholder="Enter email" onChange={(e) => setfpEmail(e.target.value)} /></div>
-                        <div className="row"><button className="btn btn-primary btn-md mx-auto mt-2" id="resetPassBtn" type="button" onClick={resetPassword}>Get reset link</button></div>
+                        <div className="row"><button className="btn btn-theme btn-md mx-auto mt-2" id="resetPassBtn" type="button" onClick={resetPassword}>Get reset link</button></div>
                     </form>
                 </Modal.Body>
             </Modal>

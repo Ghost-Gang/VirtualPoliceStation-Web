@@ -99,7 +99,7 @@ function Profile() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <button className="btn btn-primary" id="submit" onClick={handleSubmit}>
+                    <button className="btn btn-theme" id="submit" onClick={handleSubmit}>
                         Save Changes
                     </button>
                 </Modal.Footer>

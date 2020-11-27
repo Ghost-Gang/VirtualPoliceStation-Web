@@ -94,8 +94,8 @@ const Signup = () => {
                 <input type="password" className="form-control" name="pass" placeholder="Password" />
                 <small className="form-text text-muted mb-2">Minimum 8 characters long, an uppercase, a lowercase, a number, a special character.</small>
                 <input type="number" className="form-control mb-2" name="sOtp" placeholder="Enter OTP" />
-                <button className="btn btn-primary mr-1 btn-md mb-3">Request OTP</button>
-                <button className="btn btn-primary btn-md mb-3">Verify</button>
+                <button className="btn btn-theme mr-1 btn-md mb-3">Request OTP</button>
+                <button className="btn btn-theme btn-md mb-3">Verify</button>
                 <div className="row">
                     <div className="d-inline-block col-md-6 col-xs-12 padding"><input type="text" name="address" className="form-control mb-2 mr-auto" placeholder="Address" /></div>
                     <div className="d-inline-block col-md-6 col-xs-12 padding"><input type="text" name="city" className="form-control mb-2 mr-auto" placeholder="City" /></div>
@@ -108,7 +108,7 @@ const Signup = () => {
                     <div className="d-inline-block col-md-6 col-xs-12 padding"><input type="number" name="pin" className="form-control mb-2" placeholder="Pincode" /></div>
                     <div className="d-inline-block col-md-6 col-xs-12 padding"><input type="number" name="phone" className="form-control mb-2" placeholder="Phone number" /></div>
                 </div>
-                <button className="btn btn-primary mt-2 btn-block" type="submit" id="submit" disabled={disabled}>Sign Up</button>
+                <button className="btn btn-theme mt-2 btn-block" type="submit" id="submit" disabled={disabled}>Sign Up</button>
             </Form>
         </div>
 

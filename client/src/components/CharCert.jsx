@@ -41,7 +41,7 @@ function CharCert() {
                     required={anyCrimeRecord === 'yes' ? true : false} disabled={anyCrimeRecord === 'yes' ? false : true} value={anyCrimeRecord === 'yes' ? crimeRecordDetails : ''}></textarea>
                 <label htmlFor='aff-img'>Upload Affidavit</label>
                 <input type="file" accept="image/*" placeholder="" name='affidavitImg' required />
-                <button className='btn btn-block btn-primary mt-4 mb-3' type='submit'>Submit</button>
+                <button className='btn btn-block btn-theme mt-4 mb-3' type='submit'>Submit</button>
             </form>
         </div >
     );

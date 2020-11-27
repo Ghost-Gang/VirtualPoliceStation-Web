@@ -143,13 +143,13 @@ function NewComplaint(props) {
 
                 {/* <input type="number" className="form-control mt-3" name="otp" placeholder="Enter OTP" />
                 <div className="row">
-                    <div className="col-md-6"><button className="btn btn-primary mr-4 btn-md mt-3 px-3">Request OTP</button></div>
-                    <div className="col-md-6"><button className="btn btn-primary btn-md mt-3 px-3">Verify</button></div>
+                    <div className="col-md-6"><button className="btn btn-theme mr-4 btn-md mt-3 px-3">Request OTP</button></div>
+                    <div className="col-md-6"><button className="btn btn-theme btn-md mt-3 px-3">Verify</button></div>
                 </div> */}
                 {
                     loading ?
                         <Button variant="primary" disabled><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /><span className='ml-2'>Submitting...</span></Button> :
-                        <button className="btn btn-primary btn-block mt-3" id="submit">Submit</button>
+                        <button className="btn btn-theme btn-block mt-3" id="submit">Submit</button>
                 }
 
             </form>

@@ -6,6 +6,7 @@ import profile from '../img/profile.png';
 import checklist from '../img/checklist.png';
 import '../css/imagehover.min.css'
 import calendar from '../img/calendar.png'
+import police from '../img/police.png'
 
 function Home(props) {
     // console.log(props.match.params.uid);
@@ -20,99 +21,77 @@ function Home(props) {
 
     return (
         <div className="container">
-            <div className="col-md-9 mx-auto">
+            <div>
+                <div className="row mt-md-5">
+                    <div className="col d-md-none"><img src={police} alt="police" className='img-fluid' style={{ maxHeight: '500' + 'px' }} /></div>
+                    <div className="col-md-8 pt-5 px-4" id='description'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo hic culpa quis ad perferendis eaque possimus inventore nostrum praesentium, cupiditate cumque, officiis quae totam animi similique! Debitis accusamus ad blanditiis?</div>
+                    <div className="col d-none d-md-block"><img src={police} alt="police" className='img-fluid' style={{ maxHeight: '500' + 'px' }} /></div>
+                </div>
+            </div>
+
+            <div className="col-md-10 mx-auto my-5">
                 <div className="container mt-4">
-                    <div className="row justify-content-around">
-                        <div className="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
-                            <div className="card card-h">
-                                {/* <!-- Card image --> */}
-                                <figure className="imghvr-fold-up"><img src={note} alt="alt" />
-                                    <figcaption>
-                                        <p>Register a Compplaint</p>
-                                    </figcaption>
-                                </figure>
-                                {/* <!-- Card content --> */}
-                                <div className="card-body">
-                                    {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/new-complaint`} className="btn btn-primary mt-3" id="newFirBtn">New Complaint</a>
+                    <div className="row">
+                        <div className="col-lg-4 col-sm-6 mb-4">
+                            <div className="card card-body z-depth-1">
+                                <div className="card-img-top">
+                                    <img src={note} alt="alt" className='img-fluid' />
+                                </div>
+                                <div className="mx-auto mt-3">
+                                    <a href={`/u/${user}/new-complaint`} className="btn btn-theme mt-3">New Complaint</a>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
-                            <div className="card card-h">
-                                {/* <!-- Card image --> */}
-                                <figure className="imghvr-slide-up"><img src={notes} alt="alt" />
-                                    <figcaption>
-                                        <p>See Complaint status</p>
-                                    </figcaption>
-                                </figure>
-                                {/* <!-- Card content --> */}
-                                <div className="card-body">
-                                    {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/complaint-status`} className="btn btn-primary mt-3" id='firStatus'>Complaint status</a>
+                        <div className="col-lg-4 col-sm-6 mb-4">
+                            <div className="card card-body z-depth-1">
+                                <div className="card-img-top">
+                                    <img src={notes} alt="alt" className='img-fluid' />
+                                </div>
+                                <div className="mx-auto mt-3">
+                                    <a href={`/u/${user}/complaint-status`} className="btn btn-theme mt-3">Complaint status</a>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
-                            <div className="card card-h">
-                                {/* <!-- Card image --> */}
-                                <figure className="imghvr-slide-up"><img src={profile} alt="alt" />
-                                    <figcaption>
-                                        <p>Take a look at your area's criminal records</p>
-                                    </figcaption>
-                                </figure>
-                                {/* <!-- Card content --> */}
-                                <div className="card-body">
-                                    {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/past-incidents`} className="btn btn-primary mt-3" id="pastIncidents">Past incidents</a>
+                        <div className="col-lg-4 col-sm-6 mb-4">
+                            <div className="card card-body z-depth-1">
+                                <div className="card-img-top">
+                                    <img src={profile} alt="alt" className='img-fluid' />
+                                </div>
+                                <div className="mx-auto mt-3">
+                                    <a href={`/u/${user}/past-incidents`} className="btn btn-theme mt-3" id="pastIncidents">Past incidents</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {/* <!-- second row --> */}
-                    <div className="row justify-content-around">
-                        <div className="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
-                            <div className="card card-h">
-                                {/* <!-- Card image --> */}
-                                <figure className="imghvr-slide-up"><img src={checklist} alt="alt" />
-                                    <figcaption>
-                                        <p>Hassle free NOC</p>
-                                    </figcaption>
-                                </figure>
-                                {/* <!-- Card content --> */}
-                                <div className="card-body">
-                                    {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/apply-noc`} className="btn btn-primary mt-3" id="applyNoc">Apply for NOC</a>
+                    <div className="row">
+                        <div className="col-lg-4 col-sm-6 mb-4">
+                            <div className="card card-body z-depth-1">
+                                <div className="card-img-top">
+                                    <img src={checklist} alt="alt" className='img-fluid' />
+                                </div>
+                                <div className="mx-auto mt-3">
+                                    <a href={`/u/${user}/apply-noc`} className="btn btn-theme mt-3">Apply for NOC</a>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
-                            <div className="card card-h">
-                                {/* <!-- Card image --> */}
-                                <figure className="imghvr-slide-up"><img src={chat} alt="alt" />
-                                    <figcaption>
-                                        <p>Clear your doubts, get help.</p>
-                                    </figcaption>
-                                </figure>
-                                {/* <!-- Card content --> */}
-                                <div className="card-body">
-                                    {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/vps-chat`} className="btn btn-primary mt-3">Virtual Assistance</a>
+                        <div className="col-lg-4 col-sm-6 mb-4">
+                            <div className="card card-body z-depth-1">
+                                <div className="card-img-top">
+                                    <img src={chat} alt="alt" className='img-fluid' />
+                                </div>
+                                <div className="mx-auto mt-3">
+                                    <a href={`/u/${user}/vps-chat`} className="btn btn-theme mt-3">Virtual Assistance</a>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-xs-6 col-md-4 col-sm-6 mb-4">
-                            <div className="card card-h">
-                                {/* <!-- Card image --> */}
-                                <figure className="imghvr-slide-up"><img src={calendar} alt="alt" />
-                                    <figcaption>
-                                        <p>Get Character certificate</p>
-                                    </figcaption>
-                                </figure>
-                                {/* <!-- Card content --> */}
-                                <div className="card-body card-body-cascade">
-                                    {/* <!-- Button --> */}
-                                    <a href={`/u/${user}/character-certificate`} className="btn btn-primary mt-3" id="appointment">Character certificate</a>
+                        <div className="col-lg-4 col-sm-6 mb-4">
+                            <div className="card card-body z-depth-1">
+                                <div className="card-img-top">
+                                    <img src={calendar} alt="alt" className='img-fluid' />
+                                </div>
+                                <div className="mx-auto mt-3">
+                                    <a href={`/u/${user}/character-certificate`} className="btn btn-theme mt-3" id="appointment">Character certificate</a>
                                 </div>
                             </div>
                         </div>
