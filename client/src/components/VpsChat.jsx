@@ -86,7 +86,6 @@ function VpsChat() {
 
     const saveMsg = async (e) => {
         e.preventDefault();
-
         setMsg('');
         try {
             await firebase.database().ref('messages').child(uid).push({
@@ -156,11 +155,7 @@ function VpsChat() {
                 <div className="col-12 col-md-7 pl-md-0 mx-auto py-3">
                     <div className="card chat-card">
                         <div className="card-header">
-                            <div className="form-row">
-                                <div className="col-9 col-sm-10 pt-1">
-                                    <div className="name">Admin</div>
-                                </div>
-                            </div>
+                            <div className="text-center"><h4>Virtual Police Station Admin</h4></div>
                         </div>
                         <div className="card-body" id="messages">
                             {oldMsgs && oldMsgs.map(message => message.uid === 'admin' ?

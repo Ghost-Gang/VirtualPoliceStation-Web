@@ -161,7 +161,7 @@ function NewComplaint(props) {
                 {
                     loading ?
                         <Button className="btn btn-theme btn-block" disabled><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /><span className='ml-2'>Submitting...</span></Button> :
-                        <button className="btn btn-theme btn-block mt-3" id="submit">Submit</button>
+                        <button className="btn btn-theme btn-block mt-3">Submit</button>
                 }
 
             </form>

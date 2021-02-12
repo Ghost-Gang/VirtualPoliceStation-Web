@@ -15,6 +15,10 @@
 .bg-f4f4f4 {
   background-color: #f4f4f4;
 }
+.bg-theme {
+  background-color: #2f3653;
+  color: white !important;
+}
 .link {
   color: #4285f4;
   cursor: pointer;
@@ -81,6 +85,9 @@ body {
 
 #footer {
   width: 100%;
+}
+.disabled {
+  pointer-events: none;
 }
 
 @media only screen and (max-width: 374px) {
@@ -201,14 +208,12 @@ body {
 }
 .nav-link {
   font-size: 18px;
-  /* color: black !important; */
   color: white !important;
 }
 .nav-link:hover {
   color: gray !important;
 }
 .navbar {
-  /* background-color: #343a40 !important; */
   background-color: #2f3653 !important;
 }
 .navbar-brand {
@@ -218,6 +223,15 @@ body {
 #description {
   font-size: 18px;
 }
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #2f3653;
+  color: white !important;
+}
+.nav-pills .nav-link {
+  color: #2f3653 !important;
+}
+
 @media only screen and (min-width: 900px) {
   #description {
     margin-top: 50px;

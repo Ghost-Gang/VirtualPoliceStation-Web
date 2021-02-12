@@ -23,7 +23,7 @@ function NavBar() {
         window.location.href = '/';
     }
     return (
-        <Navbar bg="light" variant="light" expand="md">
+        <Navbar expand="md">
             <Navbar.Brand>Virtual Police Station</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"><FontAwesomeIcon icon={faBars} /></Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">

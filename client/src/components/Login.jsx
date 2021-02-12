@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Modal, Form } from 'react-bootstrap'
+import { Modal, Form, Spinner, Button } from 'react-bootstrap'
 import { useHistory } from "react-router-dom";
 import $ from 'jquery'
 import firebase from 'firebase/app';
@@ -12,19 +12,17 @@ function Login(props) {
     const [email, setEmail] = useState('');
     const [passWd, setPassWd] = useState('');
     const formRef = useRef(null);
-    const [disabled, setDisabled] = useState(false);
+    let [loading, setLoading] = useState(false);
     const handleSubmit = (e) => {
         e.preventDefault();
-        $('#signIn').html('SIGNING IN...');
-        setDisabled(true);
+        setLoading(true);
         firebase.auth().signInWithEmailAndPassword(email, passWd).then((res) => {
             // closeSignIn();
             formRef.current.reset();
             console.log(res.user.uid);
             history.push(`/u/${res.user.uid}/home`);
         }).catch(err => {
-            $('#submit').html('SIGN IN');
-            setDisabled(false);
+            setLoading(false);
             addToast(err.message, { appearance: 'error', autoDismiss: true });
         });
     }
@@ -50,7 +48,7 @@ function Login(props) {
     }
     return (
         <div className="my-5">
-            <Form ref={formRef} className="mx-auto container card card-body" id="signInForm" style={{ maxWidth: "400px" }}>
+            <Form ref={formRef} className="mx-auto container card card-body" id="signInForm" style={{ maxWidth: "400px" }} onSubmit={handleSubmit}>
                 <Modal.Title className="text-center mb-3">SIGN IN</Modal.Title>
                 <div className="md-form input-with-pre-icon mt-2">
                     <input type="email" id="email" className="form-control" placeholder="Email" onChange={e => setEmail(e.target.value)} />
@@ -61,7 +59,11 @@ function Login(props) {
                 <div className="d-flex justify-content-end">
                     <div><p className="link" onClick={showFp}>Forgot password?</p></div>
                 </div>
-                <button className="btn btn-theme btn-block my-4 btn-rounded" type="button" id="signIn" disabled={disabled} onClick={handleSubmit}>SIGN IN</button>
+                {
+                    loading ?
+                        <Button className="btn btn-theme btn-block" disabled><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /><span className='ml-2'>Signing up</span></Button> :
+                        <button className="btn btn-theme btn-block mt-3">Sign up</button>
+                }
                 <div className="text-center">
                     Not a member?<a href="sign-up" className="link" > Register</a>
                 </div>
