@@ -16,10 +16,6 @@ body {
   width: 35px;
 }
 
-.name {
-  font-weight: 400;
-}
-
 .under-name {
   font-size: 12px;
   line-height: 15px;
@@ -73,4 +69,5 @@ body {
 #send-arrow,
 #paper-clip {
   cursor: pointer;
+  color: #2f3653;
 }
