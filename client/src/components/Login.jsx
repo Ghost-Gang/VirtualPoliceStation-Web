@@ -1,12 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { Modal, Form, Spinner, Button } from 'react-bootstrap'
 import { useHistory } from "react-router-dom";
-import $ from 'jquery'
 import firebase from 'firebase/app';
 import { useToasts } from 'react-toast-notifications'
 
-function Login(props) {
-    // const { signIn, closeSignIn, showFp, showRegister } = props;
+function Login() {
     const { addToast } = useToasts();
     const history = useHistory();
     const [email, setEmail] = useState('');
@@ -17,7 +15,6 @@ function Login(props) {
         e.preventDefault();
         setLoading(true);
         firebase.auth().signInWithEmailAndPassword(email, passWd).then((res) => {
-            // closeSignIn();
             formRef.current.reset();
             console.log(res.user.uid);
             history.push(`/u/${res.user.uid}/home`);
@@ -61,11 +58,11 @@ function Login(props) {
                 </div>
                 {
                     loading ?
-                        <Button className="btn btn-theme btn-block" disabled><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /><span className='ml-2'>Signing up</span></Button> :
-                        <button className="btn btn-theme btn-block mt-3">Sign up</button>
+                        <Button className="btn btn-theme btn-block" disabled><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /><span className='ml-2'>Signing in</span></Button> :
+                        <button className="btn btn-theme btn-block mt-3">Sign in</button>
                 }
                 <div className="text-center">
-                    Not a member?<a href="sign-up" className="link" > Register</a>
+                    Not a member?<a href="sign-up" className="link">Register</a>
                 </div>
             </Form>
             {/* FORGOT PASSWORD */}
