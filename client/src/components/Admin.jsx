@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import '../css/vps-chat.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperclip, faPaperPlane, faBars, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { faPaperclip, faBars, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/storage'
