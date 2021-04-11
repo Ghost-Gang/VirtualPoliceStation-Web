@@ -2,19 +2,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
 import firebase from "firebase/app";
 import "firebase/auth";
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
-
 import React, { useState, useEffect } from "react";
-
 import { ToastProvider } from "react-toast-notifications";
 
-import Index from "./components/Index";
+// components
 import Home from "./components/Home";
 import NewComplaint from "./components/NewComplaint";
 import VpsChat from "./components/VpsChat";
