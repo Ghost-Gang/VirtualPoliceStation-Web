@@ -11,7 +11,7 @@ import $ from 'jquery'
 
 function Admin(props) {
     // console.log(props);
-    const [uid, setUid] = useState('');
+    // const [uid, setUid] = useState('');
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -21,11 +21,11 @@ function Admin(props) {
         loadUsers();
     }, []);
 
-    firebase.auth().onAuthStateChanged(u => {
-        // console.log(u);
-        setUid(u.uid);
-        // console.log(uid);
-    });
+    // firebase.auth().onAuthStateChanged(u => {
+    //     // console.log(u);
+    //     setUid(u.uid);
+    //     // console.log(uid);
+    // });
 
     const [users, setUsers] = useState([]);
     const [userData, setUserData] = useState({});
