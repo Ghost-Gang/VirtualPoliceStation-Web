@@ -18,11 +18,21 @@ function Login() {
         e.preventDefault();
         setLoading(true);
         firebase.auth().signInWithEmailAndPassword(email, passWd).then((res) => {
-            formRef.current.reset();
+            // formRef.current.reset();
             console.log(res.user.uid);
-            history.push(`/u/${res.user.uid}/home`);
+            if (res.user.emailVerified) {
+                history.push(`/u/${res.user.uid}/home`);
+            } else {
+                // firebase.auth().currentUser.sendEmailVerification();
+                firebase.auth().signOut();
+                setLoading(false);
+                console.info("Email not verified");
+                addToast("Your Email is not verified with us, kindly check your email and verify.", { appearance: 'error', autoDismiss: true });
+            }
+
         }).catch(err => {
             setLoading(false);
+            console.log(err);
             addToast(err.message, { appearance: 'error', autoDismiss: true });
         });
     }

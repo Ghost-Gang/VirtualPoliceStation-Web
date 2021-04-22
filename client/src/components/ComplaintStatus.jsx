@@ -6,13 +6,31 @@ import { Badge } from 'react-bootstrap'
 function ComplaintStatus(props) {
     console.log(props);
     // let uid = window.location.pathname.split('/')[2];
-    const [complaint, setComplaint] = useState("");
+    const [complaint, setComplaint] = useState({
+        accusedCity: "",
+        accusedDistrict: "",
+        accusedLocality: "",
+        accusedName: "",
+        accusedPhone: "",
+        accusedPincode: "",
+        accusedState: "",
+        complaintStatement: "",
+        evidenceImage: "",
+        evidenceName: "",
+        imagePath: "",
+        incidentDate: "",
+        incidentPlace: "",
+        localTime: "",
+        natureOfComplaint: "",
+        subjectOfComplaint: ""
+    });
     // const [uid, setUid] = useState('');
     // setUid(props.user.uid);
 
     useEffect(() => {
         if (props.user.uid !== undefined) setData();
         console.log(props.user.uid !== '');
+        // eslint-disable-next-line
     }, [props]);
 
     const setData = async () => {
@@ -28,8 +46,6 @@ function ComplaintStatus(props) {
             }
         }).catch(err => console.log(err.message));
     }
-
-    console.log(complaint);
 
     return (
         <div className="py-md-4 my-4">

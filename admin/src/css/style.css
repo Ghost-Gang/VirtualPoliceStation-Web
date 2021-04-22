@@ -288,3 +288,9 @@ body {
 .show > .btn-theme.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem #595e75;
 }
+.evidenceImage,
+.affidavitImg {
+  max-width: 347px;
+  max-height: 260px;
+  object-fit: contain;
+}

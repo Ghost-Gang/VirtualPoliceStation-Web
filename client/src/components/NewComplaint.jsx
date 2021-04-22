@@ -40,6 +40,7 @@ function NewComplaint(props) {
 
         // =======================
         if (!file.type.match('image.*')) {
+            setLoading(false);
             return addToast('Select only images', { appearance: 'warning', autoDismiss: true });
         } else {
             let path = 'Complaints' + '/' + user.uid + '/' + formData.evidenceName;

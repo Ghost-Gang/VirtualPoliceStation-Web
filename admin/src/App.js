@@ -13,6 +13,8 @@ import AdminChat from "./components/AdminChat";
 import NotFound from "./components/notfound";
 import UnAuthorized from "./components/unauthorized";
 import { ToastProvider } from "react-toast-notifications";
+import ViewComplaints from "./components/ViewComplaints";
+import CharacterCertificates from "./components/CharacterCertificates";
 
 // initialize firebase
 const config = {
@@ -48,6 +50,16 @@ const App = () => {
             <Route exact path="/sign-in" component={Login} />
             <Route exact path="/u/:uid/home" component={Home} />
             <Route exact path="/u/:uid/admin-chat" component={AdminChat} />
+            <Route
+              exact
+              path="/u/:uid/view-complaints"
+              component={ViewComplaints}
+            />
+            <Route
+              exact
+              path="/u/:uid/character-certificates"
+              component={CharacterCertificates}
+            />
             <Route component={NotFound} />
           </Switch>
         </ToastProvider>

@@ -7,7 +7,7 @@ function Profile() {
     let [uid, setUid] = useState('');
     let [userData, setUserData] = useState({
         Aadhaar: "",
-        Address: "",
+        Locality: "",
         City: "",
         District: "",
         Email: "",
@@ -66,7 +66,7 @@ function Profile() {
                         <div className="col-12 col-md-6"><input type="number" name="Aadhaar" value={userData.Aadhaar} className="form-control mb-2" placeholder="Aadhaar Number" readOnly /></div>
                     </div>
                     <div className="row">
-                        <div className="col-12 col-md-6"><input type="text" name="Address" value={userData.Address} className="form-control mb-2 mr-auto" placeholder="Address" readOnly /></div>
+                        <div className="col-12 col-md-6"><input type="text" name="Address" value={userData.Locality} className="form-control mb-2 mr-auto" placeholder="Locality" readOnly /></div>
                         <div className="col-12 col-md-6"><input type="text" name="City" value={userData.City} className="form-control mb-2 mr-auto" placeholder="City" readOnly /></div>
                     </div>
                     <div className="row">
@@ -96,7 +96,7 @@ function Profile() {
                             <div className="col-12 col-md-6"><input type="number" name="Aadhaar" value={userData.Aadhaar} className="form-control mb-2" placeholder="Aadhaar Number" readOnly onChange={handleChange} /></div>
                         </div>
                         <div className="row">
-                            <div className="col-12 col-md-6"><input type="text" name="Address" value={userData.Address} className="form-control mb-2 mr-auto" placeholder="Address" onChange={handleChange} /></div>
+                            <div className="col-12 col-md-6"><input type="text" name="Locality" value={userData.Locality} className="form-control mb-2 mr-auto" placeholder="Locality" onChange={handleChange} /></div>
                             <div className="col-12 col-md-6"><input type="text" name="City" value={userData.City} className="form-control mb-2 mr-auto" placeholder="City" onChange={handleChange} /></div>
                         </div>
                         <div className="row">
