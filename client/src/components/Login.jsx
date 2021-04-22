@@ -1,10 +1,13 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Modal, Form, Spinner, Button } from 'react-bootstrap'
 import { useHistory } from "react-router-dom";
 import firebase from 'firebase/app';
 import { useToasts } from 'react-toast-notifications'
 
 function Login() {
+    useEffect(() => {
+        document.title = "Sign in";
+    }, []);
     const { addToast } = useToasts();
     const history = useHistory();
     const [email, setEmail] = useState('');
