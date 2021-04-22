@@ -28,7 +28,7 @@ function Admin(props) {
     });
 
     const [users, setUsers] = useState([]);
-    const [userData, setUserData] = useState([]);
+    const [userData, setUserData] = useState({});
 
     const loadUsers = async () => {
         try {
@@ -38,18 +38,21 @@ function Admin(props) {
                 let userArray = Object.keys(users.val());
                 console.log(userArray);
                 const userDetails = [];
-                userArray.forEach(user => {
+                userArray.forEach(async user => {
+                    console.log("async started");
                     console.log(user);
-                    // firebase.firestore().collection('User-Details').doc(user).get().then(doc => {
-                    //     userDetails.push({
-                    //         email: doc.data().Email,
-                    //         name: doc.data().FName + " " + doc.data().LName,
-                    //         uid: user
-                    //     })
-                    //     // userDetails.push(user);
-                    //     // console.log(doc.data());
-                    // })
+                    await firebase.firestore().collection('User-Details').doc(user).get().then(doc => {
+                        console.log(doc.data())
+                        userDetails[user] = {
+                            email: doc.data().Email,
+                            name: doc.data().FName + " " + doc.data().LName,
+                            uid: user
+                        }
+                        // userDetails.push(user);
+                        // console.log(doc.data());
+                    }).catch(err => console.log(err));
                 })
+                console.log("set called");
                 setUserData(userDetails);
                 setUsers(userArray);
                 document.getElementById('messages').scrollTo(0, 1000000);
@@ -64,7 +67,8 @@ function Admin(props) {
     // console.log(users[0]);
     // console.log(users.length);
     console.log(userData);
-
+    console.log(users);
+    console.log(userData["5mk1V2sHONcD1hN7IO0L6f6CE7O2"]);
 
 
     const [oldMsgs, setOldMsgs] = useState([]);
@@ -237,11 +241,12 @@ const UserMessage = (props) => {
             </div>
         </div>);
 }
-const LItem = (props) => {
+const LItem = ({ user, btnClick }) => {
+    console.log(user);
     return (
-        <li className="list-group-item list-group-item-action" onClick={() => props.btnClick(props.user)}>
+        <li className="list-group-item list-group-item-action" onClick={() => btnClick(user)}>
             <div className="col ml-2" style={{ cursor: "pointer" }}>
-                <div className="name">{props.user}</div>
+                <div className="name">{user}</div>
             </div>
         </li>
     )

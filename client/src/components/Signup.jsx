@@ -22,21 +22,21 @@ const Signup = () => {
         console.log(formData);
 
         let fullName = fname + lname;
-        let validName = !/[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._0-9]/.test(fullName);
+        let validName = !/[\s~`!@#$%^&*+=\-[\]';,/{}|\\":<>?()._0-9]/.test(fullName);
         let number = /[0-9]/.test(pass);
         let upperCase = /[A-Z]/.test(pass);
         let lowerCase = /[a-z]/.test(pass);
-        let specialChar = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/.test(pass);
-
-
+        let specialChar = /[\s~`!@#$%^&*+=\-[\]';,/{}|\\":<>?()._0-9]/.test(pass);
+        setLoading(false)
         // ====================
-
-        if (validName && fullName != '') {
+        console.log(fullName.length)
+        console.log(validName)
+        console.log(fullName !== "");
+        if (validName && fullName !== '') {
             if (aadhaar.toString().length === 12) {
-                if (pass.length >= 8 && number && upperCase && lowerCase && specialChar) {
+                if (pass !== '' && pass.length >= 8 && number && upperCase && lowerCase && specialChar) {
                     if (pin.toString().length === 6) {
                         if (phone.toString().length === 10) {
-
                             firebase.auth().createUserWithEmailAndPassword(email, pass).then(() => {
                                 firebase.auth().onAuthStateChanged((user) => {
                                     if (user) {
@@ -48,6 +48,7 @@ const Signup = () => {
                                             setLoading(false);
                                         });
                                         user.sendEmailVerification().then(function () {
+                                            firebase.auth().signOut();
                                             // Email sent.
                                             alert('verification email sent')
                                         }).catch(function (err) {
@@ -114,14 +115,14 @@ const Signup = () => {
             <Form ref={formRef} className="px-3 container card card-body" id="signUpForm" onChange={handleChange} onSubmit={handleSubmit} style={{ maxWidth: "540px" }}>
                 <Modal.Title className="text-center">SIGN UP</Modal.Title>
                 <div className="row">
-                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" name="fname" className="form-control mb-2" placeholder="First name" /></div>
+                    <div className="d-inline-block col-md-6 col-12 padding"><input type="text" name="fname" className="form-control mb-2" placeholder="First name" required /></div>
                     <div className="d-inline-block col-md-6 col-12 padding"><input type="text" name="lname" className="form-control mb-2" placeholder="Last name" /></div>
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-6"><input type="email" name="email" className="form-control mb-2" placeholder="E-mail" required /></div>
                     <div className="col-12 col-md-6"><input type="number" name="aadhaar" className="form-control mb-2" placeholder="Aadhaar Number" required /></div>
                 </div>
-                <input type="password" className="form-control" name="pass" placeholder="Password" />
+                <input type="password" className="form-control" name="pass" placeholder="Password" required />
                 <small className="form-text text-muted mb-2">Minimum 8 characters long, an uppercase, a lowercase, a number, a special character.</small>
                 <input type="number" className="form-control mb-2" name="sOtp" placeholder="Enter OTP" />
                 <button className="btn btn-theme mr-1 btn-md mb-3">Request OTP</button>

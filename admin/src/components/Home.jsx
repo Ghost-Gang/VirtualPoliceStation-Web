@@ -17,7 +17,7 @@ function Home(props) {
                                     <img src={notes} alt="alt" className='img-fluid' />
                                 </div>
                                 <div className="mx-auto mt-3">
-                                    <a href={`/u/${user}/complaint-status`} className="btn btn-theme mt-3">View Complaints</a>
+                                    <a href={`/u/${user}/view-complaints`} className="btn btn-theme mt-3">View Complaints</a>
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,7 @@ function Home(props) {
                                     <img src={checklist} alt="alt" className='img-fluid' />
                                 </div>
                                 <div className="mx-auto mt-3">
-                                    <a href={`/u/${user}/apply-noc`} className="btn btn-theme mt-3">NOC Applications</a>
+                                    <a href={`/u/${user}/noc-applications`} className="btn btn-theme mt-3">NOC Applications</a>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@ function Home(props) {
                                     <img src={character} alt="alt" className='img-fluid' />
                                 </div>
                                 <div className="mx-auto mt-3">
-                                    <a href={`/u/${user}/character-certificate`} className="btn btn-theme mt-3" id="appointment">Character certificates</a>
+                                    <a href={`/u/${user}/character-certificates`} className="btn btn-theme mt-3" id="appointment">Character certificates</a>
                                 </div>
                             </div>
                         </div>
