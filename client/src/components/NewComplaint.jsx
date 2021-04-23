@@ -19,7 +19,7 @@ function NewComplaint(props) {
         if (window.location.port === "3000") {
             setOrigin('http://localhost:5000');
         } else {
-            setOrigin(window.location.origin);
+            setOrigin(process.env.REACT_APP_server_address);
         }
     }, []);
 

@@ -22,12 +22,12 @@ function CharCert() {
         if (window.location.port === "3000") {
             setOrigin('http://localhost:5000');
         } else {
-            setOrigin(window.location.origin);
+            setOrigin(process.env.REACT_APP_server_address);
         }
     }, []);
     console.log(origin);
 
-    const { purpose, purposeDetails, anyCrimeRecord, crimeRecordDetails } = formData;
+    const { purpose, anyCrimeRecord, crimeRecordDetails } = formData;
     const { addToast } = useToasts();
 
     const handleChange = e => {
@@ -43,7 +43,7 @@ function CharCert() {
         if (!file.type.match('image.*')) {
             return addToast('Select only images', { appearance: 'warning', autoDismiss: true });
         } else {
-            let path = 'CharCert' + '/' + user.uid + '/' + file.name;
+            let path = `CharCert/${user.uid}/${file.name}`;
             let uploadTask = firebase.storage().ref(path).put(file);
             uploadTask.on('state_changed', function (snapshot) {
                 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
