@@ -2,12 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
 import firebase from "firebase/app";
 import "firebase/auth";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { ToastProvider } from "react-toast-notifications";
 
@@ -20,7 +15,6 @@ import SignUp from "./components/Signup";
 import SignIn from "./components/Login";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
-import Admin from "./components/Admin";
 import CharCert from "./components/CharCert";
 import ApplyNoc from "./components/ApplyNoc";
 import Profile from "./components/Profile";
@@ -81,7 +75,6 @@ const App = (props) => {
             />
             <Route exact path="/u/:uid/apply-noc" component={ApplyNoc} />
             <Route exact path="/u/:uid/vps-chat" component={VpsChat} />
-            <Route exact path="/u/:uid/admin" component={Admin} />
             <Route
               exact
               path="/u/:uid/character-certificate"
