@@ -76,6 +76,11 @@ const App = () => {
             <Route exact path="/sign-in" component={Login} />
             <Route exact path="/u/:uid/home" component={UnAuthorized} />
             <Route exact path="/u/:uid/admin-chat" component={UnAuthorized} />
+            <Route
+              exact
+              path="/u/:uid/character-certificates"
+              component={UnAuthorized}
+            />
             <Route component={NotFound} />
           </Switch>
         </ToastProvider>
