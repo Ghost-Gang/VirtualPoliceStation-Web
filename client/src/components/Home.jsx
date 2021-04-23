@@ -22,12 +22,12 @@ function Home(props) {
         <div className="container">
             <div>
                 <div className="row mt-md-5">
-                    <div className="col d-md-none"><img src={police} alt="police" className='img-fluid' style={{ maxHeight: '500' + 'px' }} /></div>
+                    <div className="col d-md-none"><img src={police} alt="police" className='img-fluid' style={{ maxHeight: '500px' }} /></div>
                     <div className="col-md-8 pt-5 px-4" id='description'>Feel free to register complaint without hesitatation and fear and the feature to view the status of the complain.Apply for Noc as per your require category and chat with
                     us in real time with ability to share any incident image.No need to be affraid before vising a new place have a look to our record of the
                     past incedence of any new place and have your cheracter certificate by giving appropriate reason for the need of the certificare,keeping mind the security we
 do not give permission to entry with out signing up with Adhaar id number.</div>
-                    <div className="col d-none d-md-block"><img src={police} alt="police" className='img-fluid' style={{ maxHeight: '500' + 'px' }} /></div>
+                    <div className="col d-none d-md-block"><img src={police} alt="police" className='img-fluid' style={{ maxHeight: '500px' }} /></div>
                 </div>
             </div>
 

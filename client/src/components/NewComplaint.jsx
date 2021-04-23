@@ -36,14 +36,13 @@ function NewComplaint(props) {
         e.preventDefault();
         setLoading(true);
         console.log(formData);
-        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
 
         // =======================
         if (!file.type.match('image.*')) {
             setLoading(false);
             return addToast('Select only images', { appearance: 'warning', autoDismiss: true });
         } else {
-            let path = 'Complaints' + '/' + user.uid + '/' + formData.evidenceName;
+            let path = `Complaints/${user.uid}/${formData.evidenceName}`;
             let uploadTask = firebase.storage().ref(path).put(file);
             uploadTask.on('state_changed', function (snapshot) {
                 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
