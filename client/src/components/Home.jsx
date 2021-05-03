@@ -9,7 +9,9 @@ import police from '../img/police.png'
 
 function Home(props) {
     // console.log(props.match.params.uid);
-    let user = window.location.pathname.split('/')[2];
+    let user = localStorage.getItem('uid');
+    // window.location.pathname.split('/')[2];
+
     // useEffect(() => {
     //     firebase.auth().onAuthStateChanged(user => {
     //         if (!user) {

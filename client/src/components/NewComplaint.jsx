@@ -23,7 +23,7 @@ function NewComplaint(props) {
         }
     }, []);
 
-    const [formData, setFormData] = useState('');
+    const [formData, setFormData] = useState({ status: "pending" });
     let [loading, setLoading] = useState(false);
     const { addToast } = useToasts();
     const handleChange = (e) => {
@@ -36,6 +36,7 @@ function NewComplaint(props) {
         e.preventDefault();
         setLoading(true);
         console.log(formData);
+
 
         // =======================
         if (!file.type.match('image.*')) {

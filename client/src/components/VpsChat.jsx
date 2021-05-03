@@ -2,9 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import '../css/vps-chat.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperclip, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/storage'
+import { auth, database, myFirebase } from './Firebase'
 import $ from 'jquery'
 
 function VpsChat() {
@@ -15,44 +13,36 @@ function VpsChat() {
     // let [newMsgs, setNewMsgs] = useState([]);
     // let [finalMsgs, setFinalMsgs] = useState([]);
 
-
     useEffect(() => {
-        firebase.auth().onAuthStateChanged(u => {
-            console.log(u);
+        auth.onAuthStateChanged(u => {
             setUid(u.uid);
-            console.log(uid);
         });
-        console.log('useeffect');
         loadMessages();
-        // loadNewMessages();
         // eslint-disable-next-line
     }, [uid]);
 
-
     const loadMessages = async () => {
-        try {
-            await firebase.database().ref('messages').child(uid).on('value', chats => {
-                // console.log(chats.exists());
-                // console.log(chats.val());
-                if (chats.val() != null) {
-                    const values = Object.values(chats.val());
-                    console.log('old msgs');
-                    setOldMsgs(values);
-                    document.getElementById('messages').scrollTo(0, 1000000);
-                    // document.getElementById('view').scrollIntoView();
-                }
-            })
+        if (uid !== "") {
+            try {
+                await myFirebase.database().ref('messages').child(uid).on('value', chats => {
+                    if (chats.val() != null) {
+                        const values = Object.values(chats.val());
+                        setOldMsgs(values);
+                        document.getElementById('messages').scrollTo(0, 1000000);
+                        // document.getElementById('view').scrollIntoView();
+                    }
+                })
+            }
+            catch (error) {
+                console.error(error.message);
+            }
         }
-        catch (error) {
-            console.log(error.message);
-        }
-        console.log(uid);
     }
 
 
     // const loadNewMessages = async () => {
     //     try {
-    //         firebase.database().ref('messages').child(uid).on('value', chats => {
+    //         database.ref('messages').child(uid).on('value', chats => {
     //             // console.log(chats.exists());
     //             // console.log(chats.val());
     //             if (chats.val() != null) {
@@ -88,7 +78,7 @@ function VpsChat() {
         e.preventDefault();
         setMsg('');
         try {
-            await firebase.database().ref('messages').child(uid).push({
+            await database.ref('messages').child(uid).push({
                 uid: uid,
                 message: msg,
                 time: new Date().toLocaleString('en-IN', { hourCycle: 'h24' })
@@ -109,10 +99,10 @@ function VpsChat() {
             window.alert('choose image')
             // addToast('Only select images you FOOL', { appearance: 'error', autoDismiss: true });
         } else {
-            firebase.storage().ref(file.name).put(file).then(async (fileSnapshot) => {
+            myFirebase.storage().ref(file.name).put(file).then(async (fileSnapshot) => {
                 const url = await fileSnapshot.ref.getDownloadURL();
 
-                return firebase.database().ref('messages').child(uid).push({
+                return database.ref('messages').child(uid).push({
                     uid: uid,
                     url: url,
                     time: new Date().toLocaleString('en-IN', { hourCycle: 'h24' })

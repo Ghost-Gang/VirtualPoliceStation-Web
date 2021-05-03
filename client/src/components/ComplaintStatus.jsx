@@ -22,7 +22,8 @@ function ComplaintStatus(props) {
         incidentPlace: "",
         localTime: "",
         natureOfComplaint: "",
-        subjectOfComplaint: ""
+        subjectOfComplaint: "",
+        status: ""
     });
     // const [uid, setUid] = useState('');
     // setUid(props.user.uid);
@@ -50,7 +51,7 @@ function ComplaintStatus(props) {
     return (
         <div className="py-md-4 my-4">
             <form className="container px-5 card card-body" id="new-complaint-form" style={{ maxWidth: "540px" }}>
-                <h4 className="text-center mb-3">Complaint status</h4><Badge variant="warning">Pending</Badge>
+                <h4 className="text-center mb-3">Complaint status</h4><Badge variant="warning">{complaint.status}</Badge>
                 <hr /><h6 className='text-center'>Complaint Detail</h6><hr />
                 <div className="row">
                     <div className="col-md-6 col-12">
