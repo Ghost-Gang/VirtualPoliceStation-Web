@@ -68,8 +68,6 @@ function Admin(props) {
     // console.log(users.length);
     console.log(userData);
     console.log(users);
-    console.log(userData["5mk1V2sHONcD1hN7IO0L6f6CE7O2"]);
-
 
     const [oldMsgs, setOldMsgs] = useState([]);
     const loadMessages = async (uid) => {
@@ -157,12 +155,12 @@ function Admin(props) {
         <div className="container-fluid chatbox py-3">
             <div className="row">
                 <div className="col-md-4 pr-2 d-none d-md-block">
-                    <div className="card">
+                    <div className="card" id="list-container">
                         <div className="card-header">
                             <input type="text" placeholder="search" className="form-control" />
                         </div>
-                        <div className="card-body" style={{ padding: "10px" }}>
-                            {users && users.map(user => <LItem key={user} user={user} btnClick={btnClick} />)}
+                        <div className="card-body" style={{ padding: "10px" }} id="user-list">
+                            {users && users.map(user => <LItem key={user} user={user} data={userData} btnClick={btnClick} />)}
                         </div>
                     </div>
                 </div>
@@ -170,10 +168,10 @@ function Admin(props) {
                     <div className="card chat-card">
                         <div className="card-header">
                             <div className="form-row">
-                                <div className="col-9 col-sm-10 pt-1">
-                                    <div className="name">Admin</div>
+                                <div className="col-11 col-sm-10 pt-1">
+                                    <div className="name">{userData[cUser]?.name}</div>
                                 </div>
-                                <div className="col pt-1 d-md-none">
+                                <div className="col pt-1 d-md-none d-flex justify-content-end">
                                     <FontAwesomeIcon icon={faBars} style={{ cursor: 'pointer' }} onClick={handleShow} />
                                 </div>
                                 <Modal show={show} onHide={handleClose}>
@@ -241,11 +239,11 @@ const UserMessage = (props) => {
             </div>
         </div>);
 }
-const LItem = ({ user, btnClick }) => {
-    console.log(user);
+const LItem = ({ user, btnClick, data }) => {
     return (
         <li className="list-group-item list-group-item-action" onClick={() => btnClick(user)}>
             <div className="col ml-2" style={{ cursor: "pointer" }}>
+                <div className="name">{data?.[user]?.name}</div>
                 <div className="name">{user}</div>
             </div>
         </li>

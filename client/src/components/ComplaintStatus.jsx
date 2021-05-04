@@ -22,14 +22,16 @@ function ComplaintStatus(props) {
         incidentPlace: "",
         localTime: "",
         natureOfComplaint: "",
-        subjectOfComplaint: ""
+        subjectOfComplaint: "",
+        status: ""
     });
     // const [uid, setUid] = useState('');
     // setUid(props.user.uid);
 
     useEffect(() => {
-        if (props.user.uid !== undefined) setData();
-        console.log(props.user.uid !== '');
+        document.title = "Complaint Status";
+        if (props.user !== undefined && props.user !== null) setData();
+        console.log(props.user !== '');
         // eslint-disable-next-line
     }, [props]);
 
@@ -50,7 +52,7 @@ function ComplaintStatus(props) {
     return (
         <div className="py-md-4 my-4">
             <form className="container px-5 card card-body" id="new-complaint-form" style={{ maxWidth: "540px" }}>
-                <h4 className="text-center mb-3">Complaint status</h4><Badge variant="warning">Pending</Badge>
+                <h4 className="text-center mb-3">Complaint status</h4><Badge variant="warning">{complaint.status}</Badge>
                 <hr /><h6 className='text-center'>Complaint Detail</h6><hr />
                 <div className="row">
                     <div className="col-md-6 col-12">
@@ -63,7 +65,7 @@ function ComplaintStatus(props) {
                     </div>
                 </div>
                 <label>Complaint statement:</label>
-                <textarea className="form-control md-textarea" value={complaint.complaintStatement} placeholder="Complaint statement" readOnly></textarea>
+                <textarea className="form-control md-textarea" rows="4" value={complaint.complaintStatement} placeholder="Complaint statement" readOnly></textarea>
 
                 {/* ============================== */}
                 <hr /><h6 className="text-center">Accused Detail</h6><hr />
@@ -118,7 +120,7 @@ function ComplaintStatus(props) {
                 </div>
                 <div className="row mt-3">
                     <label>Evidence:</label>
-                    <img src={complaint.evidenceImage} alt="evidenceImage" className='img-fluid' />
+                    <img src={complaint.evidenceImage} alt="evidenceImage" id="evidenceImage" className='img-fluid mx-auto mt-3' />
                 </div>
             </form>
         </div >

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
@@ -10,7 +11,9 @@ function NewComplaint(props) {
     // console.log(window.location.pathname.split('/')[2]);
     let [user, setUser] = useState('');
     let [origin, setOrigin] = useState('');
+    const history = useHistory();
     useEffect(() => {
+        document.title = "New Complaint";
         firebase.auth().onAuthStateChanged(User => {
             if (User) {
                 setUser(User);
@@ -19,11 +22,11 @@ function NewComplaint(props) {
         if (window.location.port === "3000") {
             setOrigin('http://localhost:5000');
         } else {
-            setOrigin(window.location.origin);
+            setOrigin(process.env.REACT_APP_server_address);
         }
     }, []);
 
-    const [formData, setFormData] = useState('');
+    const [formData, setFormData] = useState({ status: "pending" });
     let [loading, setLoading] = useState(false);
     const { addToast } = useToasts();
     const handleChange = (e) => {
@@ -36,14 +39,14 @@ function NewComplaint(props) {
         e.preventDefault();
         setLoading(true);
         console.log(formData);
-        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+
 
         // =======================
         if (!file.type.match('image.*')) {
             setLoading(false);
             return addToast('Select only images', { appearance: 'warning', autoDismiss: true });
         } else {
-            let path = 'Complaints' + '/' + user.uid + '/' + formData.evidenceName;
+            let path = `Complaints/${user.uid}/${formData.evidenceName}`;
             let uploadTask = firebase.storage().ref(path).put(file);
             uploadTask.on('state_changed', function (snapshot) {
                 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -67,9 +70,9 @@ function NewComplaint(props) {
                             } else {
                                 addToast('Submitted successfully', { appearance: 'success', autoDismiss: true });
                                 formRef.current.reset();
+                                history.push(`/u/${user.uid}/complaint-status`);
                             }
                             setLoading(false);
-                            document.getElementById('progress').innerHTML = "";
                         }).catch(err => {
                             setLoading(false);
                             addToast(err.message, { appearance: 'error', autoDismiss: true });

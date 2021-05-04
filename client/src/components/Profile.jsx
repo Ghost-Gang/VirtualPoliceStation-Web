@@ -21,6 +21,7 @@ function Profile() {
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     useEffect(() => {
+        document.title = "My Profile";
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 setUid(user.uid);

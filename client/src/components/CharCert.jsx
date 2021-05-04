@@ -22,12 +22,12 @@ function CharCert() {
         if (window.location.port === "3000") {
             setOrigin('http://localhost:5000');
         } else {
-            setOrigin(window.location.origin);
+            setOrigin(process.env.REACT_APP_server_address);
         }
     }, []);
     console.log(origin);
 
-    const { purpose, purposeDetails, anyCrimeRecord, crimeRecordDetails } = formData;
+    const { purpose, anyCrimeRecord, crimeRecordDetails } = formData;
     const { addToast } = useToasts();
 
     const handleChange = e => {
@@ -43,7 +43,7 @@ function CharCert() {
         if (!file.type.match('image.*')) {
             return addToast('Select only images', { appearance: 'warning', autoDismiss: true });
         } else {
-            let path = 'CharCert' + '/' + user.uid + '/' + file.name;
+            let path = `CharCert/${user.uid}/${file.name}`;
             let uploadTask = firebase.storage().ref(path).put(file);
             uploadTask.on('state_changed', function (snapshot) {
                 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -90,6 +90,7 @@ function CharCert() {
     return (
         <div className="py-md-4 my-4">
             <form ref={formRef} className="container card card-body px-5" style={{ maxWidth: "540px" }} onChange={handleChange} onSubmit={handleSubmit}>
+                <a href="/certificate" className="btn btn-theme mx-auto">Downlaod Certificate</a>
                 <h2 className='text-center pt-2 pb-3'>Character Certificate</h2>
                 <label>Purpose for applying:</label>
                 <Form.Control as="select" name='purpose' value={purpose} required>

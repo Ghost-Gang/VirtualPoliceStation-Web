@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { Card } from 'react-bootstrap'
+import Loader from './Loader'
 
 function CharacterCertificates() {
     const [certificates, setCertificates] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         loadCertificates();
     }, []);
@@ -23,17 +25,21 @@ function CharacterCertificates() {
                 })
             });
             setCertificates(temp_arr);
+            setLoading(false);
         }).catch(err => console.log(err.message));
     }
     return (
         <>
-            <div className="container">
-                <div className="row">
-                    {
-                        certificates && certificates.map(certificate => <CertificateCard key={Math.random()} data={certificate} />)
-                    }
-                </div>
-            </div>
+            {
+                loading ? <Loader /> :
+                    <div className="container">
+                        <div className="row">
+                            {
+                                certificates && certificates.map(certificate => <CertificateCard key={Math.random()} data={certificate} />)
+                            }
+                        </div>
+                    </div>
+            }
         </>
     )
 }

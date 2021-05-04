@@ -21,9 +21,10 @@ function Login() {
             // formRef.current.reset();
             console.log(res.user.uid);
             if (res.user.emailVerified) {
+                localStorage.setItem('uid', res.user.uid);
                 history.push(`/u/${res.user.uid}/home`);
             } else {
-                // firebase.auth().currentUser.sendEmailVerification();
+                firebase.auth().currentUser.sendEmailVerification();
                 firebase.auth().signOut();
                 setLoading(false);
                 console.info("Email not verified");

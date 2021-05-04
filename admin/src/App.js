@@ -15,6 +15,7 @@ import UnAuthorized from "./components/unauthorized";
 import { ToastProvider } from "react-toast-notifications";
 import ViewComplaints from "./components/ViewComplaints";
 import CharacterCertificates from "./components/CharacterCertificates";
+import ViewNOCs from "./components/ViewNOCs";
 
 // initialize firebase
 const config = {
@@ -60,6 +61,7 @@ const App = () => {
               path="/u/:uid/character-certificates"
               component={CharacterCertificates}
             />
+            <Route exact path="/u/:uid/noc-applications" component={ViewNOCs} />
             <Route component={NotFound} />
           </Switch>
         </ToastProvider>
@@ -76,6 +78,11 @@ const App = () => {
             <Route exact path="/sign-in" component={Login} />
             <Route exact path="/u/:uid/home" component={UnAuthorized} />
             <Route exact path="/u/:uid/admin-chat" component={UnAuthorized} />
+            <Route
+              exact
+              path="/u/:uid/character-certificates"
+              component={UnAuthorized}
+            />
             <Route component={NotFound} />
           </Switch>
         </ToastProvider>

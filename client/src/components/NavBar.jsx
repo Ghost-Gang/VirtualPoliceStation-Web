@@ -19,6 +19,7 @@ function NavBar() {
     });
     const signOut = (e) => {
         e.preventDefault();
+        localStorage.removeItem('uid');
         firebase.auth().signOut();
         window.location.href = '/';
     }

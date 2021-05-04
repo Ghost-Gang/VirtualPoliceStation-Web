@@ -30,11 +30,7 @@ function NavBar() {
                 <Nav className="ml-auto mr-5">
                     {isSignedIn && <Nav.Link href={`/u/${user.uid}/home`}>Home</Nav.Link>}
                     {!isSignedIn && <Nav.Link href='/sign-in'>Sign in</Nav.Link>}
-                    {isSignedIn && <NavDropdown title="Profile" id="basic-nav-dropdown">
-                        <NavDropdown.Item href={`/u/${user.uid}/my-profile`}>My Account</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={signOut}>Sign out</NavDropdown.Item>
-                    </NavDropdown>}
+                    {isSignedIn && <Nav.Link onClick={signOut}>Sign out</Nav.Link>}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
