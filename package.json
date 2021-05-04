@@ -9,7 +9,6 @@
     "heroku-postbuild": "npm run client && npm run build"
   },
   "dependencies": {
-    "@sendgrid/mail": "^7.4.2",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
