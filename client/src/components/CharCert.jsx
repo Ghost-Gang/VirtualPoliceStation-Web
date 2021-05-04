@@ -90,6 +90,7 @@ function CharCert() {
     return (
         <div className="py-md-4 my-4">
             <form ref={formRef} className="container card card-body px-5" style={{ maxWidth: "540px" }} onChange={handleChange} onSubmit={handleSubmit}>
+                <a href="/certificate" className="btn btn-theme mx-auto">Downlaod Certificate</a>
                 <h2 className='text-center pt-2 pb-3'>Character Certificate</h2>
                 <label>Purpose for applying:</label>
                 <Form.Control as="select" name='purpose' value={purpose} required>

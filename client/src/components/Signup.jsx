@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Modal, Button, Spinner } from 'react-bootstrap'
 import { useToasts } from 'react-toast-notifications'
 import firebase from 'firebase/app';
@@ -7,6 +7,9 @@ import { Form } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 
 const Signup = () => {
+    useEffect(() => {
+        document.title = "Sign up";
+    }, []);
     const [formData, setFormData] = useState('');
     let { fname, lname, email, pass, aadhaar, locality, city, district, state, pin, phone } = formData;
     let [loading, setLoading] = useState(false);
@@ -113,7 +116,7 @@ const Signup = () => {
         <div className='my-5'>
 
             <Form ref={formRef} className="px-3 container card card-body" id="signUpForm" onChange={handleChange} onSubmit={handleSubmit} style={{ maxWidth: "540px" }}>
-                <Modal.Title className="text-center">SIGN UP</Modal.Title>
+                <Modal.Title className="text-center mb-3">SIGN UP</Modal.Title>
                 <div className="row">
                     <div className="d-inline-block col-md-6 col-12 padding"><input type="text" name="fname" className="form-control mb-2" placeholder="First name" required /></div>
                     <div className="d-inline-block col-md-6 col-12 padding"><input type="text" name="lname" className="form-control mb-2" placeholder="Last name" /></div>
@@ -124,9 +127,9 @@ const Signup = () => {
                 </div>
                 <input type="password" className="form-control" name="pass" placeholder="Password" required />
                 <small className="form-text text-muted mb-2">Minimum 8 characters long, an uppercase, a lowercase, a number, a special character.</small>
-                <input type="number" className="form-control mb-2" name="sOtp" placeholder="Enter OTP" />
-                <button className="btn btn-theme mr-1 btn-md mb-3">Request OTP</button>
-                <button className="btn btn-theme btn-md mb-3">Verify</button>
+                <input type="number" className="form-control mb-2" name="sOtp" placeholder="Enter OTP" readOnly />
+                <Button className="btn btn-theme mr-1 btn-md mb-3" disabled>Request OTP</Button>
+                <Button className="btn btn-theme btn-md mb-3" disabled>Verify</Button>
                 <div className="row">
                     <div className="col-12 col-md-6"><input type="text" name="locality" className="form-control mb-2 mr-auto" placeholder="Locality" required /></div>
                     <div className="col-12 col-md-6"><input type="text" name="city" className="form-control mb-2 mr-auto" placeholder="City" required /></div>

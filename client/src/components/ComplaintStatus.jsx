@@ -29,8 +29,9 @@ function ComplaintStatus(props) {
     // setUid(props.user.uid);
 
     useEffect(() => {
-        if (props.user.uid !== undefined) setData();
-        console.log(props.user.uid !== '');
+        document.title = "Complaint Status";
+        if (props.user !== undefined && props.user !== null) setData();
+        console.log(props.user !== '');
         // eslint-disable-next-line
     }, [props]);
 
@@ -64,7 +65,7 @@ function ComplaintStatus(props) {
                     </div>
                 </div>
                 <label>Complaint statement:</label>
-                <textarea className="form-control md-textarea" value={complaint.complaintStatement} placeholder="Complaint statement" readOnly></textarea>
+                <textarea className="form-control md-textarea" rows="4" value={complaint.complaintStatement} placeholder="Complaint statement" readOnly></textarea>
 
                 {/* ============================== */}
                 <hr /><h6 className="text-center">Accused Detail</h6><hr />
@@ -119,7 +120,7 @@ function ComplaintStatus(props) {
                 </div>
                 <div className="row mt-3">
                     <label>Evidence:</label>
-                    <img src={complaint.evidenceImage} alt="evidenceImage" className='img-fluid' />
+                    <img src={complaint.evidenceImage} alt="evidenceImage" id="evidenceImage" className='img-fluid mx-auto mt-3' />
                 </div>
             </form>
         </div >

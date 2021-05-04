@@ -14,6 +14,7 @@ function VpsChat() {
     // let [finalMsgs, setFinalMsgs] = useState([]);
 
     useEffect(() => {
+        document.title = "VPS Chat";
         auth.onAuthStateChanged(u => {
             setUid(u.uid);
         });
@@ -21,14 +22,14 @@ function VpsChat() {
         // eslint-disable-next-line
     }, [uid]);
 
-    const loadMessages = async () => {
+    const loadMessages = () => {
         if (uid !== "") {
             try {
-                await myFirebase.database().ref('messages').child(uid).on('value', chats => {
+                myFirebase.database().ref('messages').child(uid).on('value', chats => {
                     if (chats.val() != null) {
-                        const values = Object.values(chats.val());
-                        setOldMsgs(values);
-                        document.getElementById('messages').scrollTo(0, 1000000);
+                        const values = Object.values(chats.val())
+                        setOldMsgs(values)
+                        document.getElementById('messages').scrollTo(0, 1000000)
                         // document.getElementById('view').scrollIntoView();
                     }
                 })
@@ -122,21 +123,6 @@ function VpsChat() {
             })
         }
     };
-
-    // function saveImg(e) {
-    //     console.log(e.target.files[0]);
-    //     if (e.target.files[0]) {
-    //         var reader = new FileReader();
-    //         reader.onload = function (e) {
-    //             $('#blah').attr('src', e.target.result);
-    //         }
-    //         reader.readAsDataURL(e.target.files[0]); // convert to base64 string
-    //     }
-    // }
-
-
-    // console.log(newMsgs);
-    // console.log(newMsgs.filter(n => !oldMsgs.map(k => k.time).includes(n.time)));
 
 
     return (

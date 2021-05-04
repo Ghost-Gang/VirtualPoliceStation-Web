@@ -71,3 +71,10 @@ body {
   cursor: pointer;
   color: #2f3653;
 }
+#list-container {
+  max-height: 529px;
+  overflow-y: hidden;
+}
+#user-list {
+  overflow-y: scroll;
+}

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Table } from 'react-bootstrap'
 import { CrimeData } from './PastIncidentData'
 function PastIncidents() {
-    console.log(CrimeData);
-
+    useEffect(() => {
+        document.title = "Past Incidents";
+    }, []);
     return (
         <div className='mx-auto card card-body col-md-10 my-md-5'>
             <h3 className='text-center mb-3'>CRIMINAL ACTIVITIES IN PAST YEARS</h3>
@@ -22,7 +23,7 @@ function PastIncidents() {
                         CrimeData.map(data => {
                             console.log(data);
                             return (
-                                <tr>
+                                <tr key={Math.random()}>
                                     <td>{data.sl}</td>
                                     <td>{data.state}</td>
                                     <td>{data.sn}</td>

@@ -288,3 +288,26 @@ body {
 .show > .btn-theme.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem #595e75;
 }
+
+/* certificate */
+.body {
+  margin: 0;
+  padding: 0;
+}
+.body {
+  color: black;
+  display: table;
+  font-family: Georgia, serif;
+  font-size: 24px;
+}
+.c-container {
+  border: 2px solid black;
+  width: 750px;
+  height: 563px;
+  display: table-cell;
+}
+
+/* complaint status */
+#evidenceImage {
+  max-height: 300px;
+}

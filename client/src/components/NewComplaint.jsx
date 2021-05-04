@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
@@ -10,7 +11,9 @@ function NewComplaint(props) {
     // console.log(window.location.pathname.split('/')[2]);
     let [user, setUser] = useState('');
     let [origin, setOrigin] = useState('');
+    const history = useHistory();
     useEffect(() => {
+        document.title = "New Complaint";
         firebase.auth().onAuthStateChanged(User => {
             if (User) {
                 setUser(User);
@@ -67,9 +70,9 @@ function NewComplaint(props) {
                             } else {
                                 addToast('Submitted successfully', { appearance: 'success', autoDismiss: true });
                                 formRef.current.reset();
+                                history.push(`/u/${user.uid}/complaint-status`);
                             }
                             setLoading(false);
-                            document.getElementById('progress').innerHTML = "";
                         }).catch(err => {
                             setLoading(false);
                             addToast(err.message, { appearance: 'error', autoDismiss: true });

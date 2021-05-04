@@ -8,7 +8,7 @@ import { useToasts } from 'react-toast-notifications'
 function ApplyNoc() {
     let [user, setUser] = useState('');
     let [origin, setOrigin] = useState('');
-
+    console.log(user.uid);
     useEffect(() => {
         firebase.auth().onAuthStateChanged(User => {
             if (User) {
@@ -53,6 +53,7 @@ function ApplyNoc() {
     }
     const handleChangeExhibition = e => {
         setExhibitionData({ ...exhibitionData, [e.target.name]: e.target.value });
+        setExhibitionData({ ...exhibitionData, uid: user.uid });
     }
 
     // Procession

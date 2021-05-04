@@ -21,6 +21,7 @@ import Profile from "./components/Profile";
 import PastIncidents from "./components/PastIncidents";
 import NotFound from "./components/notfound";
 import Unauthorized from "./components/unauthorized";
+import Certificate from "./components/Certificate";
 
 const App = (props) => {
   const [user, setUser] = useState("");
@@ -65,6 +66,7 @@ const App = (props) => {
               path="/u/:uid/character-certificate"
               component={CharCert}
             />
+            <Route exact path="/certificate" component={Certificate} />
           </ToastProvider>
         </Switch>
         <Footer />
